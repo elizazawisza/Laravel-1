@@ -1,0 +1,209 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    color: #323232;
+    background-color: #cceeff;
+    font-family: "Helvatia", "Times New Roman";
+    font-size: 18px;
+    line-height: 1.3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#add{
+    background-color: #ffe6ec;
+    border: 1px solid #D9EEFF;
+    border-radius: 3px;
+    width: 100%;
+    padding: 40px;
+    margin: 0 0 10px 0;
+}
+#add2{
+    background-color: #ffe6ec;
+    border: 1px solid #D9EEFF;
+    border-radius: 3px;
+    width: 100%;
+    padding: 40px;
+    margin: 0 0 10px 0;
+}
+#kolor, #cena, #nazwa, #przekatna, #rok, #pamiec, #zdjecie{
+    margin-top: 10px;
+}
+input#kolor, input#cena, input#nazwa, input#przekatna, input#rok, input#pamiec, input#zdjecie{
+    background-color: #FFFFFF;
+    border: 1px solid #D6D9DC;
+    border-radius: 3px;
+    padding: 7px;
+    font-size: 14px;
+    min-height: 14px;
+    width: 50%;
+    margin-right: 10px;
+}
+
+label{
+    margin-bottom: 15px;
+    margin-left: 10px;
+    width: 50%;
+}
+select#nazwa, select#pamiec, select#rok{
+    padding: 7px;
+    font-size: 14px;
+    background-color:#FFFFFF;
+    border: 1px solid #D6D9DC;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    width: 50%;
+    min-height: 14px;
+}
+.spis button{
+    color: #000000;
+    background-color: #e6e6e6;
+    width: 50%;
+    padding: 7px;
+    font-size: 14px;
+    min-height: 14px;
+    border-radius: 3px;
+}
+button#dodaj, button#zaktualizuj, button#powrot, button#dodawanie{
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+button#dodaj, button#zaktualizuj, button#powrot, button#dodawanie {
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #53A4E6;
+    border: none;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 3px;
+    padding: 10px 30px;
+    cursor: pointer;
+    width: 40%;
+    text-align: center;
+}
+
+.przycisk button{
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #53A4E6;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 20px;
+    cursor: pointer;
+    width: 70%;
+}
+.przycisk_podglad button{
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #53A4E6;
+    border: none;
+    margin: 2px;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+    width: 55px;
+}
+
+.przycisk_edytuj button{
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: rgba(32,173,58,0.9);
+    border: none;
+    margin: 2px;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+    width: 55px;
+}
+.przycisk_usun {
+    font-size: 10px;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: #ff333a;
+    border: none;
+    margin: 2px;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+    width: 55px;
+}
+.przyciki_tabela {
+    justify-content: left;
+    width: 100%;
+}
+
+.tabela table{
+    border-collapse: collapse;
+    width: 100%;
+    align-self: center;
+}
+.tabela td{
+    border: none;
+    height: 30px;
+    padding: 10px;
+    width: auto;
+    text-align: center;
+    vertical-align: bottom;
+    background-color: #EDF7F7;
+}
+.tabela th {
+    background-color: #0767B0;
+    color: white;
+    height: 30px;
+    width: 60px;
+
+}
+.tabela_podglad table{
+    border-collapse: collapse;
+    width: 100%;
+    align-self: center;
+    margin-top: 10px;
+}
+.tabela_podglad tr{
+    border: 1px solid #012745;
+    height: 30px;
+    padding: 10px;
+    text-align: center;
+    vertical-align: bottom;
+    background-color: #EDF7F7;
+}
+.tabela_podglad th {
+    background-color: #ff7673;
+    color: white;
+    width: 100px;
+    border: 1px solid #012745;
+
+}
+.tabela_podglad td {
+    color: black;
+    width: 200px;
+}
+.alert-success{
+    width  : 30%;
+    padding: 5px;
+    font-size: 20px;
+    color: white;
+    background-color: rgba(4, 164, 13, 0.79);
+    text-align: center;
+    margin-top: 10px;
+}
+.alert-danger {
+    width  : 80%;
+    padding: 0;
+    font-size: 12px;
+    color: #900;
+    text-align: right;
+    background-color: #ffe6ec;
+    margin-left: 60px;
+}
