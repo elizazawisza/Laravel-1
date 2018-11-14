@@ -46,7 +46,7 @@
 </template>
 <script>
     export default {
-        props:['data'],
+        props:['data', 'basicroute'],
         data: function () {
             return {
                 form:{
@@ -75,7 +75,7 @@
         methods:{
             powrot:function(e){
                 e.preventDefault();
-                window.location.href=('http://kolekcja.local/kolekcja');
+                window.location.href=(this.basicroute);
             }
         }
     }

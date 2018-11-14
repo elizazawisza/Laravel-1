@@ -36,7 +36,7 @@
 <script>
 
     export default {
-        props: ['route','data'],
+        props: ['route','data', 'backroute'],
         data: function () {
             return {
                 form:{
@@ -114,9 +114,9 @@
                 formData.append('przekatna', JSON.stringify(this.przekatna));
                 formData.append('zdjecie', this.zdjecie);
                 formData.append('_method', 'PATCH');
-                console.log(this.route);
+                //console.log(this.route);
                 axios.post(this.route,formData)
-                    .then(function (response) {
+                    .then((response) => {
                         if (response.data.success) {
                             vn.nazwa = '';
                             vn.rok = '';
@@ -124,9 +124,9 @@
                             vn.kolor = '';
                             vn.przekatna = '';
                             vn.pamiec = '';
+                            window.alert("Telefon został zaktualizowany");
+                            window.location.href= this.backroute;
                         }
-                        window.alert("Telefon został zaktualizowany");
-                        window.location.href=('http://kolekcja.local/kolekcja');
                     })
                     .catch(function (error) {
                         console.log("error",error);

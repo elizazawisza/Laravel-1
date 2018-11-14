@@ -1,7 +1,10 @@
 <template>
     <div id="index">
         <div class="tabela">
-            <table>
+            <table v-if="form===null">
+                <th>Brak rekordów</th>
+            </table>
+            <table v-else>
                 <tr>
                     <th>Lp</th>
                     <th>Nazwa</th>
@@ -21,10 +24,10 @@
                     <td>{{element.kolor}}</td>
                     <td>{{element.przekatna}}</td>
                     <td>
-                       <a :href="`/kolekcja/${element.id}`" class="przycisk_podglad"><button>Podgląd</button></a>
+                       <a :href="`${basicroute}/${element.id}`" class="przycisk_podglad"><button>Podgląd</button></a>
                     </td>
                     <td>
-                        <a :href="`/kolekcja/${element.id}/edit`" class="przycisk_edytuj"><button>Edytuj</button></a>
+                        <a :href="`${basicroute}/${element.id}/edit`" class="przycisk_edytuj"><button>Edytuj</button></a>
                     </td>
                     <td>
                         <button class="button przycisk_usun" type="submit" @click="usuwanie(element.id)">Usuń</button>
@@ -44,10 +47,11 @@
 
 <script>
     export default {
-        props:['data'],
+        props:['data', 'basicroute'],
         data: function () {
             return {
                 form:this.data,
+
             }
         },
         beforeMount(){
@@ -55,18 +59,18 @@
         methods:{
             dodawanie:function(e){
                 e.preventDefault();
-                window.location.href=('http://kolekcja.local/kolekcja/create');
+                window.location.href=(this.basicroute+'/create');
             },
             usuwanie:function (form) {
                 var odp = confirm("Na pewno chcesz usunąć ten telefon z kolekcji?");
                 if(odp===true){
-                    axios.post(`http://kolekcja.local/kolekcja/` + form ,{
+                    axios.post(this.basicroute +'/'+ form ,{
                         _method : 'DELETE'
                     })
-                        .then(function (response) {
+                        .then((response)=> {
                             if (response.data.success) {}
                             window.alert("Telefon został usunięty");
-                            window.location.href=('http://kolekcja.local/kolekcja');
+                            window.location.href=(this.basicroute);
                         })
                         .catch(function (error) {
                             console.log("error",error);

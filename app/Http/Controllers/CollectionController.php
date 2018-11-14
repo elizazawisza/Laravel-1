@@ -109,8 +109,7 @@ class CollectionController extends Controller
             $kolekcja->zdjecie =$zdjecie;
         }
         $kolekcja->save();
-        return redirect('kolekcja')->with('success', 'Informacje zostały zaktualizowane');
-
+        return response()->json(['success'=>true]);
     }
 
     /**

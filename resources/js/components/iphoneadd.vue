@@ -29,7 +29,7 @@
 
 <script>
     export default {
-        props: ['route'],
+        props: ['route', 'basicroute'],
         data: function () {
             return {
                 nazwa: 'iPhone',
@@ -85,7 +85,7 @@
                     pamiec: this.pamiec,
                     action:'dodaj'
                 })
-                    .then(function (response) {
+                    .then((response)=> {
                         if (response.data.success) {
                             vn.message = response.data.message;
                             vn.nazwa = '';
@@ -96,7 +96,7 @@
                             vn.pamiec = '';
                         }
                         window.alert("Telefon został dodany");
-                        window.location.href=('http://kolekcja.local/kolekcja');
+                        window.location.href=(this.basicroute);
                     })
                     .catch(function (error) {
                         console.log("error",error);

@@ -4,7 +4,7 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
     <div id="app">
-        <iphoneshow :data="{{$kolekcja}}"></iphoneshow>
+        <iphoneshow basicroute="{{route('kolekcja.index')}}" :data="{{$kolekcja}}"></iphoneshow>
     </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src='/js/app.js'></script>

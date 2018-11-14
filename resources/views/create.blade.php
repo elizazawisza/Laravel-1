@@ -9,7 +9,7 @@
 </head>
 <body>
 <div id="app">
-    <iphoneadd route="{{route('kolekcja.store')}}"></iphoneadd>
+    <iphoneadd basicroute="{{route('kolekcja.index')}}" route="{{route('kolekcja.store')}}"></iphoneadd>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src='/js/app.js'></script>
