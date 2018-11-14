@@ -49092,7 +49092,6 @@ var render = function() {
               _c("img", {
                 attrs: {
                   src: "/storage/zdjecia/" + _vm.form.zdjecie,
-                  width: "100px",
                   height: "200px"
                 }
               })
@@ -49267,7 +49266,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -49278,6 +49277,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -49376,13 +49376,16 @@ var render = function() {
             _c("th", [_vm._v("Zdjęcie")]),
             _vm._v(" "),
             _c("td", [
-              _c("img", {
-                attrs: {
-                  src: "/storage/zdjecia/" + _vm.form.zdjecie,
-                  width: "100px",
-                  height: "200px"
-                }
-              })
+              _vm.form.zdjecie != ""
+                ? _c("img", {
+                    attrs: {
+                      src: "/storage/zdjecia/" + _vm.form.zdjecie,
+                      height: "200px"
+                    }
+                  })
+                : _c("img", {
+                    attrs: { src: "/storage/Apple.png", height: "100px" }
+                  })
             ])
           ]),
           _vm._v(" "),
@@ -49656,39 +49659,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['data'],
     data: function data() {
         return {
-            form: {
-                nazwa: '',
-                cena: '',
-                rok: '',
-                kolor: '',
-                przekatna: '',
-                pamiec: '',
-                zdjecie: '',
-                id: ''
-            }
+            form: this.data
         };
     },
-    beforeMount: function beforeMount() {
-        this.form = this.data;
-        console.log(this.data);
-    },
-    mounted: function mounted() {
-        this.nazwa = this.data.nazwa;
-        this.cena = this.data.cena;
-        this.rok = this.data.rok;
-        this.pamiec = this.data.pamiec;
-        this.przekatna = this.data.przekatna;
-        this.kolor = this.data.kolor;
-        this.zdjecie = this.data.zdjecie;
-        this.id = this.data.id;
-    },
+    beforeMount: function beforeMount() {},
 
     methods: {
         dodawanie: function dodawanie(e) {
@@ -49696,21 +49675,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             window.location.href = 'http://kolekcja.local/kolekcja/create';
         },
         usuwanie: function usuwanie(form) {
-            axios.post('http://kolekcja.local/kolekcja/' + form, {
-                _method: 'DELETE'
-            }).then(function (response) {
-                if (response.data.success) {}
-                window.alert("Telefon został usunięty");
-                window.location.href = 'http://kolekcja.local/kolekcja';
-            }).catch(function (error) {
-                console.log("error", error);
-                console.log(error.response.data);
-            });
+            var odp = confirm("Na pewno chcesz usunąć ten telefon z kolekcji?");
+            if (odp === true) {
+                axios.post('http://kolekcja.local/kolekcja/' + form, {
+                    _method: 'DELETE'
+                }).then(function (response) {
+                    if (response.data.success) {}
+                    window.alert("Telefon został usunięty");
+                    window.location.href = 'http://kolekcja.local/kolekcja';
+                }).catch(function (error) {
+                    console.log("error", error);
+                    console.log(error.response.data);
+                });
+            } else {
+                window.alert("Telefon nie został usunięty");
+            }
         },
-        dogory: function dogory(e) {
-            console.log(e);
+        dogory: function dogory(index) {
+            if (index === 0) {
+                window.alert("Nie można zmienić położenia danego rekordu");
+            } else {
+                var current = this.form[index];
+                current.kolejka--;
+                this.form[index - 1].kolejka++;
+                this.form.sort(function (a, b) {
+                    return a.kolejka > b.kolejka ? 1 : -1;
+                });
+            }
         },
-        wdol: function wdol(e) {}
+        wdol: function wdol(index) {
+            var dlugosc = this.data.length;
+            console.log(dlugosc);
+            if (index === dlugosc - 1) {
+                window.alert("Nie można zmienić położenia danego rekordu");
+            } else {
+                var current = this.form[index];
+                current.kolejka++;
+                this.form[index + 1].kolejka--;
+                this.form.sort(function (a, b) {
+                    return a.kolejka > b.kolejka ? 1 : -1;
+                });
+            }
+        }
     }
 });
 
@@ -49729,28 +49735,28 @@ var render = function() {
         [
           _vm._m(0),
           _vm._v(" "),
-          _vm._l(_vm.form, function(form, index) {
+          _vm._l(_vm.form, function(element, index) {
             return _c("tr", [
-              _c("td", [_vm._v(_vm._s(index + 1))]),
+              _c("td", [_vm._v(_vm._s(element.kolejka))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(form.nazwa))]),
+              _c("td", [_vm._v(_vm._s(element.nazwa))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(form.rok))]),
+              _c("td", [_vm._v(_vm._s(element.rok))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(form.cena))]),
+              _c("td", [_vm._v(_vm._s(element.cena))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(form.pamiec))]),
+              _c("td", [_vm._v(_vm._s(element.pamiec))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(form.kolor))]),
+              _c("td", [_vm._v(_vm._s(element.kolor))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(form.przekatna))]),
+              _c("td", [_vm._v(_vm._s(element.przekatna))]),
               _vm._v(" "),
               _c("td", [
                 _c(
                   "a",
                   {
                     staticClass: "przycisk_podglad",
-                    attrs: { href: "/kolekcja/" + form.id }
+                    attrs: { href: "/kolekcja/" + element.id }
                   },
                   [_c("button", [_vm._v("Podgląd")])]
                 )
@@ -49761,7 +49767,7 @@ var render = function() {
                   "a",
                   {
                     staticClass: "przycisk_edytuj",
-                    attrs: { href: "/kolekcja/" + form.id + "/edit" }
+                    attrs: { href: "/kolekcja/" + element.id + "/edit" }
                   },
                   [_c("button", [_vm._v("Edytuj")])]
                 )
@@ -49775,7 +49781,7 @@ var render = function() {
                     attrs: { type: "submit" },
                     on: {
                       click: function($event) {
-                        _vm.usuwanie(form.id)
+                        _vm.usuwanie(element.id)
                       }
                     }
                   },
@@ -49787,25 +49793,25 @@ var render = function() {
                 _c(
                   "button",
                   {
+                    staticClass: "button gora",
                     attrs: { type: "submit" },
                     on: {
                       click: function($event) {
-                        _vm.dogory()
+                        _vm.dogory(index)
                       }
                     }
                   },
                   [_vm._v("↑")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", [
+                ),
+                _vm._v(" "),
                 _c(
                   "button",
                   {
+                    staticClass: "button dol",
                     attrs: { type: "submit" },
                     on: {
                       click: function($event) {
-                        _vm.wdol()
+                        _vm.wdol(index)
                       }
                     }
                   },
@@ -49858,7 +49864,8 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th"),
       _c("th", [_vm._v("Opcje")]),
-      _c("th")
+      _c("th"),
+      _c("th", [_vm._v("Kolejność")])
     ])
   }
 ]

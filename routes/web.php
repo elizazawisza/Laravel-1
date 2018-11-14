@@ -12,4 +12,3 @@
 */
 
 Route::resource('kolekcja', 'CollectionController');
-

@@ -22,7 +22,7 @@ class CreateKolekcjaTable extends Migration
             $table->string('kolor');
             $table->double('przekatna');
             $table->string('zdjecie');
-
+            $table->integer('kolejka')->nullable();
             $table->timestamps();
         });
     }

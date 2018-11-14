@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Kolekcja;
 use App\Http\Requests\CollectionRequest;
 use Illuminate\Support\Facades\Storage;
@@ -47,7 +46,16 @@ class CollectionController extends Controller
         $telefon->kolor=$request->get('kolor');
         $telefon->przekatna=$request->get('przekatna');
         $telefon->zdjecie='';
-        $telefon->save();
+        $data = (array)Kolekcja::all();
+        $data = array_filter($data);
+        if(empty($data)){
+            $telefon->kolejka=1;
+            $telefon->save();
+        }else{
+            $tmp = Kolekcja::all()->last()->kolejka;
+            $telefon->kolejka=$tmp+1;
+            $telefon->save();
+        }
         return redirect('http://kolekcja.local/kolekcja');
 
     }
@@ -118,8 +126,14 @@ class CollectionController extends Controller
             $delete = Storage::disk('public')->delete('zdjecia/' . $kolekcja->zdjecie);
         }
         $kolekcja->delete();
+        $elementy = Kolekcja::all();
+        $i=1;
+        foreach ($elementy as $element){
+            $element->kolejka = $i;
+            $i++;
+            $element->save();
+        }
         return redirect('kolekcja')->with('success', 'Pozycja została usunięta');
     }
-
 
 }
