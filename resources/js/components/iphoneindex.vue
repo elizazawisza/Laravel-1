@@ -1,10 +1,8 @@
 <template>
     <div id="index">
         <div class="tabela">
-            <table v-if="form===null">
-                <th>Brak rekordów</th>
-            </table>
-            <table v-else>
+
+            <table v-if="form[0]">
                 <tr>
                     <th>Lp</th>
                     <th>Nazwa</th>
@@ -37,6 +35,9 @@
                         <button class="button dol" type="submit" @click="wdol(index)">↓</button>
                     </td>
                 </tr>
+            </table>
+            <table v-else>
+                <th>Brak rekordów</th>
             </table>
         </div>
         <div class="button">
