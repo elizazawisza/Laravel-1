@@ -64,19 +64,19 @@
             },
             usuwanie:function (form) {
                 var odp = confirm("Na pewno chcesz usunąć ten telefon z kolekcji?");
+                let vn = this;
                 if(odp===true){
                     axios.post(this.basicroute +'/'+ form ,{
                         _method : 'DELETE'
                     })
-                        .then((response)=> {
+                        .then(function(response){
                             if (response.data.success) {}
                             window.alert("Telefon został usunięty");
-                            window.location.href=(this.basicroute);
+                            window.location.href=vn.basicroute;
                         })
                         .catch(function (error) {
                             console.log("error",error);
                             console.log(error.response.data);
-
                         });
                 }
                 else{

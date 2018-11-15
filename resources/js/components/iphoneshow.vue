@@ -75,7 +75,7 @@
         methods:{
             powrot:function(e){
                 e.preventDefault();
-                window.location.href=(this.basicroute);
+                window.location.href=this.basicroute;
             }
         }
     }

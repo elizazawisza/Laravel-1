@@ -47810,8 +47810,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         clickDodaj: function clickDodaj(e) {
-            var _this = this;
-
             e.preventDefault();
             var vn = this;
             vn.error_przekatna = '';
@@ -47840,7 +47838,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     vn.pamiec = '';
                 }
                 window.alert("Telefon został dodany");
-                window.location.href = _this.basicroute;
+                window.location.href = vn.basicroute;
             }).catch(function (error) {
                 console.log("error", error);
                 if (error.response.data.errors.przekatna) vn.error_przekatna = error.response.data.errors.przekatna[0];
@@ -49019,8 +49017,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         clickZaktualizuj: function clickZaktualizuj(e) {
-            var _this = this;
-
             e.preventDefault();
 
             var vn = this;
@@ -49050,7 +49046,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     vn.przekatna = '';
                     vn.pamiec = '';
                     window.alert("Telefon został zaktualizowany");
-                    window.location.href = _this.backroute;
+                    window.location.href = vn.backroute;
                 }
             }).catch(function (error) {
                 console.log("error", error);
@@ -49684,16 +49680,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             window.location.href = this.basicroute + '/create';
         },
         usuwanie: function usuwanie(form) {
-            var _this = this;
-
             var odp = confirm("Na pewno chcesz usunąć ten telefon z kolekcji?");
+            var vn = this;
             if (odp === true) {
                 axios.post(this.basicroute + '/' + form, {
                     _method: 'DELETE'
                 }).then(function (response) {
                     if (response.data.success) {}
                     window.alert("Telefon został usunięty");
-                    window.location.href = _this.basicroute;
+                    window.location.href = vn.basicroute;
                 }).catch(function (error) {
                     console.log("error", error);
                     console.log(error.response.data);

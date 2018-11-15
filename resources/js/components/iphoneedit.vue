@@ -116,7 +116,7 @@
                 formData.append('_method', 'PATCH');
                 //console.log(this.route);
                 axios.post(this.route,formData)
-                    .then((response) => {
+                    .then(function (response){
                         if (response.data.success) {
                             vn.nazwa = '';
                             vn.rok = '';
@@ -125,7 +125,7 @@
                             vn.przekatna = '';
                             vn.pamiec = '';
                             window.alert("Telefon został zaktualizowany");
-                            window.location.href= this.backroute;
+                            window.location.href= vn.backroute;
                         }
                     })
                     .catch(function (error) {

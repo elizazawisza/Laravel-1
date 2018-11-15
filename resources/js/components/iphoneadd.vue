@@ -68,7 +68,7 @@
             },
             clickDodaj:function(e){
                 e.preventDefault();
-                var vn = this;
+                let vn = this;
                 vn.error_przekatna = '';
                 vn.error_cena = '';
                 vn.error_kolor = '';
@@ -85,7 +85,7 @@
                     pamiec: this.pamiec,
                     action:'dodaj'
                 })
-                    .then((response)=> {
+                    .then(function (response) {
                         if (response.data.success) {
                             vn.message = response.data.message;
                             vn.nazwa = '';
@@ -96,7 +96,7 @@
                             vn.pamiec = '';
                         }
                         window.alert("Telefon został dodany");
-                        window.location.href=(this.basicroute);
+                        window.location.href=vn.basicroute;
                     })
                     .catch(function (error) {
                         console.log("error",error);
