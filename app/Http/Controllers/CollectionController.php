@@ -56,7 +56,7 @@ class CollectionController extends Controller
             $telefon->kolejka=$tmp+1;
             $telefon->save();
         }
-        return redirect('http://kolekcja.local/kolekcja');
+        return redirect('kolekcja');
 
     }
 
