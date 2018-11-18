@@ -114,7 +114,7 @@
                 formData.append('przekatna', JSON.stringify(this.przekatna));
                 formData.append('zdjecie', this.zdjecie);
                 formData.append('_method', 'PATCH');
-                //console.log(this.route);
+                console.log(this.route);
                 axios.post(this.route,formData)
                     .then(function (response){
                         if (response.data.success) {

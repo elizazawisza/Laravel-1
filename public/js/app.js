@@ -49036,7 +49036,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('przekatna', JSON.stringify(this.przekatna));
             formData.append('zdjecie', this.zdjecie);
             formData.append('_method', 'PATCH');
-            //console.log(this.route);
+            console.log(this.route);
             axios.post(this.route, formData).then(function (response) {
                 if (response.data.success) {
                     vn.nazwa = '';
@@ -49669,7 +49669,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: this.data
-
         };
     },
     beforeMount: function beforeMount() {},
@@ -49703,10 +49702,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 var current = this.form[index];
                 current.kolejka--;
+                var tmp = this.form[index - 1];
                 this.form[index - 1].kolejka++;
                 this.form.sort(function (a, b) {
                     return a.kolejka > b.kolejka ? 1 : -1;
                 });
+                this.zamien(tmp, current);
+                this.zamien(current, tmp);
             }
         },
         wdol: function wdol(index) {
@@ -49717,11 +49719,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 var current = this.form[index];
                 current.kolejka++;
+                var tmp = this.form[index + 1];
                 this.form[index + 1].kolejka--;
                 this.form.sort(function (a, b) {
                     return a.kolejka > b.kolejka ? 1 : -1;
                 });
+                this.zamien(tmp, current);
+                this.zamien(current, tmp);
             }
+        },
+        zamien: function zamien(form1, form2) {
+            var vn = this;
+            var formData = new FormData();
+            formData.append('nazwa', form1.nazwa);
+            formData.append('rok', JSON.stringify(form1.rok));
+            formData.append('cena', form1.cena);
+            formData.append('pamiec', form1.pamiec);
+            formData.append('kolor', form1.kolor);
+            formData.append('przekatna', JSON.stringify(form1.przekatna));
+            formData.append('zdjecie', form1.zdjecie);
+            formData.append('kolejka', form1.kolejka);
+            formData.append('_method', 'PATCH');
+            axios.post(vn.basicroute + '/' + form2.id, formData).then(function (response) {
+                if (response.data.success) {}
+            }).catch(function (error) {
+                console.log("error", error);
+            });
         }
     }
 });

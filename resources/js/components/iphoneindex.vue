@@ -52,7 +52,6 @@
         data: function () {
             return {
                 form:this.data,
-
             }
         },
         beforeMount(){
@@ -92,8 +91,11 @@
                 }else{
                     let current = this.form[index];
                     current.kolejka--;
+                    let tmp = this.form[index-1];
                     this.form[index-1].kolejka++;
                     this.form.sort((a,b)=>a.kolejka>b.kolejka ? 1 : -1);
+                    this.zamien(tmp, current);
+                    this.zamien(current, tmp);
                 }
             },
             wdol:function(index){
@@ -104,9 +106,33 @@
                 }else{
                     let current = this.form[index];
                     current.kolejka++;
+                    let tmp = this.form[index+1];
                     this.form[index+1].kolejka--;
                     this.form.sort((a,b)=>a.kolejka>b.kolejka ? 1 : -1);
+                    this.zamien(tmp, current);
+                    this.zamien(current, tmp);
                 }
+            },
+            zamien:function(form1, form2){
+                let vn=this;
+                let formData = new FormData();
+                formData.append('nazwa', form1.nazwa);
+                formData.append('rok', JSON.stringify(form1.rok));
+                formData.append('cena', form1.cena);
+                formData.append('pamiec', form1.pamiec);
+                formData.append('kolor', form1.kolor);
+                formData.append('przekatna', JSON.stringify(form1.przekatna));
+                formData.append('zdjecie', form1.zdjecie);
+                formData.append('kolejka', form1.kolejka);
+                formData.append('_method', 'PATCH');
+                axios.post(vn.basicroute +'/' +form2.id,formData)
+                    .then(function (response){
+                        if (response.data.success) {
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log("error",error);
+                    });
             }
         }
     }
