@@ -47771,7 +47771,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['route', 'basicroute'],
+    props: ['route', 'basicroute', 'logoutroute'],
     data: function data() {
         return {
             nazwa: 'iPhone',
@@ -47818,7 +47818,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             vn.error_nazwa = '';
             vn.error_pamiec = '';
             vn.error_rok = '';
-
+            console.log(vn.logoutroute);
             axios.post(this.route, {
                 nazwa: this.nazwa,
                 rok: this.rok,

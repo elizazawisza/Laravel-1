@@ -11,5 +11,8 @@
 |
 */
 
-Route::resource('kolekcja', 'CollectionController');
-Route::patch('kolekcjaChangeOrder','CollectionController@changeOrder');
+Route::resource('kolekcja', 'CollectionController')->middleware('auth');
+Route::patch('kolekcjaChangeOrder','CollectionController@changeOrder')->middleware('auth');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -29,7 +29,7 @@
 
 <script>
     export default {
-        props: ['route', 'basicroute'],
+        props: ['route', 'basicroute', 'logoutroute'],
         data: function () {
             return {
                 nazwa: 'iPhone',
@@ -75,7 +75,7 @@
                 vn.error_nazwa = '';
                 vn.error_pamiec = '';
                 vn.error_rok = '';
-
+                console.log(vn.logoutroute);
                 axios.post(this.route, {
                     nazwa: this.nazwa,
                     rok: this.rok,
