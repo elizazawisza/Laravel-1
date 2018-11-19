@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Kolekcja;
 use App\Http\Requests\CollectionRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CollectionController extends Controller
@@ -15,7 +16,7 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $kolekcja = Kolekcja::all();
+        $kolekcja = Kolekcja::orderBy('kolejka','asc')->get();
         return view('index2', compact(['kolekcja']));
 
     }
@@ -133,6 +134,20 @@ class CollectionController extends Controller
             $element->save();
         }
         return redirect('kolekcja')->with('success', 'Pozycja została usunięta');
+    }
+
+    public function changeOrder(Request $request){
+        /**
+         * [['id'=>,'kolejka'=>],[]]
+         */
+
+        $request->data;
+        foreach($request->data as $v){
+            $kolekcja = Kolekcja::find($v['id']);
+            $kolekcja->kolejka = $v['kolejka'];
+            $kolekcja->save();
+        }
+        return response()->json(['success'=>true]);
     }
 
 }

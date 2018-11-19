@@ -12,3 +12,4 @@
 */
 
 Route::resource('kolekcja', 'CollectionController');
+Route::patch('kolekcjaChangeOrder','CollectionController@changeOrder');

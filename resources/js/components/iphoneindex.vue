@@ -95,7 +95,7 @@
                     this.form[index-1].kolejka++;
                     this.form.sort((a,b)=>a.kolejka>b.kolejka ? 1 : -1);
                     this.zamien(tmp, current);
-                    this.zamien(current, tmp);
+                    //this.zamien(current, tmp);
                 }
             },
             wdol:function(index){
@@ -110,23 +110,17 @@
                     this.form[index+1].kolejka--;
                     this.form.sort((a,b)=>a.kolejka>b.kolejka ? 1 : -1);
                     this.zamien(tmp, current);
-                    this.zamien(current, tmp);
+                    //this.zamien(current, tmp);
                 }
             },
             zamien:function(form1, form2){
-                let vn=this;
-                let formData = new FormData();
-                formData.append('nazwa', form1.nazwa);
-                formData.append('rok', JSON.stringify(form1.rok));
-                formData.append('cena', form1.cena);
-                formData.append('pamiec', form1.pamiec);
-                formData.append('kolor', form1.kolor);
-                formData.append('przekatna', JSON.stringify(form1.przekatna));
-                formData.append('zdjecie', form1.zdjecie);
-                formData.append('kolejka', form1.kolejka);
-                formData.append('_method', 'PATCH');
-                axios.post(vn.basicroute +'/' +form2.id,formData)
+                let data = [];
+                data.push({id: form1.id, kolejka: form1.kolejka});
+                data.push({id: form2.id, kolejka: form2.kolejka});
+console.log(data);
+                axios.patch('kolekcjaChangeOrder',{data})
                     .then(function (response){
+                        console.log(response)
                         if (response.data.success) {
                         }
                     })
