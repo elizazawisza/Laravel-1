@@ -16,3 +16,4 @@ Route::patch('kolekcjaChangeOrder','CollectionController@changeOrder')->middlewa
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
