@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Auth\Session;
 
 class LoginController extends Controller
 {
@@ -19,8 +20,8 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers{
-        logout as performLogout;
+    use AuthenticatesUsers {
+        logout as doLogout;
     }
 
     /**
@@ -42,11 +43,8 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        $this->guard()->logout();
+        $this->doLogout($request);
 
-        $request->session()->invalidate();
-
-        return redirect('/home');
+        return redirect()->route('login');
     }
-
 }

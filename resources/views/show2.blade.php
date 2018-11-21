@@ -4,9 +4,11 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <header>
-    <a :href="{{route('logout')}}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><button>Wyloguj</button></a>
-    <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;"><input type="hidden" name="_token" value="lMLctIilAh7CNvezZFCBe2sYbunszb6KEso20kGr"></form>
+    <a :href="{{ route('logout') }}" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();"><button>Wyloguj</button></a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
 </header>
     <div id="app">
         <iphoneshow basicroute="{{route('kolekcja.index')}}" :data="{{$kolekcja}}"></iphoneshow>
