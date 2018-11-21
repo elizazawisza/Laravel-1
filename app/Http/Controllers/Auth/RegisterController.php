@@ -52,6 +52,12 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+        ], ['name.required' => "To pole nie może być puste",
+            'email.required' => "To pole nie może być puste",
+            'email.email' => "POdaj prawidłowy adres email",
+            'password.required' => "To pole nie może być puste",
+            'password.min' => "Hasło musi zawierać conajmniej 6 znaków",
+            'password.confirmed' => "Hasło nie zostało wpisane poprawnie",
         ]);
     }
 
