@@ -3,7 +3,7 @@
         <form id="edytowanie" method="post" class="spis-form" :action="this.route" enctype="multipart/form-data" >
             <input type="hidden" name="_method" value="PATCH">
             <div class="container">
-                <div class="row">
+                <div class="row justify-content-center ">
                     <div v-if=form.zdjecie>
                         <img :src="`/storage/zdjecia/${form.zdjecie}`" height="200px"/>
                     </div>
