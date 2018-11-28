@@ -48012,6 +48012,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value', 'change'],
@@ -48038,37 +48042,48 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "memory" } }, [
-    _c("label", { attrs: { for: "pamiec" } }, [_vm._v("Pamięć")]),
+  return _c("div", { staticClass: "row", attrs: { id: "memory" } }, [
+    _vm._m(0),
     _vm._v(" "),
-    _c(
-      "select",
-      {
-        attrs: { id: "pamiec", name: "pamiec" },
-        domProps: { value: _vm.pamiec },
-        on: { change: _vm.changePamiec }
-      },
-      [
-        _c("option", { attrs: { value: "4" } }, [_vm._v("4 GB")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "8" } }, [_vm._v("8 GB")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "16" } }, [_vm._v("16 GB")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "32" } }, [_vm._v("32 GB")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "64" } }, [_vm._v("64 GB")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "128" } }, [_vm._v("128 GB")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "256" } }, [_vm._v("256 GB")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "512" } }, [_vm._v("512 GB")])
-      ]
-    )
+    _c("div", { staticClass: "col-9" }, [
+      _c(
+        "select",
+        {
+          attrs: { id: "pamiec", name: "pamiec" },
+          domProps: { value: _vm.pamiec },
+          on: { change: _vm.changePamiec }
+        },
+        [
+          _c("option", { attrs: { value: "4" } }, [_vm._v("4 GB")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "8" } }, [_vm._v("8 GB")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "16" } }, [_vm._v("16 GB")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "32" } }, [_vm._v("32 GB")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "64" } }, [_vm._v("64 GB")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "128" } }, [_vm._v("128 GB")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "256" } }, [_vm._v("256 GB")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "512" } }, [_vm._v("512 GB")])
+        ]
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-3" }, [
+      _c("label", { attrs: { for: "pamiec" } }, [_vm._v("Pamięć")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -48138,6 +48153,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value', 'change'],
@@ -48164,18 +48183,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "price" } }, [
-    _c("label", { attrs: { for: "cena" } }, [_vm._v("Cena")]),
+  return _c("div", { staticClass: "row", attrs: { id: "price" } }, [
+    _vm._m(0),
     _vm._v(" "),
-    _c("input", {
-      attrs: { id: "cena", name: "cena", type: "number" },
-      domProps: { value: _vm.cena },
-      on: { change: _vm.changeCena }
-    }),
-    _c("br")
+    _c("div", { staticClass: "col-9" }, [
+      _c("input", {
+        attrs: { id: "cena", name: "cena", type: "number" },
+        domProps: { value: _vm.cena },
+        on: { change: _vm.changeCena }
+      }),
+      _c("br")
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-3" }, [
+      _c("label", { attrs: { for: "cena" } }, [_vm._v("Cena")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -48267,6 +48297,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value', 'change'],
@@ -48293,65 +48328,80 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "name" } }, [
-    _c("label", { attrs: { for: "nazwa" } }, [_vm._v("Nazwa ")]),
+  return _c("div", { staticClass: "row", attrs: { id: "name" } }, [
+    _vm._m(0),
     _vm._v(" "),
-    _c(
-      "select",
-      {
-        attrs: { id: "nazwa", name: "nazwa" },
-        domProps: { value: _vm.nazwa },
-        on: { change: _vm.changeNazwa }
-      },
-      [
-        _c("option", { attrs: { value: "iPhone" } }, [_vm._v("iPhone")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone3G" } }, [_vm._v("iPhone 3G")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone3GS" } }, [_vm._v("iPhone 3GS")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone4" } }, [_vm._v("iPhone 4")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone4S" } }, [_vm._v("iPhone 4S")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone5" } }, [_vm._v("iPhone 5")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone5C" } }, [_vm._v("iPhone 5C")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone5S" } }, [_vm._v("iPhone 5S")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone6" } }, [_vm._v("iPhone 6")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone6+" } }, [_vm._v("iPhone 6+")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone6S" } }, [_vm._v("iPhone 6S")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone6S+" } }, [_vm._v("iPhone 6S+")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhoneSE" } }, [_vm._v("iPhone SE")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone7" } }, [_vm._v("iPhone 7")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone7+" } }, [_vm._v("iPhone 7+")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone8" } }, [_vm._v("iPhone 8")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhone8+" } }, [_vm._v("iPhone 8+")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhoneX" } }, [_vm._v("iPhone X")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhoneXS" } }, [_vm._v("iPhone XS")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhoneXSMax" } }, [
-          _vm._v("iPhone XSMax")
-        ]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "iPhoneXR" } }, [_vm._v("iPhone XR")])
-      ]
-    )
+    _c("div", { staticClass: "col-9" }, [
+      _c(
+        "select",
+        {
+          attrs: { id: "nazwa", name: "nazwa" },
+          domProps: { value: _vm.nazwa },
+          on: { change: _vm.changeNazwa }
+        },
+        [
+          _c("option", { attrs: { value: "iPhone" } }, [_vm._v("iPhone")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone3G" } }, [_vm._v("iPhone 3G")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone3GS" } }, [
+            _vm._v("iPhone 3GS")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone4" } }, [_vm._v("iPhone 4")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone4S" } }, [_vm._v("iPhone 4S")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone5" } }, [_vm._v("iPhone 5")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone5C" } }, [_vm._v("iPhone 5C")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone5S" } }, [_vm._v("iPhone 5S")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone6" } }, [_vm._v("iPhone 6")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone6+" } }, [_vm._v("iPhone 6+")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone6S" } }, [_vm._v("iPhone 6S")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone6S+" } }, [
+            _vm._v("iPhone 6S+")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhoneSE" } }, [_vm._v("iPhone SE")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone7" } }, [_vm._v("iPhone 7")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone7+" } }, [_vm._v("iPhone 7+")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone8" } }, [_vm._v("iPhone 8")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhone8+" } }, [_vm._v("iPhone 8+")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhoneX" } }, [_vm._v("iPhone X")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhoneXS" } }, [_vm._v("iPhone XS")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhoneXSMax" } }, [
+            _vm._v("iPhone XSMax")
+          ]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "iPhoneXR" } }, [_vm._v("iPhone XR")])
+        ]
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-3" }, [
+      _c("label", { attrs: { for: "nazwa" } }, [_vm._v("Nazwa")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -48434,6 +48484,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value', 'change'],
@@ -48460,45 +48514,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "year" } }, [
-    _c("label", { attrs: { for: "rok" } }, [_vm._v("Rok")]),
+  return _c("div", { staticClass: "row", attrs: { id: "year" } }, [
+    _vm._m(0),
     _vm._v(" "),
-    _c(
-      "select",
-      {
-        attrs: { id: "rok", name: "rok" },
-        domProps: { value: _vm.rok },
-        on: { change: _vm.changeRok }
-      },
-      [
-        _c("option", { attrs: { value: "2007" } }, [_vm._v("2007")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2008" } }, [_vm._v("2008")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2009" } }, [_vm._v("2009")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2010" } }, [_vm._v("2010")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2011" } }, [_vm._v("2011")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2012" } }, [_vm._v("2012")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2013" } }, [_vm._v("2013")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2014" } }, [_vm._v("2014")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2015" } }, [_vm._v("2015")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2016" } }, [_vm._v("2016")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2017" } }, [_vm._v("2017")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "2018" } }, [_vm._v("2018")])
-      ]
-    )
+    _c("div", { staticClass: "col-9" }, [
+      _c(
+        "select",
+        {
+          attrs: { id: "rok", name: "rok" },
+          domProps: { value: _vm.rok },
+          on: { change: _vm.changeRok }
+        },
+        [
+          _c("option", { attrs: { value: "2007" } }, [_vm._v("2007")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2008" } }, [_vm._v("2008")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2009" } }, [_vm._v("2009")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2010" } }, [_vm._v("2010")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2011" } }, [_vm._v("2011")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2012" } }, [_vm._v("2012")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2013" } }, [_vm._v("2013")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2014" } }, [_vm._v("2014")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2015" } }, [_vm._v("2015")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2016" } }, [_vm._v("2016")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2017" } }, [_vm._v("2017")]),
+          _vm._v(" "),
+          _c("option", { attrs: { value: "2018" } }, [_vm._v("2018")])
+        ]
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-3" }, [
+      _c("label", { attrs: { for: "rok" } }, [_vm._v("Rok")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -48568,6 +48633,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value', 'change'],
@@ -48594,18 +48663,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "diagonal" } }, [
-    _c("label", { attrs: { for: "przekatna" } }, [_vm._v("Przekątna")]),
+  return _c("div", { staticClass: "row", attrs: { id: "diagonal" } }, [
+    _vm._m(0),
     _vm._v(" "),
-    _c("input", {
-      attrs: { id: "przekatna", name: "przekatna", type: "text" },
-      domProps: { value: _vm.przekatna },
-      on: { change: _vm.changePrzekatna }
-    }),
-    _c("br")
+    _c("div", { staticClass: "col-9" }, [
+      _c("input", {
+        attrs: { id: "przekatna", name: "przekatna", type: "text" },
+        domProps: { value: _vm.przekatna },
+        on: { change: _vm.changePrzekatna }
+      }),
+      _c("br")
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-3" }, [
+      _c("label", { attrs: { for: "przekatna" } }, [_vm._v("Przekątna")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -48774,6 +48854,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value', 'change'],
@@ -48800,18 +48884,29 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "color" } }, [
-    _c("label", { attrs: { for: "kolor" } }, [_vm._v("Kolor")]),
+  return _c("div", { staticClass: "row", attrs: { id: "color" } }, [
+    _vm._m(0),
     _vm._v(" "),
-    _c("input", {
-      attrs: { id: "kolor", name: "kolor", type: "text" },
-      domProps: { value: _vm.kolor },
-      on: { change: _vm.changeKolor }
-    }),
-    _c("br")
+    _c("div", { staticClass: "col-9" }, [
+      _c("input", {
+        attrs: { id: "kolor", name: "kolor", type: "text" },
+        domProps: { value: _vm.kolor },
+        on: { change: _vm.changeKolor }
+      }),
+      _c("br")
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-3" }, [
+      _c("label", { attrs: { for: "kolor" } }, [_vm._v("Kolor")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -48907,7 +49002,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -48918,6 +49013,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -49087,16 +49186,20 @@ var render = function() {
           attrs: { type: "hidden", name: "_method", value: "PATCH" }
         }),
         _vm._v(" "),
-        _vm.form.zdjecie
-          ? _c("div", [
-              _c("img", {
-                attrs: {
-                  src: "/storage/zdjecia/" + _vm.form.zdjecie,
-                  height: "200px"
-                }
-              })
-            ])
-          : _vm._e(),
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _vm.form.zdjecie
+              ? _c("div", [
+                  _c("img", {
+                    attrs: {
+                      src: "/storage/zdjecia/" + _vm.form.zdjecie,
+                      height: "200px"
+                    }
+                  })
+                ])
+              : _vm._e()
+          ])
+        ]),
         _vm._v(" "),
         _c("nazwa", {
           attrs: { value: _vm.form.nazwa, change: _vm.changeNazwa }
@@ -49515,6 +49618,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value', 'change'],
@@ -49542,17 +49649,28 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "photo" } }, [
-    _c("label", { attrs: { for: "zdjecie" } }, [_vm._v("Zdjęcie")]),
+  return _c("div", { staticClass: "row", attrs: { id: "photo" } }, [
+    _vm._m(0),
     _vm._v(" "),
-    _c("input", {
-      attrs: { id: "zdjecie", type: "file", name: "zdjecie" },
-      domProps: { value: _vm.zdjecie },
-      on: { change: _vm.changeFile }
-    })
+    _c("div", { staticClass: "col-9" }, [
+      _c("input", {
+        attrs: { id: "zdjecie", type: "file", name: "zdjecie" },
+        domProps: { value: _vm.zdjecie },
+        on: { change: _vm.changeFile }
+      })
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col" }, [
+      _c("label", { attrs: { for: "zdjecie" } }, [_vm._v("Zdjęcie")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

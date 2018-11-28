@@ -40,9 +40,6 @@ header button{
     margin-top: 40px;
 }
 
-#kolor, #cena, #nazwa, #przekatna, #rok, #pamiec, #zdjecie{
-    margin-top: 10px;
-}
 input#kolor, input#cena, input#nazwa, input#przekatna, input#rok, input#pamiec, input#zdjecie{
     background-color: #FFFFFF;
     border: 1px solid #D6D9DC;
@@ -50,13 +47,12 @@ input#kolor, input#cena, input#nazwa, input#przekatna, input#rok, input#pamiec, 
     padding: 7px;
     font-size: 14px;
     min-height: 14px;
-    width: 50%;
-    margin-right: 10px;
+    width: 100%;
 }
 
 label{
     margin-bottom: 15px;
-    margin-left: 10px;
+    margin-top: 5px;
     width: 50%;
 }
 select#nazwa, select#pamiec, select#rok{
@@ -66,7 +62,7 @@ select#nazwa, select#pamiec, select#rok{
     border: 1px solid #D6D9DC;
     border-radius: 3px;
     -webkit-appearance: none;
-    width: 50%;
+    width: 100%;
     min-height: 14px;
 }
 .spis button{
@@ -187,6 +183,7 @@ button#dodaj, button#zaktualizuj, button#powrot, button#dodawanie {
     color: white;
     height: 30px;
     width: 60px;
+    align-self: center;
 
 }
 .tabela_podglad table{
@@ -200,13 +197,14 @@ button#dodaj, button#zaktualizuj, button#powrot, button#dodawanie {
     height: 30px;
     padding: 10px;
     text-align: center;
-    vertical-align: bottom;
+    vertical-align: center;
     background-color: #EDF7F7;
 }
 .tabela_podglad th {
     background-color: #ff7673;
     color: white;
     width: 100px;
+    vertical-align: center;
     border: 1px solid #012745;
 
 }

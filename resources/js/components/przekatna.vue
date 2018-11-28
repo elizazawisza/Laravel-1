@@ -1,7 +1,11 @@
 <template>
-    <div id="diagonal">
-        <label for="przekatna">Przekątna</label>
-        <input id="przekatna" name="przekatna" type="text" @change="changePrzekatna" :value="przekatna"><br>
+    <div id="diagonal" class="row">
+        <div class="col-3">
+            <label for="przekatna">Przekątna</label>
+        </div>
+        <div class="col-9">
+            <input id="przekatna" name="przekatna" type="text" @change="changePrzekatna" :value="przekatna"><br>
+        </div>
     </div>
 </template>
 

@@ -1,7 +1,11 @@
 <template>
-    <div id="photo">
-        <label for="zdjecie">Zdjęcie</label>
-        <input id='zdjecie' type="file" name="zdjecie" :value='zdjecie' @change="changeFile">
+    <div id="photo" class="row">
+        <div class="col">
+            <label for="zdjecie">Zdjęcie</label>
+        </div>
+        <div class="col-9">
+            <input id='zdjecie' type="file" name="zdjecie" :value='zdjecie' @change="changeFile">
+        </div>
     </div>
 </template>
 

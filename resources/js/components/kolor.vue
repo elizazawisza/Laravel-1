@@ -1,7 +1,11 @@
 <template>
-    <div id="color">
-        <label for="kolor">Kolor</label>
-        <input id="kolor" name="kolor" type="text" @change="changeKolor" :value="kolor"><br>
+    <div id="color" class="row">
+        <div class="col-3">
+            <label for="kolor">Kolor</label>
+        </div>
+        <div class="col-9">
+            <input id="kolor" name="kolor" type="text" @change="changeKolor" :value="kolor"><br>
+        </div>
     </div>
 </template>
 

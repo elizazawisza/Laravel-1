@@ -1,7 +1,11 @@
 <template>
-    <div id="price">
-        <label for="cena">Cena</label>
-        <input id="cena" name="cena" type="number" @change="changeCena" :value="cena" ><br>
+    <div id="price" class="row">
+        <div class="col-3">
+            <label for="cena">Cena</label>
+        </div>
+        <div class="col-9">
+            <input id="cena" name="cena" type="number" @change="changeCena" :value="cena" ><br>
+        </div>
     </div>
 </template>
 

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<link rel='stylesheet' href="{{url('/css/app.css')}}"/>
 <link rel='stylesheet' href="{{url('style.css')}}"/>
 <head>
     <meta charset="UTF-8"/>
