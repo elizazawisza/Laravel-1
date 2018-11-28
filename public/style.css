@@ -48,6 +48,7 @@ input#kolor, input#cena, input#nazwa, input#przekatna, input#rok, input#pamiec, 
     font-size: 14px;
     min-height: 14px;
     width: 100%;
+    margin-bottom: 10px;
 }
 
 label{
@@ -64,6 +65,7 @@ select#nazwa, select#pamiec, select#rok{
     -webkit-appearance: none;
     width: 100%;
     min-height: 14px;
+    margin-bottom: 10px;
 }
 .spis button{
     color: #000000;

@@ -1,3 +1,4 @@
+<link rel='stylesheet' href="{{url('style2.css')}}"/>
 @extends('layouts.app')
 
 @section('content')
