@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Podany użytkownik nie pasuje do żadnego z naszej bazy.',
+    'failed' => 'Podany użytkownik nie pasuje do żadnego z naszej bazy. Spróbuj zalogować się ponownie',
     'throttle' => 'Zbyt dużo prób logowania. Proszę spróbować ponownie za :seconds sekund.',
 
 ];
