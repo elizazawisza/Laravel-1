@@ -77,6 +77,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
+  background-color: #f8fafc;
 }
 
 [tabindex="-1"]:focus {
@@ -225,7 +226,6 @@ figure {
 img {
   vertical-align: middle;
   border-style: none;
-  margin-bottom: 20px;
 }
 
 svg {

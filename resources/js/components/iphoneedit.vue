@@ -1,6 +1,6 @@
 <template>
     <div id="add">
-        <form id="edytowanie" method="post" class="spis-form" :action="this.route" enctype="multipart/form-data" >
+        <form id="edytowanie" method="post" class="spis-form" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="PATCH">
             <div class="container">
                 <div class="row justify-content-center ">
@@ -9,7 +9,7 @@
                     </div>
                 </div>
             </div>
-            <nazwa :value="form.nazwa" :change="changeNazwa">
+            <nazwa v-model="form.nazwa" :change="changeNazwa">
             </nazwa>
             <div class="alert-danger">{{error_nazwa}}</div>
             <rok :value="form.rok" :change="changeRok">
@@ -31,7 +31,9 @@
             </zdjecie>
             <div class="alert-danger">{{error_zdjecie}}</div>
             <div id="button">
-                <button id="zaktualizuj" type="submit" name="przycisk" value="zaktualizuj" @click="clickZaktualizuj">Zaktualizuj</button>
+                <button id="zaktualizuj" type="submit" name="przycisk" value="zaktualizuj" @click="clickZaktualizuj">
+                    Zaktualizuj
+                </button>
             </div>
         </form>
     </div>
@@ -40,10 +42,33 @@
 <script>
 
     export default {
-        props: ['route','data', 'backroute'],
+        props: [],
+        beforeMount() {
+            axios.get('edit')
+                .then((response) => {
+                    this.form = response.data;
+                    console.log(response.data);
+                    console.log(this.form.nazwa);
+                    console.log(form.nazwa);
+                })
+                .catch(function (error) {
+                    console.log("error", error);
+                    console.log(error.response);
+                });
+        },
+        mounted() {
+            this.nazwa = this.form.nazwa;
+            this.cena = this.form.cena;
+            this.rok = this.form.rok;
+            this.pamiec = this.form.pamiec;
+            this.przekatna = this.form.przekatna;
+            this.kolor = this.form.kolor;
+            this.zdjecie = this.form.zdjecie;
+
+        },
         data: function () {
             return {
-                form:{
+                form: {
                     nazwa: '',
                     cena: '',
                     rok: '',
@@ -60,47 +85,32 @@
                 error_pamiec: '',
                 error_rok: '',
                 error_zdjecie: '',
-
             }
         },
-        beforeMount(){
-            this.form = this.data;
-        },
-        mounted(){
-            this.nazwa = this.data.nazwa;
-            this.cena = this.data.cena;
-            this.rok = this.data.rok;
-            this.pamiec = this.data.pamiec;
-            this.przekatna = this.data.przekatna;
-            this.kolor = this.data.kolor;
-            this.zdjecie = this.data.zdjecie;
-            this.id = this.data.id;
-        },
-        methods:{
-            changeNazwa(nazwa){
-                this.nazwa=nazwa;
+        methods: {
+            changeNazwa(nazwa) {
+                this.nazwa = nazwa;
             },
-            changeRok(rok){
-                this.rok=rok;
+            changeRok(rok) {
+                this.rok = rok;
             },
-            changePamiec(pamiec){
-                this.pamiec=pamiec;
+            changePamiec(pamiec) {
+                this.pamiec = pamiec;
             },
-            changeCena(cena){
-                this.cena=cena;
+            changeCena(cena) {
+                this.cena = cena;
             },
-            changeKolor(kolor){
-                this.kolor=kolor;
+            changeKolor(kolor) {
+                this.kolor = kolor;
             },
-            changePrzekatna(przekatna){
-                this.przekatna=przekatna;
+            changePrzekatna(przekatna) {
+                this.przekatna = przekatna;
             },
-            changeFile(zdjecie){
-                this.zdjecie=zdjecie;
+            changeFile(zdjecie) {
+                this.zdjecie = zdjecie;
             },
-            clickZaktualizuj:function(e){
+            clickZaktualizuj: function (e) {
                 e.preventDefault();
-
                 var vn = this;
                 vn.error_przekatna = '';
                 vn.error_cena = '';
@@ -119,8 +129,8 @@
                 formData.append('zdjecie', this.zdjecie);
                 formData.append('_method', 'PATCH');
                 console.log(this.route);
-                axios.post(this.route,formData)
-                    .then(function (response){
+                axios.post(this.route, formData)
+                    .then(function (response) {
                         if (response.data.success) {
                             vn.nazwa = '';
                             vn.rok = '';
@@ -129,24 +139,24 @@
                             vn.przekatna = '';
                             vn.pamiec = '';
                             window.alert("Telefon został zaktualizowany");
-                            window.location.href= vn.backroute;
+                            window.location.href = vn.backroute;
                         }
                     })
                     .catch(function (error) {
-                        console.log("error",error);
-                        if(error.response.data.errors.przekatna)
+                        console.log("error", error);
+                        if (error.response.data.errors.przekatna)
                             vn.error_przekatna = error.response.data.errors.przekatna[0];
-                        if(error.response.data.errors.cena)
+                        if (error.response.data.errors.cena)
                             vn.error_cena = error.response.data.errors.cena[0];
-                        if(error.response.data.errors.kolor)
+                        if (error.response.data.errors.kolor)
                             vn.error_kolor = error.response.data.errors.kolor[0];
-                        if(error.response.data.errors.rok)
+                        if (error.response.data.errors.rok)
                             vn.error_rok = error.response.data.errors.rok[0];
-                        if(error.response.data.errors.pamiec)
+                        if (error.response.data.errors.pamiec)
                             vn.error_pamiec = error.response.data.errors.pamiec[0];
-                        if(error.response.data.errors.nazwa)
+                        if (error.response.data.errors.nazwa)
                             vn.error_nazwa = error.response.data.errors.nazwa[0];
-                        if(error.response.data.errors.zdjecie)
+                        if (error.response.data.errors.zdjecie)
                             vn.error_zdjecie = error.response.data.errors.zdjecie[0];
 
                     });

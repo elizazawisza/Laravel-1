@@ -16,4 +16,7 @@ Route::patch('kolekcjaChangeOrder','CollectionController@changeOrder')->middlewa
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('kolekcjaapiIndex', 'CollectionController@apiIndex');
+Route::post('kolekcjaapiStore', 'CollectionController@apiStore');
+Route::get('kolekcjaapiEdit', 'CollectionController@apiEdit');
+Route::get('kolekcjaapiShow', 'CollectionController@apiShow');

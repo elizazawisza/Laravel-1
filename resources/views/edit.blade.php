@@ -9,6 +9,7 @@
 
 </head>
 <header>
+    <a href="{{route('kolekcja.index')}}"><button class="button_powrot">◄  Back</button></a>
     <a :href="{{ route('logout') }}" onclick="event.preventDefault();
         document.getElementById('logout-form').submit();"><button>Wyloguj</button></a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -17,7 +18,7 @@
 </header>
 <body>
 <div id="app">
-    <iphoneedit route="{{route('kolekcja.update',$id)}}" :data="{{$kolekcja}}" backroute="{{route('kolekcja.index')}}" ></iphoneedit>
+   <router-view></router-view>
 </div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src='/js/app.js'></script>

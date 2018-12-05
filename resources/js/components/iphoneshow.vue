@@ -46,10 +46,10 @@
 </template>
 <script>
     export default {
-        props:['data', 'basicroute'],
+        props:[],
         data: function () {
             return {
-                form:{
+                form: {
                     nazwa: '',
                     cena: '',
                     rok: '',
@@ -60,22 +60,36 @@
                 }
             }
         },
-        beforeMount(){
-            this.form = this.data;
+        beforeMount() {
         },
         mounted(){
-            this.nazwa = this.data.nazwa;
-            this.cena = this.data.cena;
-            this.rok = this.data.rok;
-            this.pamiec = this.data.pamiec;
-            this.przekatna = this.data.przekatna;
-            this.kolor = this.data.kolor;
-            this.zdjecie = this.data.zdjecie;
+            let app = this;
+            let rid = app.$route.params.id;
+            console.log(rid);
+            axios.get('/kolekcja/' + rid)
+                .then((response)=>{
+                    console.log(response)
+                    this.form=response.data;
+                    this.nazwa = this.form.nazwa;
+                    this.cena = this.form.cena;
+                    this.rok = this.form.rok;
+                    this.pamiec = this.form.pamiec;
+                    this.przekatna = this.form.przekatna;
+                    this.kolor = this.form.kolor;
+                    this.zdjecie = this.form.zdjecie;
+                    console.log(response.data)
+                    console.log(this.form.nazwa)
+                    console.log(form.nazwa);
+                })
+                .catch(function (error) {
+                    console.log("error",error);
+                    console.log(error.response);
+                });
         },
         methods:{
             powrot:function(e){
                 e.preventDefault();
-                window.location.href=this.basicroute;
+                //window.location.href=this.basicroute;
             }
         }
     }

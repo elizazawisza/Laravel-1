@@ -21,6 +21,12 @@ class CollectionController extends Controller
 
     }
 
+    public function apiIndex()
+    {
+        $kolekcja = Kolekcja::orderBy('kolejka','asc')->get();
+        return response()->json($kolekcja);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -58,8 +64,31 @@ class CollectionController extends Controller
             $telefon->save();
         }
         return redirect('kolekcja');
-
     }
+
+    public function apiStore(CollectionRequest $request)
+    {
+        $telefon = new \App\Kolekcja;
+        $telefon->nazwa=$request->get('nazwa');
+        $telefon->rok=$request->get('rok');
+        $telefon->cena=$request->get('cena');
+        $telefon->pamiec=$request->get('pamiec');
+        $telefon->kolor=$request->get('kolor');
+        $telefon->przekatna=$request->get('przekatna');
+        $telefon->zdjecie='';
+        $data = (array)Kolekcja::all();
+        $data = array_filter($data);
+        if(empty($data)){
+            $telefon->kolejka=1;
+            $telefon->save();
+        }else{
+            $tmp = Kolekcja::all()->last()->kolejka;
+            $telefon->kolejka=$tmp+1;
+            $telefon->save();
+        }
+        return redirect('kolekcja');
+    }
+
 
     /**
      * Display the specified resource.
@@ -70,7 +99,8 @@ class CollectionController extends Controller
     public function show($id)
     {
         $kolekcja = Kolekcja::find($id);
-        return view('show2',compact(['kolekcja']));
+        //dd(response()->json($kolekcja));
+        return response()->json($kolekcja);
     }
 
     /**
@@ -82,8 +112,10 @@ class CollectionController extends Controller
     public function edit($id)
     {
         $kolekcja = Kolekcja::find($id);
-        return view('edit',compact(['kolekcja','id']));
+        //dd(response()->json($kolekcja));
+        return response()->json($kolekcja);
     }
+
 
     /**
      * Update the specified resource in storage.

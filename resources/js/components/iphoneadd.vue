@@ -1,6 +1,6 @@
 <template>
     <div id="add">
-        <form id="dodawanie" method="post" class="spis-form" :action="this.route">
+        <form id="dodawanie" method="post" class="spis-form" :action="'iphoneadd'">
             <input type="hidden" name="_token" :value="csrf_token">
             <nazwa :value="nazwa" :change="changeNazwa">
             </nazwa>
@@ -29,7 +29,7 @@
 
 <script>
     export default {
-        props: ['route', 'basicroute', 'logoutroute'],
+        props: [],
         data: function () {
             return {
                 nazwa: 'iPhone',
@@ -75,8 +75,7 @@
                 vn.error_nazwa = '';
                 vn.error_pamiec = '';
                 vn.error_rok = '';
-                console.log(vn.logoutroute);
-                axios.post(this.route, {
+                axios.post('/kolekcja', {
                     nazwa: this.nazwa,
                     rok: this.rok,
                     cena: this.cena,
@@ -96,7 +95,7 @@
                             vn.pamiec = '';
                         }
                         window.alert("Telefon został dodany");
-                        window.location.href=vn.basicroute;
+                        vn.$router.replace('/kolekcja');
                     })
                     .catch(function (error) {
                         console.log("error",error);

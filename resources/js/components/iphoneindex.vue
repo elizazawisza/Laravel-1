@@ -22,10 +22,10 @@
                     <td>{{element.kolor}}</td>
                     <td>{{element.przekatna}}</td>
                     <td>
-                       <a :href="`${basicroute}/${element.id}`" class="przycisk_podglad"><button>Podgląd</button></a>
+                        <router-link class="przycisk_podglad" v-bind:to="{name: 'iphoneshow', params:{id:element.id}}"><button>Podgląd</button></router-link>
                     </td>
                     <td>
-                        <a :href="`${basicroute}/${element.id}/edit`" class="przycisk_edytuj"><button>Edytuj</button></a>
+                        <router-link class="przycisk_edytuj" v-bind:to="{name: 'iphoneedit', params:{id:element.id}}"><button>Edytuj</button></router-link>
                     </td>
                     <td>
                         <button class="button przycisk_usun" type="submit" @click="usuwanie(element.id)">Usuń</button>
@@ -41,20 +41,28 @@
             </table>
         </div>
         <div class="button">
-            <button id="dodawanie" type="submit" name="przycisk" value="dodawanie" @click="dodawanie">Przejdź do strony dodawania</button>
+            <router-link :to="{name: 'iphoneadd'}"><button id="dodawanie" type="submit" name="przycisk" value="dodawanie">Przejdź do strony dodawania</button></router-link>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props:['data', 'basicroute'],
+        props:[],
         data: function () {
             return {
-                form:this.data,
+                form:[],
             }
         },
         beforeMount(){
+            axios.get('kolekcjaapiIndex')
+                .then((response)=>{
+                    this.form=response.data;
+                })
+                .catch(function (error) {
+                    console.log("error",error);
+                    console.log(error.response.data);
+                });
         },
         methods:{
             dodawanie:function(e){
@@ -117,7 +125,7 @@
                 let data = [];
                 data.push({id: form1.id, kolejka: form1.kolejka});
                 data.push({id: form2.id, kolejka: form2.kolejka});
-console.log(data);
+                console.log(data);
                 axios.patch('kolekcjaChangeOrder',{data})
                     .then(function (response){
                         console.log(response)

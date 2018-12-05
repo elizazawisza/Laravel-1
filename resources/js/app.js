@@ -8,6 +8,10 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+
+Vue.use(VueRouter)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,7 +19,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('iphoneadd', require('./components/iphoneadd.vue'));
+const IphoneAdd = Vue.component('iphoneadd', require('./components/iphoneadd.vue'));
 Vue.component('pamiec', require('./components/pamiec.vue'));
 Vue.component('cena', require('./components/cena.vue'));
 Vue.component('nazwa', require('./components/nazwa.vue'));
@@ -23,14 +27,38 @@ Vue.component('rok', require('./components/rok.vue'));
 Vue.component('przekatna', require('./components/przekatna.vue'));
 Vue.component('przycisk', require('./components/przycisk.vue'));
 Vue.component('kolor', require('./components/kolor.vue'));
-Vue.component('iphoneedit', require('./components/iphoneedit.vue'));
-Vue.component('iphoneshow', require('./components/iphoneshow.vue'));
+const IphoneEdit = Vue.component('iphoneedit', require('./components/iphoneedit.vue'));
+const IphoneShow = Vue.component('iphoneshow', require('./components/iphoneshow.vue'));
 Vue.component('zdjecie', require('./components/zdjecie.vue'));
-Vue.component('iphoneindex', require('./components/iphoneindex.vue'));
+const IphoneList = Vue.component('iphoneindex', require('./components/iphoneindex.vue'));
 
+const routes = [
+    {
+        name: 'iphoneadd',
+        path: '/kolekcja/create',
+        component: IphoneAdd
+    },
+    {
+        name: 'iphoneedit',
+        path: '/kolekcja/:id/edit',
+        component: IphoneEdit
+    },
+    {
+        name: 'iphoneshow',
+        path: '/kolekcja/:id',
+        component: IphoneShow
+    },
+    {
+        name: 'iphoneindex',
+        path: '/kolekcja',
+        component: IphoneList
+    }
+];
 
-
-
-const app = new Vue({
-    el: '#app'
+const router = new VueRouter({
+    mode: 'history',
+    routes,
 });
+
+
+const app = new Vue({router}).$mount('#app');
