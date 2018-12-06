@@ -17,6 +17,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('kolekcjaapiIndex', 'CollectionController@apiIndex');
-Route::post('kolekcjaapiStore', 'CollectionController@apiStore');
-Route::get('kolekcjaapiEdit', 'CollectionController@apiEdit');
-Route::get('kolekcjaapiShow', 'CollectionController@apiShow');
+Route::get('/kolekcja/kolekcjaapiEdit/{id}', 'CollectionController@apiEdit');
+Route::get('/kolekcja/kolekcjaapiShow/{id}', 'CollectionController@apiShow');
+Route::get('/kolekcja/kolekcjaapiCreate', 'CollectionController@apiCreate');
+Route::patch('/kolekcja/kolekcjaapiPhotoUpdate/{id}', 'CollectionController@apiPhotoUpdate');

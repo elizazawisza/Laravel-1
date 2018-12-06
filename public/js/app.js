@@ -50704,7 +50704,7 @@ var render = function() {
         "select",
         {
           attrs: { id: "pamiec", name: "pamiec" },
-          domProps: { value: _vm.pamiec },
+          domProps: { value: _vm.value },
           on: { change: _vm.changePamiec }
         },
         [
@@ -50843,7 +50843,7 @@ var render = function() {
     _c("div", { staticClass: "col-9" }, [
       _c("input", {
         attrs: { id: "cena", name: "cena", type: "number" },
-        domProps: { value: _vm.cena },
+        domProps: { value: _vm.value },
         on: { change: _vm.changeCena }
       }),
       _c("br")
@@ -50955,7 +50955,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value', 'change'],
@@ -50990,7 +50989,7 @@ var render = function() {
         "select",
         {
           attrs: { id: "nazwa", name: "nazwa" },
-          domProps: { value: _vm.nazwa },
+          domProps: { value: _vm.value },
           on: { change: _vm.changeNazwa }
         },
         [
@@ -51176,7 +51175,7 @@ var render = function() {
         "select",
         {
           attrs: { id: "rok", name: "rok" },
-          domProps: { value: _vm.rok },
+          domProps: { value: _vm.value },
           on: { change: _vm.changeRok }
         },
         [
@@ -51323,7 +51322,7 @@ var render = function() {
     _c("div", { staticClass: "col-9" }, [
       _c("input", {
         attrs: { id: "przekatna", name: "przekatna", type: "text" },
-        domProps: { value: _vm.przekatna },
+        domProps: { value: _vm.value },
         on: { change: _vm.changePrzekatna }
       }),
       _c("br")
@@ -51544,7 +51543,7 @@ var render = function() {
     _c("div", { staticClass: "col-9" }, [
       _c("input", {
         attrs: { id: "kolor", name: "kolor", type: "text" },
-        domProps: { value: _vm.kolor },
+        domProps: { value: _vm.value },
         on: { change: _vm.changeKolor }
       }),
       _c("br")
@@ -51656,7 +51655,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51712,29 +51711,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: [],
-    beforeMount: function beforeMount() {
-        var _this = this;
-
-        axios.get('edit').then(function (response) {
-            _this.form = response.data;
-            console.log(response.data);
-            console.log(_this.form.nazwa);
-            console.log(form.nazwa);
-        }).catch(function (error) {
-            console.log("error", error);
-            console.log(error.response);
-        });
-    },
-    mounted: function mounted() {
-        this.nazwa = this.form.nazwa;
-        this.cena = this.form.cena;
-        this.rok = this.form.rok;
-        this.pamiec = this.form.pamiec;
-        this.przekatna = this.form.przekatna;
-        this.kolor = this.form.kolor;
-        this.zdjecie = this.form.zdjecie;
-    },
-
     data: function data() {
         return {
             form: {
@@ -51756,27 +51732,66 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             error_zdjecie: ''
         };
     },
+    beforeMount: function beforeMount() {},
+
+    computed: {
+        getId: function getId() {
+            return this.$route.params.id;
+        }
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        console.log(this.form.zdjecie);
+        axios.get('/kolekcja/kolekcjaapiEdit/' + this.getId).then(function (response) {
+            _this.form = response.data;
+            console.log(_this.form.zdjecie);
+        }).catch(function (error) {
+            console.log("error", error);
+            console.log(error.response);
+        });
+    },
+
+
     methods: {
-        changeNazwa: function changeNazwa(nazwa) {
-            this.nazwa = nazwa;
-        },
         changeRok: function changeRok(rok) {
-            this.rok = rok;
+            this.form.rok = rok;
+        },
+        changeNazwa: function changeNazwa(nazwa) {
+            this.form.nazwa = nazwa;
         },
         changePamiec: function changePamiec(pamiec) {
-            this.pamiec = pamiec;
+            this.form.pamiec = pamiec;
         },
         changeCena: function changeCena(cena) {
-            this.cena = cena;
+            this.form.cena = cena;
         },
         changeKolor: function changeKolor(kolor) {
-            this.kolor = kolor;
+            this.form.kolor = kolor;
         },
         changePrzekatna: function changePrzekatna(przekatna) {
-            this.przekatna = przekatna;
+            this.form.przekatna = przekatna;
         },
         changeFile: function changeFile(zdjecie) {
-            this.zdjecie = zdjecie;
+            var _this2 = this;
+
+            console.log(zdjecie.name);
+            var formData = new FormData();
+            var rid = this.$route.params.id;
+            formData.append('nazwa', this.form.nazwa);
+            formData.append('rok', JSON.stringify(this.form.rok));
+            formData.append('cena', this.form.cena);
+            formData.append('pamiec', this.form.pamiec);
+            formData.append('kolor', this.form.kolor);
+            formData.append('przekatna', JSON.stringify(this.form.przekatna));
+            formData.append('zdjecie', zdjecie);
+            formData.append('_method', 'PATCH');
+            axios.post('/kolekcja/kolekcjaapiPhotoUpdate/' + rid, formData).then(function (response) {
+                if (response.data.success) {
+                    console.log("udało sie");
+                    _this2.form.zdjecie = zdjecie.name;
+                }
+            }).catch(function (error) {});
         },
 
         clickZaktualizuj: function clickZaktualizuj(e) {
@@ -51789,17 +51804,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             vn.error_pamiec = '';
             vn.error_rok = '';
             vn.error_zdjecie = '';
+            var rid = this.$route.params.id;
             var formData = new FormData();
-            formData.append('nazwa', this.nazwa);
-            formData.append('rok', JSON.stringify(this.rok));
-            formData.append('cena', this.cena);
-            formData.append('pamiec', this.pamiec);
-            formData.append('kolor', this.kolor);
-            formData.append('przekatna', JSON.stringify(this.przekatna));
-            formData.append('zdjecie', this.zdjecie);
+            formData.append('nazwa', this.form.nazwa);
+            formData.append('rok', JSON.stringify(this.form.rok));
+            formData.append('cena', this.form.cena);
+            formData.append('pamiec', this.form.pamiec);
+            formData.append('kolor', this.form.kolor);
+            formData.append('przekatna', JSON.stringify(this.form.przekatna));
+            formData.append('zdjecie', this.form.zdjecie);
             formData.append('_method', 'PATCH');
-            console.log(this.route);
-            axios.post(this.route, formData).then(function (response) {
+            axios.post('/kolekcja/' + rid, formData).then(function (response) {
                 if (response.data.success) {
                     vn.nazwa = '';
                     vn.rok = '';
@@ -51808,17 +51823,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     vn.przekatna = '';
                     vn.pamiec = '';
                     window.alert("Telefon został zaktualizowany");
-                    window.location.href = vn.backroute;
+                    vn.$router.replace('/kolekcja');
                 }
             }).catch(function (error) {
                 console.log("error", error);
-                if (error.response.data.errors.przekatna) vn.error_przekatna = error.response.data.errors.przekatna[0];
                 if (error.response.data.errors.cena) vn.error_cena = error.response.data.errors.cena[0];
                 if (error.response.data.errors.kolor) vn.error_kolor = error.response.data.errors.kolor[0];
                 if (error.response.data.errors.rok) vn.error_rok = error.response.data.errors.rok[0];
                 if (error.response.data.errors.pamiec) vn.error_pamiec = error.response.data.errors.pamiec[0];
                 if (error.response.data.errors.nazwa) vn.error_nazwa = error.response.data.errors.nazwa[0];
                 if (error.response.data.errors.zdjecie) vn.error_zdjecie = error.response.data.errors.zdjecie[0];
+                if (error.response.data.errors.przekatna) vn.error_przekatna = error.response.data.errors.przekatna[0];
             });
         }
     }
@@ -51854,7 +51869,7 @@ var render = function() {
               ? _c("div", [
                   _c("img", {
                     attrs: {
-                      src: "/storage/zdjecia/" + _vm.form.zdjecie,
+                      src: "/storage/zdjecia/" + this.form.zdjecie,
                       height: "200px"
                     }
                   })
@@ -51864,14 +51879,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("nazwa", {
-          attrs: { change: _vm.changeNazwa },
-          model: {
-            value: _vm.form.nazwa,
-            callback: function($$v) {
-              _vm.$set(_vm.form, "nazwa", $$v)
-            },
-            expression: "form.nazwa"
-          }
+          attrs: { value: _vm.form.nazwa, change: _vm.changeNazwa }
         }),
         _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
@@ -52038,7 +52046,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52117,20 +52125,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         var app = this;
         var rid = app.$route.params.id;
-        console.log(rid);
-        axios.get('/kolekcja/' + rid).then(function (response) {
-            console.log(response);
+        axios.get('/kolekcja/kolekcjaapiShow/' + rid).then(function (response) {
             _this.form = response.data;
-            _this.nazwa = _this.form.nazwa;
-            _this.cena = _this.form.cena;
-            _this.rok = _this.form.rok;
-            _this.pamiec = _this.form.pamiec;
-            _this.przekatna = _this.form.przekatna;
-            _this.kolor = _this.form.kolor;
-            _this.zdjecie = _this.form.zdjecie;
-            console.log(response.data);
-            console.log(_this.form.nazwa);
-            console.log(form.nazwa);
         }).catch(function (error) {
             console.log("error", error);
             console.log(error.response);
@@ -52139,7 +52135,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         powrot: function powrot(e) {
+            var vn = this;
             e.preventDefault();
+            vn.$router.replace('/kolekcja');
             //window.location.href=this.basicroute;
         }
     }
@@ -52483,20 +52481,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        dodawanie: function dodawanie(e) {
-            e.preventDefault();
-            window.location.href = this.basicroute + '/create';
-        },
         usuwanie: function usuwanie(form) {
             var odp = confirm("Na pewno chcesz usunąć ten telefon z kolekcji?");
             var vn = this;
             if (odp === true) {
-                axios.post(this.basicroute + '/' + form, {
+                axios.post('kolekcja/' + form, {
                     _method: 'DELETE'
                 }).then(function (response) {
                     if (response.data.success) {}
                     window.alert("Telefon został usunięty");
-                    window.location.href = vn.basicroute;
+                    vn.$router.go();
                 }).catch(function (error) {
                     console.log("error", error);
                     console.log(error.response.data);
@@ -52517,12 +52511,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return a.kolejka > b.kolejka ? 1 : -1;
                 });
                 this.zamien(tmp, current);
-                //this.zamien(current, tmp);
             }
         },
         wdol: function wdol(index) {
-            var dlugosc = this.data.length;
-            console.log(dlugosc);
+            var dlugosc = this.form.length;
             if (index === dlugosc - 1) {
                 window.alert("Nie można zmienić położenia danego rekordu");
             } else {
@@ -52534,18 +52526,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return a.kolejka > b.kolejka ? 1 : -1;
                 });
                 this.zamien(tmp, current);
-                //this.zamien(current, tmp);
             }
         },
         zamien: function zamien(form1, form2) {
             var data = [];
             data.push({ id: form1.id, kolejka: form1.kolejka });
             data.push({ id: form2.id, kolejka: form2.kolejka });
-            console.log(data);
-            axios.patch('kolekcjaChangeOrder', { data: data }).then(function (response) {
-                console.log(response);
-                if (response.data.success) {}
-            }).catch(function (error) {
+            axios.patch('kolekcjaChangeOrder', { data: data }).then(function (response) {}).catch(function (error) {
                 console.log("error", error);
             });
         }

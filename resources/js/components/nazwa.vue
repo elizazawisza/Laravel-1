@@ -4,7 +4,7 @@
             <label for="nazwa">Nazwa</label>
         </div>
         <div class="col-9">
-            <select id="nazwa" name="nazwa" @change="changeNazwa" :value="nazwa">
+            <select id="nazwa" name="nazwa" @change="changeNazwa" :value="value">
                 <option value="iPhone">iPhone</option>
                 <option value="iPhone3G">iPhone 3G</option>
                 <option value="iPhone3GS">iPhone 3GS</option>
@@ -28,7 +28,6 @@
                 <option value="iPhoneXR">iPhone XR</option>
             </select>
         </div>
-
     </div>
 </template>
 
@@ -42,7 +41,6 @@
             };
         },
         mounted(){
-
         },
         methods: {
             changeNazwa(e){

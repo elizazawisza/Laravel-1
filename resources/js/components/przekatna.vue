@@ -4,7 +4,7 @@
             <label for="przekatna">Przekątna</label>
         </div>
         <div class="col-9">
-            <input id="przekatna" name="przekatna" type="text" @change="changePrzekatna" :value="przekatna"><br>
+            <input id="przekatna" name="przekatna" type="text" @change="changePrzekatna" :value="value"><br>
         </div>
     </div>
 </template>

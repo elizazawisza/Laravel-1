@@ -16,8 +16,8 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $kolekcja = Kolekcja::orderBy('kolejka','asc')->get();
-        return view('index2', compact(['kolekcja']));
+        //$kolekcja = Kolekcja::orderBy('kolejka','asc')->get();
+        return view('index2');
 
     }
 
@@ -34,7 +34,10 @@ class CollectionController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('index2');
+    }
+    public function apiCreate(){
+        return view('index2');
     }
 
     /**
@@ -98,6 +101,14 @@ class CollectionController extends Controller
      */
     public function show($id)
     {
+        return view('index2');
+        $kolekcja = Kolekcja::find($id);
+        //dd(response()->json($kolekcja));
+        return response()->json($kolekcja);
+    }
+
+    public function apiShow($id)
+    {
         $kolekcja = Kolekcja::find($id);
         //dd(response()->json($kolekcja));
         return response()->json($kolekcja);
@@ -111,10 +122,19 @@ class CollectionController extends Controller
      */
     public function edit($id)
     {
+        return view('index2');
         $kolekcja = Kolekcja::find($id);
         //dd(response()->json($kolekcja));
         return response()->json($kolekcja);
     }
+    public function apiEdit($id)
+    {
+        $kolekcja = Kolekcja::find($id);
+        //dd(response()->json($kolekcja));
+        return response()->json($kolekcja);
+    }
+
+
 
 
     /**
@@ -133,6 +153,22 @@ class CollectionController extends Controller
         $kolekcja->pamiec=$request->get('pamiec');
         $kolekcja->kolor=$request->get('kolor');
         $kolekcja->przekatna=$request->get('przekatna');
+        if($request->file('zdjecie')!=''){
+            if($kolekcja->zdjecie!=''){
+                $delete = Storage::disk('public')->delete('zdjecia/' . $kolekcja->zdjecie);
+            }
+            $zdjecie = $request->file('zdjecie')->getClientOriginalName();
+            Storage::disk('public')->putFileAs('zdjecia',$request->file('zdjecie'),$zdjecie);
+            $kolekcja->zdjecie =$zdjecie;
+        }
+        $kolekcja->save();
+        return response()->json(['success'=>true]);
+    }
+
+    public function apiPhotoUpdate(CollectionRequest $request, $id)
+    {
+        $kolekcja= Kolekcja::find($id);
+
         if($request->file('zdjecie')!=''){
             if($kolekcja->zdjecie!=''){
                 $delete = Storage::disk('public')->delete('zdjecia/' . $kolekcja->zdjecie);
@@ -165,7 +201,7 @@ class CollectionController extends Controller
             $i++;
             $element->save();
         }
-        return redirect('kolekcja')->with('success', 'Pozycja została usunięta');
+        return redirect('kolekcja');
     }
 
     public function changeOrder(Request $request){

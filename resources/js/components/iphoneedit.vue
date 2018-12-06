@@ -5,11 +5,11 @@
             <div class="container">
                 <div class="row justify-content-center ">
                     <div v-if=form.zdjecie>
-                        <img :src="`/storage/zdjecia/${form.zdjecie}`" height="200px"/>
+                        <img :src="`/storage/zdjecia/${this.form.zdjecie}`" height="200px"/>
                     </div>
                 </div>
             </div>
-            <nazwa v-model="form.nazwa" :change="changeNazwa">
+            <nazwa :value="form.nazwa" :change="changeNazwa">
             </nazwa>
             <div class="alert-danger">{{error_nazwa}}</div>
             <rok :value="form.rok" :change="changeRok">
@@ -43,29 +43,6 @@
 
     export default {
         props: [],
-        beforeMount() {
-            axios.get('edit')
-                .then((response) => {
-                    this.form = response.data;
-                    console.log(response.data);
-                    console.log(this.form.nazwa);
-                    console.log(form.nazwa);
-                })
-                .catch(function (error) {
-                    console.log("error", error);
-                    console.log(error.response);
-                });
-        },
-        mounted() {
-            this.nazwa = this.form.nazwa;
-            this.cena = this.form.cena;
-            this.rok = this.form.rok;
-            this.pamiec = this.form.pamiec;
-            this.przekatna = this.form.przekatna;
-            this.kolor = this.form.kolor;
-            this.zdjecie = this.form.zdjecie;
-
-        },
         data: function () {
             return {
                 form: {
@@ -87,27 +64,67 @@
                 error_zdjecie: '',
             }
         },
-        methods: {
-            changeNazwa(nazwa) {
-                this.nazwa = nazwa;
+        beforeMount() {
+
+        },
+        computed:{
+            getId(){
+                return this.$route.params.id;
             },
+        },
+        mounted() {
+            console.log(this.form.zdjecie)
+            axios.get('/kolekcja/kolekcjaapiEdit/'+this.getId)
+                .then((response) => {
+                    this.form = response.data;
+                    console.log(this.form.zdjecie)
+                })
+                .catch(function (error) {
+                    console.log("error", error);
+                    console.log(error.response);
+                });
+        },
+
+        methods: {
             changeRok(rok) {
-                this.rok = rok;
+                this.form.rok = rok;
+            },
+            changeNazwa(nazwa) {
+                this.form.nazwa = nazwa;
             },
             changePamiec(pamiec) {
-                this.pamiec = pamiec;
+                this.form.pamiec = pamiec;
             },
             changeCena(cena) {
-                this.cena = cena;
+                this.form.cena = cena;
             },
             changeKolor(kolor) {
-                this.kolor = kolor;
+                this.form.kolor = kolor;
             },
             changePrzekatna(przekatna) {
-                this.przekatna = przekatna;
+                this.form.przekatna = przekatna;
             },
             changeFile(zdjecie) {
-                this.zdjecie = zdjecie;
+                console.log(zdjecie.name)
+                let formData = new FormData();
+                let rid = this.$route.params.id;
+                formData.append('nazwa', this.form.nazwa);
+                formData.append('rok', JSON.stringify(this.form.rok));
+                formData.append('cena', this.form.cena);
+                formData.append('pamiec', this.form.pamiec);
+                formData.append('kolor', this.form.kolor);
+                formData.append('przekatna', JSON.stringify(this.form.przekatna));
+                formData.append('zdjecie', zdjecie);
+                formData.append('_method', 'PATCH');
+                axios.post('/kolekcja/kolekcjaapiPhotoUpdate/'+rid, formData)
+                    .then( response=> {
+                        if(response.data.success){
+                            console.log("udało sie");
+                            this.form.zdjecie = zdjecie.name;
+                        }
+                    })
+                    .catch(function (error) {
+                    });
             },
             clickZaktualizuj: function (e) {
                 e.preventDefault();
@@ -119,17 +136,17 @@
                 vn.error_pamiec = '';
                 vn.error_rok = '';
                 vn.error_zdjecie = '';
+                let rid = this.$route.params.id;
                 let formData = new FormData();
-                formData.append('nazwa', this.nazwa);
-                formData.append('rok', JSON.stringify(this.rok));
-                formData.append('cena', this.cena);
-                formData.append('pamiec', this.pamiec);
-                formData.append('kolor', this.kolor);
-                formData.append('przekatna', JSON.stringify(this.przekatna));
-                formData.append('zdjecie', this.zdjecie);
+                formData.append('nazwa', this.form.nazwa);
+                formData.append('rok', JSON.stringify(this.form.rok));
+                formData.append('cena', this.form.cena);
+                formData.append('pamiec', this.form.pamiec);
+                formData.append('kolor', this.form.kolor);
+                formData.append('przekatna', JSON.stringify(this.form.przekatna));
+                formData.append('zdjecie', this.form.zdjecie);
                 formData.append('_method', 'PATCH');
-                console.log(this.route);
-                axios.post(this.route, formData)
+                axios.post('/kolekcja/'+rid, formData)
                     .then(function (response) {
                         if (response.data.success) {
                             vn.nazwa = '';
@@ -139,13 +156,12 @@
                             vn.przekatna = '';
                             vn.pamiec = '';
                             window.alert("Telefon został zaktualizowany");
-                            window.location.href = vn.backroute;
+                            vn.$router.replace('/kolekcja');
+
                         }
                     })
                     .catch(function (error) {
                         console.log("error", error);
-                        if (error.response.data.errors.przekatna)
-                            vn.error_przekatna = error.response.data.errors.przekatna[0];
                         if (error.response.data.errors.cena)
                             vn.error_cena = error.response.data.errors.cena[0];
                         if (error.response.data.errors.kolor)
@@ -158,6 +174,8 @@
                             vn.error_nazwa = error.response.data.errors.nazwa[0];
                         if (error.response.data.errors.zdjecie)
                             vn.error_zdjecie = error.response.data.errors.zdjecie[0];
+                        if (error.response.data.errors.przekatna)
+                            vn.error_przekatna = error.response.data.errors.przekatna[0];
 
                     });
             }

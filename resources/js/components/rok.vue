@@ -4,7 +4,7 @@
             <label for="rok">Rok</label>
         </div>
         <div class="col-9">
-            <select id="rok" name="rok" @change="changeRok" :value="rok">
+            <select id="rok" name="rok" @change="changeRok" :value="value">
                 <option value="2007">2007</option>
                 <option value="2008">2008</option>
                 <option value="2009">2009</option>

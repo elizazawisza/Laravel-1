@@ -65,21 +65,17 @@
                 });
         },
         methods:{
-            dodawanie:function(e){
-                e.preventDefault();
-                window.location.href=(this.basicroute+'/create');
-            },
             usuwanie:function (form) {
                 var odp = confirm("Na pewno chcesz usunąć ten telefon z kolekcji?");
                 let vn = this;
                 if(odp===true){
-                    axios.post(this.basicroute +'/'+ form ,{
+                    axios.post('kolekcja/'+ form ,{
                         _method : 'DELETE'
                     })
                         .then(function(response){
                             if (response.data.success) {}
                             window.alert("Telefon został usunięty");
-                            window.location.href=vn.basicroute;
+                            vn.$router.go();
                         })
                         .catch(function (error) {
                             console.log("error",error);
@@ -89,9 +85,6 @@
                 else{
                     window.alert("Telefon nie został usunięty");
                 }
-
-
-
             },
             dogory:function(index){
                 if(index===0){
@@ -103,12 +96,10 @@
                     this.form[index-1].kolejka++;
                     this.form.sort((a,b)=>a.kolejka>b.kolejka ? 1 : -1);
                     this.zamien(tmp, current);
-                    //this.zamien(current, tmp);
                 }
             },
             wdol:function(index){
-                let dlugosc = this.data.length;
-                console.log(dlugosc);
+                let dlugosc = this.form.length;
                 if(index===dlugosc-1){
                     window.alert("Nie można zmienić położenia danego rekordu");
                 }else{
@@ -118,19 +109,14 @@
                     this.form[index+1].kolejka--;
                     this.form.sort((a,b)=>a.kolejka>b.kolejka ? 1 : -1);
                     this.zamien(tmp, current);
-                    //this.zamien(current, tmp);
                 }
             },
             zamien:function(form1, form2){
                 let data = [];
                 data.push({id: form1.id, kolejka: form1.kolejka});
                 data.push({id: form2.id, kolejka: form2.kolejka});
-                console.log(data);
                 axios.patch('kolekcjaChangeOrder',{data})
                     .then(function (response){
-                        console.log(response)
-                        if (response.data.success) {
-                        }
                     })
                     .catch(function (error) {
                         console.log("error",error);

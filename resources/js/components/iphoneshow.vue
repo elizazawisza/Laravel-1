@@ -65,21 +65,9 @@
         mounted(){
             let app = this;
             let rid = app.$route.params.id;
-            console.log(rid);
-            axios.get('/kolekcja/' + rid)
+            axios.get('/kolekcja/kolekcjaapiShow/' + rid)
                 .then((response)=>{
-                    console.log(response)
                     this.form=response.data;
-                    this.nazwa = this.form.nazwa;
-                    this.cena = this.form.cena;
-                    this.rok = this.form.rok;
-                    this.pamiec = this.form.pamiec;
-                    this.przekatna = this.form.przekatna;
-                    this.kolor = this.form.kolor;
-                    this.zdjecie = this.form.zdjecie;
-                    console.log(response.data)
-                    console.log(this.form.nazwa)
-                    console.log(form.nazwa);
                 })
                 .catch(function (error) {
                     console.log("error",error);
@@ -88,7 +76,9 @@
         },
         methods:{
             powrot:function(e){
+                let vn = this;
                 e.preventDefault();
+                vn.$router.replace('/kolekcja');
                 //window.location.href=this.basicroute;
             }
         }

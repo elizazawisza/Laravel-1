@@ -4,7 +4,7 @@
             <label for="pamiec">Pamięć</label>
         </div>
         <div class="col-9">
-            <select id="pamiec" name="pamiec" @change="changePamiec" :value="pamiec">
+            <select id="pamiec" name="pamiec" @change="changePamiec" :value="value">
                 <option value="4">4 GB</option>
                 <option value="8">8 GB</option>
                 <option value="16">16 GB</option>

@@ -4,7 +4,7 @@
             <label for="kolor">Kolor</label>
         </div>
         <div class="col-9">
-            <input id="kolor" name="kolor" type="text" @change="changeKolor" :value="kolor"><br>
+            <input id="kolor" name="kolor" type="text" @change="changeKolor" :value="value"><br>
         </div>
     </div>
 </template>

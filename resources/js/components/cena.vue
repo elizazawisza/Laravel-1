@@ -4,7 +4,7 @@
             <label for="cena">Cena</label>
         </div>
         <div class="col-9">
-            <input id="cena" name="cena" type="number" @change="changeCena" :value="cena" ><br>
+            <input id="cena" name="cena" type="number" @change="changeCena" :value="value" ><br>
         </div>
     </div>
 </template>
