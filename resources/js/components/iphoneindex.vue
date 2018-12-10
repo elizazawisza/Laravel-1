@@ -95,7 +95,7 @@
                     let tmp = this.form[index-1];
                     this.form[index-1].kolejka++;
                     this.form.sort((a,b)=>a.kolejka>b.kolejka ? 1 : -1);
-                    this.zamien(tmp, current);
+                    this.zamien(current, tmp);
                 }
             },
             wdol:function(index){

@@ -29,6 +29,11 @@
             <div class="alert-danger">{{error_przekatna}}</div>
             <zdjecie :value="form.zdjecie" :change="changeFile">
             </zdjecie>
+            <div v-if="percentCompleted>0 && percentCompleted<100" class="progress">
+                <div class="progress-bar" role="progressbar" v-bind:style="{'width': percentCompleted+'%'}" aria-valuemax='100'>
+                </div>
+            </div>
+            <span v-if="percentCompleted>0 && percentCompleted<100" class="napis">{{percentCompleted}}% </span>
             <div class="alert-danger">{{error_zdjecie}}</div>
             <div id="button">
                 <button id="zaktualizuj" type="submit" name="przycisk" value="zaktualizuj" @click="clickZaktualizuj">
@@ -62,6 +67,8 @@
                 error_pamiec: '',
                 error_rok: '',
                 error_zdjecie: '',
+                percentCompleted: '0',
+                max : 100,
             }
         },
         beforeMount() {
@@ -73,7 +80,7 @@
             },
         },
         mounted() {
-            console.log(this.form.zdjecie)
+            console.log(this.form.zdjecie);
             axios.get('/kolekcja/kolekcjaapiEdit/'+this.getId)
                 .then((response) => {
                     this.form = response.data;
@@ -105,7 +112,13 @@
                 this.form.przekatna = przekatna;
             },
             changeFile(zdjecie) {
-                console.log(zdjecie.name)
+                console.log(zdjecie.name);
+                let vn = this;
+                let config = {
+                    onUploadProgress: function(progressEvent) {
+                        vn.percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+                    }
+                };
                 let formData = new FormData();
                 let rid = this.$route.params.id;
                 formData.append('nazwa', this.form.nazwa);
@@ -116,9 +129,10 @@
                 formData.append('przekatna', JSON.stringify(this.form.przekatna));
                 formData.append('zdjecie', zdjecie);
                 formData.append('_method', 'PATCH');
-                axios.post('/kolekcja/kolekcjaapiPhotoUpdate/'+rid, formData)
+                axios.post('/kolekcja/kolekcjaapiPhotoUpdate/'+rid, formData, config)
                     .then( response=> {
                         if(response.data.success){
+                            window.alert("Zdjęcie zostało zaktualizowane");
                             console.log("udało sie");
                             this.form.zdjecie = zdjecie.name;
                         }
