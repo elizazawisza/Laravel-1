@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="row justify-content-center ">
                     <div v-if=form.zdjecie>
-                        <img :src="`/storage/zdjecia/${this.form.zdjecie}`" height="200px"/>
+                        <img :src="`/storage/${this.form.zdjecie}`" height="200px"/>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,6 @@
             axios.get('/kolekcja/kolekcjaapiEdit/'+this.getId)
                 .then((response) => {
                     this.form = response.data;
-                    console.log(this.form.zdjecie)
                 })
                 .catch(function (error) {
                     console.log("error", error);
@@ -112,7 +111,6 @@
                 this.form.przekatna = przekatna;
             },
             changeFile(zdjecie) {
-                console.log(zdjecie.name);
                 let vn = this;
                 let config = {
                     onUploadProgress: function(progressEvent) {
@@ -131,10 +129,9 @@
                 formData.append('_method', 'PATCH');
                 axios.post('/kolekcja/kolekcjaapiPhotoUpdate/'+rid, formData, config)
                     .then( response=> {
-                        if(response.data.success){
+                        if(response.data){
                             window.alert("Zdjęcie zostało zaktualizowane");
-                            console.log("udało sie");
-                            this.form.zdjecie = zdjecie.name;
+                            this.form.zdjecie = response.data;
                         }
                     })
                     .catch(function (error) {

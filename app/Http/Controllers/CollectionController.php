@@ -155,11 +155,11 @@ class CollectionController extends Controller
         $kolekcja->przekatna=$request->get('przekatna');
         if($request->file('zdjecie')!=''){
             if($kolekcja->zdjecie!=''){
-                $delete = Storage::disk('public')->delete('zdjecia/' . $kolekcja->zdjecie);
+                $delete = Storage::disk('public')->delete($kolekcja->zdjecie);
             }
-            $zdjecie = $request->file('zdjecie')->getClientOriginalName();
-            Storage::disk('public')->putFileAs('zdjecia',$request->file('zdjecie'),$zdjecie);
-            $kolekcja->zdjecie =$zdjecie;
+            //$zdjecie = $request->file('zdjecie')->getClientOriginalName();
+            $path = Storage::disk('public')->putFile('zdjecia',$request->file('zdjecie'));
+            $kolekcja->zdjecie =$path;
         }
         $kolekcja->save();
         return response()->json(['success'=>true]);
@@ -171,14 +171,15 @@ class CollectionController extends Controller
 
         if($request->file('zdjecie')!=''){
             if($kolekcja->zdjecie!=''){
-                $delete = Storage::disk('public')->delete('zdjecia/' . $kolekcja->zdjecie);
+                $delete = Storage::disk('public')->delete( $kolekcja->zdjecie);
             }
-            $zdjecie = $request->file('zdjecie')->getClientOriginalName();
-            Storage::disk('public')->putFileAs('zdjecia',$request->file('zdjecie'),$zdjecie);
-            $kolekcja->zdjecie =$zdjecie;
+            //$zdjecie = $request->file('zdjecie')->getClientOriginalName();
+            $path = Storage::disk('public')->putFile('zdjecia',$request->file('zdjecie'));
+            $kolekcja->zdjecie =$path;
+            $zdjecie = $kolekcja->zdjecie;
         }
         $kolekcja->save();
-        return response()->json(['success'=>true]);
+        return response()->json($zdjecie);
     }
 
     /**

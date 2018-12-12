@@ -10,8 +10,11 @@ require('./bootstrap');
 window.Vue = require('vue');
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 
-Vue.use(VueRouter)
+
+Vue.use(VueRouter);
+Vue.use(Vuex);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -58,6 +61,27 @@ const routes = [
 const router = new VueRouter({
     mode: 'history',
     routes,
+});
+
+const moduleIphone = {
+    state: {...},
+    mutations: {...},
+    actions: {...},
+    getters: {...}
+};
+
+
+const moduleLista = {
+    state: {...},
+    mutations:{...},
+    actions:{...}
+};
+
+const store = new Vuex.Store({
+    modules: {
+        Iphone: moduleIphone,
+        Lista: moduleLista
+    }
 });
 
 

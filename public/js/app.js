@@ -51647,7 +51647,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51744,7 +51744,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(this.form.zdjecie);
         axios.get('/kolekcja/kolekcjaapiEdit/' + this.getId).then(function (response) {
             _this.form = response.data;
-            console.log(_this.form.zdjecie);
         }).catch(function (error) {
             console.log("error", error);
             console.log(error.response);
@@ -51774,7 +51773,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         changeFile: function changeFile(zdjecie) {
             var _this2 = this;
 
-            console.log(zdjecie.name);
             var vn = this;
             var config = {
                 onUploadProgress: function onUploadProgress(progressEvent) {
@@ -51792,10 +51790,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             formData.append('zdjecie', zdjecie);
             formData.append('_method', 'PATCH');
             axios.post('/kolekcja/kolekcjaapiPhotoUpdate/' + rid, formData, config).then(function (response) {
-                if (response.data.success) {
+                if (response.data) {
                     window.alert("Zdjęcie zostało zaktualizowane");
-                    console.log("udało sie");
-                    _this2.form.zdjecie = zdjecie.name;
+                    _this2.form.zdjecie = response.data;
                 }
             }).catch(function (error) {});
         },
@@ -51875,7 +51872,7 @@ var render = function() {
               ? _c("div", [
                   _c("img", {
                     attrs: {
-                      src: "/storage/zdjecia/" + this.form.zdjecie,
+                      src: "/storage/" + this.form.zdjecie,
                       height: "200px"
                     }
                   })
@@ -52184,7 +52181,7 @@ var render = function() {
               _vm.form.zdjecie != ""
                 ? _c("img", {
                     attrs: {
-                      src: "/storage/zdjecia/" + _vm.form.zdjecie,
+                      src: "/storage/" + _vm.form.zdjecie,
                       height: "200px"
                     }
                   })

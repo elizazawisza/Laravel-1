@@ -7,7 +7,7 @@
             <tr>
                 <th>Zdjęcie</th>
                 <td>
-                    <img v-if="form.zdjecie!=''" :src="`/storage/zdjecia/${form.zdjecie}`" height="200px"/>
+                    <img v-if="form.zdjecie!=''" :src="`/storage/${form.zdjecie}`" height="200px"/>
                     <img v-else :src="`/storage/Apple.png`" height="100px"/>
                 </td>
             </tr>
