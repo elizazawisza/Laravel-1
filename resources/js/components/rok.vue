@@ -4,7 +4,7 @@
             <label for="rok">Rok</label>
         </div>
         <div class="col-9">
-            <select id="rok" name="rok" @change="changeRok" :value="value">
+            <select id="rok" name="rok" v-model="value">
                 <option value="2007">2007</option>
                 <option value="2008">2008</option>
                 <option value="2009">2009</option>
@@ -24,7 +24,7 @@
 
 <script>
     export default {
-        props:['value','change'],
+        props:['value'],
         name:'rok',
         data(){
             return{
@@ -33,10 +33,5 @@
         },
         mounted(){
         },
-        methods: {
-            changeRok(e){
-                this.change(e.target.value)
-            }
-        }
     }
 </script>

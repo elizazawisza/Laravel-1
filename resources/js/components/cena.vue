@@ -4,7 +4,7 @@
             <label for="cena">Cena</label>
         </div>
         <div class="col-9">
-            <input id="cena" name="cena" type="number" @change="changeCena" :value="value" ><br>
+            <input id="cena" name="cena" type="number" :value="value" ><br>
         </div>
     </div>
 </template>
@@ -20,10 +20,6 @@
         },
         mounted(){
         },
-        methods: {
-            changeCena(e){
-                this.change(e.target.value);
-            }
-        }
+
     }
 </script>

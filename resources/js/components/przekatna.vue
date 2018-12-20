@@ -4,14 +4,14 @@
             <label for="przekatna">Przekątna</label>
         </div>
         <div class="col-9">
-            <input id="przekatna" name="przekatna" type="text" @change="changePrzekatna" :value="value"><br>
+            <input id="przekatna" name="przekatna" type="text"  :value="value"><br>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props:['value','change'],
+        props:['value'],
         name:'przekatna',
         data(){
             return{
@@ -20,10 +20,5 @@
         },
         mounted(){
         },
-        methods: {
-            changePrzekatna(e){
-                this.change(e.target.value);
-            }
-        }
     }
 </script>

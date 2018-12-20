@@ -47,24 +47,30 @@
 </template>
 
 <script>
+    import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
         props:[],
         data: function () {
             return {
-                form:[],
             }
         },
         beforeMount(){
-            axios.get('kolekcjaapiIndex')
-                .then((response)=>{
-                    this.form=response.data;
-                })
-                .catch(function (error) {
-                    console.log("error",error);
-                    console.log(error.response.data);
-                });
+            this.loadForm();
         },
+       mounted(){
+
+
+        },
+        computed: {
+            ...mapState('Lista',['form']),
+
+            setform(){
+                this.$store.commit('getForm');
+            }
+        },
+
         methods:{
+            ...mapActions('Lista',['loadForm']),
             usuwanie:function (form) {
                 var odp = confirm("Na pewno chcesz usunąć ten telefon z kolekcji?");
                 let vn = this;

@@ -4,14 +4,14 @@
             <label for="zdjecie">Zdjęcie</label>
         </div>
         <div class="col-9">
-            <input id='zdjecie' type="file" name="zdjecie" :value='zdjecie' @change="changeFile">
+            <input id='zdjecie' type="file" name="zdjecie" :value='zdjecie'>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props:['value','change'],
+        props:['value'],
         name:'zdjecie',
         data(){
             return{
@@ -20,12 +20,6 @@
         },
         mounted(){
         },
-        methods: {
-            changeFile(e){
-              console.log(e.target.files[0]);
-              this.change(e.target.files[0]);
-            }
-        }
     }
 </script>
 

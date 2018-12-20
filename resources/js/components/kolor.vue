@@ -4,14 +4,14 @@
             <label for="kolor">Kolor</label>
         </div>
         <div class="col-9">
-            <input id="kolor" name="kolor" type="text" @change="changeKolor" :value="value"><br>
+            <input id="kolor" name="kolor" type="text" :value="value"><br>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props:['value','change'],
+        props:['value'],
         name:'kolor',
         data(){
             return{
@@ -20,10 +20,5 @@
         },
         mounted(){
         },
-        methods: {
-            changeKolor(e){
-                this.change(e.target.value);
-            }
-        }
     }
 </script>

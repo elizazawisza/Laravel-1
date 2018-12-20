@@ -4,7 +4,7 @@
             <label for="nazwa">Nazwa</label>
         </div>
         <div class="col-9">
-            <select id="nazwa" name="nazwa" @change="changeNazwa" :value="value">
+            <select id="nazwa" name="nazwa"  :value="value">
                 <option value="iPhone">iPhone</option>
                 <option value="iPhone3G">iPhone 3G</option>
                 <option value="iPhone3GS">iPhone 3GS</option>
@@ -32,20 +32,18 @@
 </template>
 
 <script>
+    import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
-        props:['value','change'],
+        props:['value'],
         name:'nazwa',
         data(){
             return{
                 nazwa:this.value
             };
         },
-        mounted(){
+        computed:{
+
         },
-        methods: {
-            changeNazwa(e){
-                this.change(e.target.value);
-            }
-        }
+
     }
 </script>

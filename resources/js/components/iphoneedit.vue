@@ -9,25 +9,25 @@
                     </div>
                 </div>
             </div>
-            <nazwa :value="form.nazwa" :change="changeNazwa">
+            <nazwa v-model="nazwa" >
             </nazwa>
             <div class="alert-danger">{{error_nazwa}}</div>
-            <rok :value="form.rok" :change="changeRok">
+            <rok v-model="rok" >
             </rok>
             <div class="alert-danger">{{error_rok}}</div>
-            <cena :value="form.cena" :change="changeCena">
+            <cena v-model="cena" >
             </cena>
             <div class="alert-danger">{{error_cena}}</div>
-            <pamiec :value="form.pamiec" :change="changePamiec">
+            <pamiec v-model="pamiec" >
             </pamiec>
             <div class="alert-danger">{{error_pamiec}}</div>
-            <kolor :value="form.kolor" :change="changeKolor">
+            <kolor v-model="kolor" >
             </kolor>
             <div class="alert-danger">{{error_kolor}}</div>
-            <przekatna :value="form.przekatna" :change="changePrzekatna">
+            <przekatna v-model="przekatna" >
             </przekatna>
             <div class="alert-danger">{{error_przekatna}}</div>
-            <zdjecie :value="form.zdjecie" :change="changeFile">
+            <zdjecie v-model="zdjecie" >
             </zdjecie>
             <div v-if="percentCompleted>0 && percentCompleted<100" class="progress">
                 <div class="progress-bar" role="progressbar" v-bind:style="{'width': percentCompleted+'%'}" aria-valuemax='100'>
@@ -45,7 +45,7 @@
 </template>
 
 <script>
-
+    import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
         props: [],
         data: function () {
@@ -72,12 +72,72 @@
             }
         },
         beforeMount() {
-
+            this.loadPhone(this.$route.params.id)
         },
         computed:{
+            ...mapState('Iphone',['cena'], ['nazwa'], ['zdjecie'], ['kolor'], ['przekatna'], ['pamiec'], ['rok']),
             getId(){
                 return this.$route.params.id;
             },
+            nazwa: {
+                get(){
+                    console.log("czy ty wgl tutuaj wchodzisz?");
+                    return this.$store.state.Iphone.nazwa
+                },
+                set(e){
+                    console.log("a tutua?");
+                    this.$store.commit('updateNazwa', e.target.value)
+                }
+            },
+            cena: {
+                get(){
+                    return this.$store.state.Iphone.cena
+                },
+                set(e){
+                    this.$store.commit('updateCena', e.target.value)
+                }
+            },
+            rok: {
+                get(){
+                    return this.$store.state.Iphone.rok
+                },
+                set(e){
+                    this.$store.commit('updateRok', e.target.value)
+                }
+            },
+            pamiec: {
+                get(){
+                    return this.$store.state.Iphone.pamiec
+                },
+                set(e){
+                    this.$store.commit('updatePamiec', e.target.value)
+                }
+            },
+            kolor: {
+                get(){
+                    return this.$store.state.Iphone.kolor
+                },
+                set(e){
+                    this.$store.commit('updateKolor', e.target.value)
+                }
+            },
+            przekatna: {
+                get(){
+                    return this.$store.state.Iphone.przekatna
+                },
+                set(e){
+                    this.$store.commit('updatePrzekatna', e.target.value)
+                }
+            },
+            zdjecie: {
+                get(){
+                    return this.$store.state.Iphone.zdjecie
+                },
+                set(e){
+                    this.$store.commit('updateZdjecie', e.target.value)
+                }
+            }
+
         },
         mounted() {
             console.log(this.form.zdjecie);
@@ -92,7 +152,8 @@
         },
 
         methods: {
-            changeRok(rok) {
+            ...mapActions('Iphone',['loadPhone']),
+          /*  changeRok(rok) {
                 this.form.rok = rok;
             },
             changeNazwa(nazwa) {
@@ -136,7 +197,7 @@
                     })
                     .catch(function (error) {
                     });
-            },
+            }, */
             clickZaktualizuj: function (e) {
                 e.preventDefault();
                 var vn = this;

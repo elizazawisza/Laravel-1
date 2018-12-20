@@ -46,7 +46,6 @@
 </template>
 <script>
     export default {
-        props:[],
         data: function () {
             return {
                 form: {
@@ -59,8 +58,6 @@
                     zdjecie: '',
                 }
             }
-        },
-        beforeMount() {
         },
         mounted(){
             let app = this;

@@ -4,7 +4,7 @@
             <label for="pamiec">Pamięć</label>
         </div>
         <div class="col-9">
-            <select id="pamiec" name="pamiec" @change="changePamiec" :value="value">
+            <select id="pamiec" name="pamiec" :value="value">
                 <option value="4">4 GB</option>
                 <option value="8">8 GB</option>
                 <option value="16">16 GB</option>
@@ -20,7 +20,7 @@
 
 <script>
     export default {
-        props:['value','change'],
+        props:['value'],
         name:'pamiec',
         data(){
             return{
@@ -29,10 +29,5 @@
         },
         mounted(){
         },
-        methods: {
-            changePamiec(e){
-                this.change(e.target.value);
-            }
-        }
     }
 </script>
