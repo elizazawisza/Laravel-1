@@ -4,7 +4,7 @@
             <label for="kolor">Kolor</label>
         </div>
         <div class="col-9">
-            <input id="kolor" name="kolor" type="text" :value="value"><br>
+            <input id="kolor" name="kolor" type="text" v-model="value"><br>
         </div>
     </div>
 </template>
@@ -13,12 +13,13 @@
     export default {
         props:['value'],
         name:'kolor',
-        data(){
+        data: function(){
             return{
-                kolor:this.value
+                kolor: ''
             };
-        },
+        },/*
         mounted(){
         },
+        */
     }
 </script>

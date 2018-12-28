@@ -130,7 +130,6 @@ const moduleIphone = {
         },
         getPamiec(state){
             return state.form.pamiec;
-
         },
         getPrzekatna(state){
             return state.form.przekatna;

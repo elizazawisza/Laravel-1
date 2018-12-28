@@ -57,10 +57,6 @@
         beforeMount(){
             this.loadForm();
         },
-       mounted(){
-
-
-        },
         computed: {
             ...mapState('Lista',['form']),
 

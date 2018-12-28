@@ -11,6 +11,7 @@
             </div>
             <nazwa v-model="nazwa" >
             </nazwa>
+            {{nazwa}}
             <div class="alert-danger">{{error_nazwa}}</div>
             <rok v-model="rok" >
             </rok>
@@ -73,6 +74,7 @@
         },
         beforeMount() {
             this.loadPhone(this.$route.params.id)
+            console.log(this.$store)
         },
         computed:{
             ...mapState('Iphone',['cena'], ['nazwa'], ['zdjecie'], ['kolor'], ['przekatna'], ['pamiec'], ['rok']),
@@ -84,57 +86,69 @@
                     console.log("czy ty wgl tutuaj wchodzisz?");
                     return this.$store.state.Iphone.nazwa
                 },
-                set(e){
-                    console.log("a tutua?");
-                    this.$store.commit('updateNazwa', e.target.value)
+                set(value){
+                    console.log("a tutaj?");
+                    //console.log($e.target.value);
+                    this.$store.commit('Iphone/updateNazwa', value)
+                    console.log("czemu ty nie chcesz działać????? " + value);
                 }
             },
+
             cena: {
                 get(){
                     return this.$store.state.Iphone.cena
                 },
-                set(e){
-                    this.$store.commit('updateCena', e.target.value)
+                set(value){
+                    console.log("zmieniam cene");
+                    this.$store.commit('Iphone/updateCena', value)
+                    console.log("zmienilem cenę chyba")
                 }
             },
             rok: {
                 get(){
                     return this.$store.state.Iphone.rok
                 },
-                set(e){
-                    this.$store.commit('updateRok', e.target.value)
+                set(value){
+                    this.$store.commit('Iphone/updateRok', value)
                 }
             },
+
             pamiec: {
                 get(){
                     return this.$store.state.Iphone.pamiec
                 },
-                set(e){
-                    this.$store.commit('updatePamiec', e.target.value)
+                set(value){
+                    this.$store.commit('Iphone/updatePamiec',value)
                 }
             },
+
             kolor: {
                 get(){
                     return this.$store.state.Iphone.kolor
                 },
-                set(e){
-                    this.$store.commit('updateKolor', e.target.value)
+                set(value){
+                    console.log("współpracujemy?")
+                    console.log(value)
+                    console.log("no oczywiście, że nie, bo po co")
+                    this.$store.commit('Iphone/updateKolor', value)
                 }
             },
             przekatna: {
                 get(){
                     return this.$store.state.Iphone.przekatna
                 },
-                set(e){
-                    this.$store.commit('updatePrzekatna', e.target.value)
+                set(value){
+                    console.log("przecież powinieneś działać")
+                    console.log(value);
+                    this.$store.commit('Iphone/updatePrzekatna', value)
                 }
             },
             zdjecie: {
                 get(){
                     return this.$store.state.Iphone.zdjecie
                 },
-                set(e){
-                    this.$store.commit('updateZdjecie', e.target.value)
+                set(value){
+                    this.$store.commit('Iphone/updateZdjecie', value)
                 }
             }
 

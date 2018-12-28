@@ -36,14 +36,19 @@
     export default {
         props:['value'],
         name:'nazwa',
-        data(){
+        data: function(){
             return{
-                nazwa:this.value
+                nazwa: this.$store.getters.getNazwa
             };
-        },
-        computed:{
-
-        },
+        }
+       /* beforeMount(e){
+                this.nazwa = e.target.value;
+        }, */
+       /* methods:{
+           set(e){
+                this.nazwa = e.target.value;
+            }
+        } */
 
     }
 </script>

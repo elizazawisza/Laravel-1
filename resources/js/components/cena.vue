@@ -13,9 +13,9 @@
     export default {
         props:['value','change'],
         name:'cena',
-        data(){
+        data: function(){
             return{
-                cena:this.value
+                cena: this.$store.getters.getCena
             };
         },
         mounted(){
