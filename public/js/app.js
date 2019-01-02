@@ -51709,6 +51709,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -51729,21 +51732,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['value'],
-    name: 'pamiec',
-    data: function data() {
-        return {
-            nowa_pamiec: this.value
-        };
-    },
-
-    watch: {
-        nowa_pamiec: function nowa_pamiec(val) {
-            this.$emit('input', val);
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['pamiec']), {
+        pamiec: {
+            get: function get() {
+                return this.$store.state.Iphone.pamiec;
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updatePamiec', value);
+            }
         }
-    }
+    })
 });
 
 /***/ }),
@@ -51765,11 +51766,11 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.nowa_pamiec,
-              expression: "nowa_pamiec"
+              value: _vm.pamiec,
+              expression: "pamiec"
             }
           ],
-          attrs: { id: "pamiec", name: "pamiec" },
+          attrs: { id: "pamiec" },
           on: {
             change: function($event) {
               var $$selectedVal = Array.prototype.filter
@@ -51780,7 +51781,7 @@ var render = function() {
                   var val = "_value" in o ? o._value : o.value
                   return val
                 })
-              _vm.nowa_pamiec = $event.target.multiple
+              _vm.pamiec = $event.target.multiple
                 ? $$selectedVal
                 : $$selectedVal[0]
             }
@@ -51879,6 +51880,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -51890,21 +51894,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['value'],
-    name: 'cena',
-    data: function data() {
-        return {
-            nowa_cena: this.value
-        };
-    },
-
-    watch: {
-        nowa_cena: function nowa_cena(val) {
-            this.$emit('input', val);
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['cena']), {
+        cena: {
+            get: function get() {
+                return this.$store.state.Iphone.cena;
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updateCena', value);
+            }
         }
-    }
+    })
 });
 
 /***/ }),
@@ -51924,18 +51926,18 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.nowa_cena,
-            expression: "nowa_cena"
+            value: _vm.cena,
+            expression: "cena"
           }
         ],
-        attrs: { id: "cena", name: "cena", type: "number" },
-        domProps: { value: _vm.nowa_cena },
+        attrs: { id: "cena", type: "number" },
+        domProps: { value: _vm.cena },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.nowa_cena = $event.target.value
+            _vm.cena = $event.target.value
           }
         }
       }),
@@ -52016,6 +52018,8 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -52052,19 +52056,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['value'],
-    name: 'nazwa',
-    data: function data() {
-        return {
-            nowa_nazwa: this.value
-        };
-    },
-
-    watch: {
-        nowa_nazwa: function nowa_nazwa(val) {
-            this.$emit('input', val);
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['nazwa']), {
+        nazwa: {
+            get: function get() {
+                return this.$store.state.Iphone.nazwa;
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updateNazwa', value);
+            }
         }
-    }
+    })
 
 });
 
@@ -52087,11 +52088,11 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.nowa_nazwa,
-              expression: "nowa_nazwa"
+              value: _vm.nazwa,
+              expression: "nazwa"
             }
           ],
-          attrs: { id: "nazwa", name: "nazwa" },
+          attrs: { id: "nazwa" },
           on: {
             change: function($event) {
               var $$selectedVal = Array.prototype.filter
@@ -52102,7 +52103,7 @@ var render = function() {
                   var val = "_value" in o ? o._value : o.value
                   return val
                 })
-              _vm.nowa_nazwa = $event.target.multiple
+              _vm.nazwa = $event.target.multiple
                 ? $$selectedVal
                 : $$selectedVal[0]
             }
@@ -52233,6 +52234,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -52257,21 +52261,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['value'],
-    name: 'rok',
-    data: function data() {
-        return {
-            nowy_rok: this.value
-        };
-    },
-
-    watch: {
-        nowy_rok: function nowy_rok(val) {
-            this.$emit('input', val);
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['rok']), {
+        rok: {
+            get: function get() {
+                return this.$store.state.Iphone.rok;
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updateRok', value);
+            }
         }
-    }
+    })
 });
 
 /***/ }),
@@ -52293,11 +52295,11 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.nowy_rok,
-              expression: "nowy_rok"
+              value: _vm.rok,
+              expression: "rok"
             }
           ],
-          attrs: { id: "rok", name: "rok" },
+          attrs: { id: "rok" },
           on: {
             change: function($event) {
               var $$selectedVal = Array.prototype.filter
@@ -52308,7 +52310,7 @@ var render = function() {
                   var val = "_value" in o ? o._value : o.value
                   return val
                 })
-              _vm.nowy_rok = $event.target.multiple
+              _vm.rok = $event.target.multiple
                 ? $$selectedVal
                 : $$selectedVal[0]
             }
@@ -52415,6 +52417,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -52426,21 +52431,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['value'],
-    name: 'przekatna',
-    data: function data() {
-        return {
-            nowa_przekatna: this.value
-        };
-    },
-
-    watch: {
-        nowa_przekatna: function nowa_przekatna(val) {
-            this.$emit('input', val);
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['przekatna']), {
+        przekatna: {
+            get: function get() {
+                return this.$store.state.Iphone.przekatna;
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updatePrzekatna', value);
+            }
         }
-    }
+    })
 });
 
 /***/ }),
@@ -52460,18 +52463,18 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.nowa_przekatna,
-            expression: "nowa_przekatna"
+            value: _vm.przekatna,
+            expression: "przekatna"
           }
         ],
-        attrs: { id: "przekatna", name: "przekatna", type: "text" },
-        domProps: { value: _vm.nowa_przekatna },
+        attrs: { id: "przekatna", type: "text" },
+        domProps: { value: _vm.przekatna },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.nowa_przekatna = $event.target.value
+            _vm.przekatna = $event.target.value
           }
         }
       }),
@@ -52650,6 +52653,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -52661,20 +52667,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['value'],
-    data: function data() {
-        return {
-            kolor: this.value
-        };
-    },
-
-    watch: {
-        kolor: function kolor(val) {
-            this.$emit('input', val);
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['kolor']), {
+        kolor: {
+            get: function get() {
+                return this.$store.state.Iphone.kolor;
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updateKolor', value);
+            }
         }
-    }
+    })
 });
 
 /***/ }),
@@ -52698,7 +52703,7 @@ var render = function() {
             expression: "kolor"
           }
         ],
-        attrs: { id: "kolor", name: "kolor", type: "text" },
+        attrs: { id: "kolor", type: "text" },
         domProps: { value: _vm.kolor },
         on: {
           input: function($event) {
@@ -52818,7 +52823,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52976,40 +52981,41 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.Iphone.zdjecie;
             },
             set: function set(value) {
+                console.log("Tutaj aktualizuje zdjęcie " + value);
                 this.$store.commit('Iphone/updateZdjecie', value);
+                this.changeFile(value);
             }
         }
 
     }),
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])('Iphone', ['loadPhone']), {
-        /*
-          changeFile(zdjecie) {
-              let vn = this;
-              let config = {
-                  onUploadProgress: function(progressEvent) {
-                      vn.percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-                  }
-              };
-              let formData = new FormData();
-              let rid = this.$route.params.id;
-              formData.append('nazwa', this.form.nazwa);
-              formData.append('rok', JSON.stringify(this.form.rok));
-              formData.append('cena', this.form.cena);
-              formData.append('pamiec', this.form.pamiec);
-              formData.append('kolor', this.form.kolor);
-              formData.append('przekatna', JSON.stringify(this.form.przekatna));
-              formData.append('zdjecie', zdjecie);
-              formData.append('_method', 'PATCH');
-              axios.post('/kolekcja/kolekcjaapiPhotoUpdate/'+rid, formData, config)
-                  .then( response=> {
-                      if(response.data){
-                          window.alert("Zdjęcie zostało zaktualizowane");
-                          this.form.zdjecie = response.data;
-                      }
-                  })
-                  .catch(function (error) {
-                  });
-          }, */
+        changeFile: function changeFile(zdjecie) {
+            var _this = this;
+
+            var vn = this;
+            var config = {
+                onUploadProgress: function onUploadProgress(progressEvent) {
+                    vn.percentCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+                }
+            };
+            var formData = new FormData();
+            var rid = this.$route.params.id;
+            formData.append('nazwa', this.form.nazwa);
+            formData.append('rok', JSON.stringify(this.form.rok));
+            formData.append('cena', this.form.cena);
+            formData.append('pamiec', this.form.pamiec);
+            formData.append('kolor', this.form.kolor);
+            formData.append('przekatna', JSON.stringify(this.form.przekatna));
+            formData.append('zdjecie', zdjecie);
+            formData.append('_method', 'PATCH');
+            axios.post('/kolekcja/kolekcjaapiPhotoUpdate/' + rid, formData, config).then(function (response) {
+                if (response.data) {
+                    window.alert("Zdjęcie zostało zaktualizowane");
+                    _this.form.zdjecie = response.data;
+                }
+            }).catch(function (error) {});
+        },
+
         clickZaktualizuj: function clickZaktualizuj(e) {
             e.preventDefault();
             var vn = this;
@@ -53564,6 +53570,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
 //
 //
 //
@@ -53576,16 +53583,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['value'],
-    name: 'zdjecie',
-    data: function data() {
-        return {
-            zdjecie: ''
-        };
-    },
-    mounted: function mounted() {}
-});
+
+
+/* export default {
+     computed: {
+         ...mapState('Iphone', ['zdjecie']),
+         zdjecie: {
+             get() {
+                 return this.$store.state.Iphone.zdjecie
+             },
+             set(value) {
+                 console.log("Tutaj aktualizuje zdjęcie " + value)
+                 this.$store.commit('Iphone/updateZdjecie', value)
+                 this.changeFile(value)
+             }
+         }
+     }
+ } */
 
 /***/ }),
 /* 83 */

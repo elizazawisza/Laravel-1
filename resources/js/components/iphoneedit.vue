@@ -141,14 +141,16 @@
                     return this.$store.state.Iphone.zdjecie
                 },
                 set(value){
+                    console.log("Tutaj aktualizuje zdjęcie " + value)
                     this.$store.commit('Iphone/updateZdjecie', value)
+                    this.changeFile(value)
                 }
             }
 
         },
         methods: {
             ...mapActions('Iphone',['loadPhone']),
-          /*
+
             changeFile(zdjecie) {
                 let vn = this;
                 let config = {
@@ -175,7 +177,7 @@
                     })
                     .catch(function (error) {
                     });
-            }, */
+            },
             clickZaktualizuj: function (e) {
                 e.preventDefault();
                 var vn = this;

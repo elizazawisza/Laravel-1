@@ -4,24 +4,24 @@
             <label for="cena">Cena</label>
         </div>
         <div class="col-9">
-            <input id="cena" name="cena" type="number" v-model="nowa_cena" ><br>
+            <input id="cena" type="number" v-model="cena" ><br>
         </div>
     </div>
 </template>
 
 <script>
+    import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
-        props:['value'],
-        name:'cena',
-        data(){
-            return{
-                nowa_cena: this.value
-            };
-        },
-        watch: {
-            nowa_cena(val) {
-                this.$emit('input', val);
-            }
+        computed:{
+            ...mapState('Iphone', ['cena']),
+            cena: {
+                get(){
+                    return this.$store.state.Iphone.cena
+                },
+                set(value){
+                    this.$store.commit('Iphone/updateCena', value)
+                }
+            },
         }
     }
 </script>

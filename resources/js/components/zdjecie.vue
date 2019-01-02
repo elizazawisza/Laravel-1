@@ -10,16 +10,22 @@
 </template>
 
 <script>
-    export default {
-        props:['value'],
-        name:'zdjecie',
-        data(){
-            return{
-                zdjecie:''
-            };
-        },
-        mounted(){
-        },
-    }
+    import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+
+   /* export default {
+        computed: {
+            ...mapState('Iphone', ['zdjecie']),
+            zdjecie: {
+                get() {
+                    return this.$store.state.Iphone.zdjecie
+                },
+                set(value) {
+                    console.log("Tutaj aktualizuje zdjęcie " + value)
+                    this.$store.commit('Iphone/updateZdjecie', value)
+                    this.changeFile(value)
+                }
+            }
+        }
+    } */
 </script>
 

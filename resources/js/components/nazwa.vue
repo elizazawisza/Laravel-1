@@ -4,7 +4,7 @@
             <label for="nazwa">Nazwa</label>
         </div>
         <div class="col-9">
-            <select id="nazwa" name="nazwa"  v-model="nowa_nazwa">
+            <select id="nazwa" v-model="nazwa">
                 <option value="iPhone">iPhone</option>
                 <option value="iPhone3G">iPhone 3G</option>
                 <option value="iPhone3GS">iPhone 3GS</option>
@@ -34,17 +34,16 @@
 <script>
     import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
-        props:['value'],
-        name:'nazwa',
-        data(){
-            return{
-                nowa_nazwa: this.value
-            };
-        },
-        watch: {
-            nowa_nazwa(val) {
-                this.$emit('input', val);
-            }
+        computed: {
+            ...mapState('Iphone', ['nazwa']),
+            nazwa: {
+                get(){
+                    return this.$store.state.Iphone.nazwa
+                },
+                set(value){
+                    this.$store.commit('Iphone/updateNazwa', value)
+                }
+            },
         }
 
     }
