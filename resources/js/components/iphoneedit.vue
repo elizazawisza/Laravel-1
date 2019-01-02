@@ -4,8 +4,8 @@
             <input type="hidden" name="_method" value="PATCH">
             <div class="container">
                 <div class="row justify-content-center ">
-                    <div v-if=form.zdjecie>
-                        <img :src="`/storage/${this.form.zdjecie}`" height="200px"/>
+                    <div v-if=zdjecie>
+                        <img :src="`/storage/${this.zdjecie}`" height="200px"/>
                     </div>
                 </div>
             </div>
@@ -13,20 +13,25 @@
             </nazwa>
             {{nazwa}}
             <div class="alert-danger">{{error_nazwa}}</div>
-            <rok v-model="rok" >
+            <rok v-model="rok">
             </rok>
+            {{rok}}
             <div class="alert-danger">{{error_rok}}</div>
             <cena v-model="cena" >
             </cena>
+            {{cena}}
             <div class="alert-danger">{{error_cena}}</div>
             <pamiec v-model="pamiec" >
             </pamiec>
+            {{pamiec}}
             <div class="alert-danger">{{error_pamiec}}</div>
             <kolor v-model="kolor" >
             </kolor>
+            {{kolor}}
             <div class="alert-danger">{{error_kolor}}</div>
             <przekatna v-model="przekatna" >
             </przekatna>
+            {{przekatna}}
             <div class="alert-danger">{{error_przekatna}}</div>
             <zdjecie v-model="zdjecie" >
             </zdjecie>
@@ -74,7 +79,6 @@
         },
         beforeMount() {
             this.loadPhone(this.$route.params.id)
-            console.log(this.$store)
         },
         computed:{
             ...mapState('Iphone',['cena'], ['nazwa'], ['zdjecie'], ['kolor'], ['przekatna'], ['pamiec'], ['rok']),
@@ -83,14 +87,10 @@
             },
             nazwa: {
                 get(){
-                    console.log("czy ty wgl tutuaj wchodzisz?");
                     return this.$store.state.Iphone.nazwa
                 },
                 set(value){
-                    console.log("a tutaj?");
-                    //console.log($e.target.value);
                     this.$store.commit('Iphone/updateNazwa', value)
-                    console.log("czemu ty nie chcesz działać????? " + value);
                 }
             },
 
@@ -99,9 +99,7 @@
                     return this.$store.state.Iphone.cena
                 },
                 set(value){
-                    console.log("zmieniam cene");
                     this.$store.commit('Iphone/updateCena', value)
-                    console.log("zmienilem cenę chyba")
                 }
             },
             rok: {
@@ -127,9 +125,6 @@
                     return this.$store.state.Iphone.kolor
                 },
                 set(value){
-                    console.log("współpracujemy?")
-                    console.log(value)
-                    console.log("no oczywiście, że nie, bo po co")
                     this.$store.commit('Iphone/updateKolor', value)
                 }
             },
@@ -138,8 +133,6 @@
                     return this.$store.state.Iphone.przekatna
                 },
                 set(value){
-                    console.log("przecież powinieneś działać")
-                    console.log(value);
                     this.$store.commit('Iphone/updatePrzekatna', value)
                 }
             },
@@ -153,38 +146,9 @@
             }
 
         },
-        mounted() {
-            console.log(this.form.zdjecie);
-            axios.get('/kolekcja/kolekcjaapiEdit/'+this.getId)
-                .then((response) => {
-                    this.form = response.data;
-                })
-                .catch(function (error) {
-                    console.log("error", error);
-                    console.log(error.response);
-                });
-        },
-
         methods: {
             ...mapActions('Iphone',['loadPhone']),
-          /*  changeRok(rok) {
-                this.form.rok = rok;
-            },
-            changeNazwa(nazwa) {
-                this.form.nazwa = nazwa;
-            },
-            changePamiec(pamiec) {
-                this.form.pamiec = pamiec;
-            },
-            changeCena(cena) {
-                this.form.cena = cena;
-            },
-            changeKolor(kolor) {
-                this.form.kolor = kolor;
-            },
-            changePrzekatna(przekatna) {
-                this.form.przekatna = przekatna;
-            },
+          /*
             changeFile(zdjecie) {
                 let vn = this;
                 let config = {
@@ -224,13 +188,13 @@
                 vn.error_zdjecie = '';
                 let rid = this.$route.params.id;
                 let formData = new FormData();
-                formData.append('nazwa', this.form.nazwa);
-                formData.append('rok', JSON.stringify(this.form.rok));
-                formData.append('cena', this.form.cena);
-                formData.append('pamiec', this.form.pamiec);
-                formData.append('kolor', this.form.kolor);
-                formData.append('przekatna', JSON.stringify(this.form.przekatna));
-                formData.append('zdjecie', this.form.zdjecie);
+                formData.append('nazwa', this.nazwa);
+                formData.append('rok', this.rok);
+                formData.append('cena', this.cena);
+                formData.append('pamiec', this.pamiec);
+                formData.append('kolor', this.kolor);
+                formData.append('przekatna', this.przekatna);
+                formData.append('zdjecie', this.zdjecie);
                 formData.append('_method', 'PATCH');
                 axios.post('/kolekcja/'+rid, formData)
                     .then(function (response) {

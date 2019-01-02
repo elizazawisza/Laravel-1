@@ -95,9 +95,7 @@ const moduleIphone = {
     },
     mutations: {
         updateNazwa(state, nazwa){
-            console.log("Będę updatował nazwę");
             state.nazwa = nazwa;
-            console.log(nazwa);
         },
         updateCena(state, cena){
             state.cena = cena
@@ -160,10 +158,7 @@ const moduleLista = {
     },
     mutations:{
         setForm(state, form){
-            console.log("Jestem w setForm");
             state.form = form;
-            //return form;
-            console.log(form)
         }
     },
     getters: {

@@ -26313,9 +26313,7 @@ var moduleIphone = {
     },
     mutations: {
         updateNazwa: function updateNazwa(state, nazwa) {
-            console.log("Będę updatował nazwę");
             state.nazwa = nazwa;
-            console.log(nazwa);
         },
         updateCena: function updateCena(state, cena) {
             state.cena = cena;
@@ -26377,10 +26375,7 @@ var moduleLista = {
     },
     mutations: {
         setForm: function setForm(state, form) {
-            console.log("Jestem w setForm");
             state.form = form;
-            //return form;
-            console.log(form);
         }
     },
     getters: {
@@ -51740,10 +51735,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: 'pamiec',
     data: function data() {
         return {
-            pamiec: this.value
+            nowa_pamiec: this.value
         };
     },
-    mounted: function mounted() {}
+
+    watch: {
+        nowa_pamiec: function nowa_pamiec(val) {
+            this.$emit('input', val);
+        }
+    }
 });
 
 /***/ }),
@@ -51761,8 +51761,30 @@ var render = function() {
       _c(
         "select",
         {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.nowa_pamiec,
+              expression: "nowa_pamiec"
+            }
+          ],
           attrs: { id: "pamiec", name: "pamiec" },
-          domProps: { value: _vm.value }
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.nowa_pamiec = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
         },
         [
           _c("option", { attrs: { value: "4" } }, [_vm._v("4 GB")]),
@@ -51870,14 +51892,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['value', 'change'],
+    props: ['value'],
     name: 'cena',
     data: function data() {
         return {
-            cena: this.$store.getters.getCena
+            nowa_cena: this.value
         };
     },
-    mounted: function mounted() {}
+
+    watch: {
+        nowa_cena: function nowa_cena(val) {
+            this.$emit('input', val);
+        }
+    }
 });
 
 /***/ }),
@@ -51893,8 +51920,24 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "col-9" }, [
       _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.nowa_cena,
+            expression: "nowa_cena"
+          }
+        ],
         attrs: { id: "cena", name: "cena", type: "number" },
-        domProps: { value: _vm.value }
+        domProps: { value: _vm.nowa_cena },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.nowa_cena = $event.target.value
+          }
+        }
       }),
       _c("br")
     ])
@@ -52013,17 +52056,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: 'nazwa',
     data: function data() {
         return {
-            nazwa: this.$store.getters.getNazwa
+            nowa_nazwa: this.value
         };
+    },
+
+    watch: {
+        nowa_nazwa: function nowa_nazwa(val) {
+            this.$emit('input', val);
+        }
     }
-    /* beforeMount(e){
-             this.nazwa = e.target.value;
-     }, */
-    /* methods:{
-        set(e){
-             this.nazwa = e.target.value;
-         }
-     } */
 
 });
 
@@ -52042,8 +52083,30 @@ var render = function() {
       _c(
         "select",
         {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.nowa_nazwa,
+              expression: "nowa_nazwa"
+            }
+          ],
           attrs: { id: "nazwa", name: "nazwa" },
-          domProps: { value: _vm.value }
+          on: {
+            change: function($event) {
+              var $$selectedVal = Array.prototype.filter
+                .call($event.target.options, function(o) {
+                  return o.selected
+                })
+                .map(function(o) {
+                  var val = "_value" in o ? o._value : o.value
+                  return val
+                })
+              _vm.nowa_nazwa = $event.target.multiple
+                ? $$selectedVal
+                : $$selectedVal[0]
+            }
+          }
         },
         [
           _c("option", { attrs: { value: "iPhone" } }, [_vm._v("iPhone")]),
@@ -52200,10 +52263,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: 'rok',
     data: function data() {
         return {
-            rok: this.value
+            nowy_rok: this.value
         };
     },
-    mounted: function mounted() {}
+
+    watch: {
+        nowy_rok: function nowy_rok(val) {
+            this.$emit('input', val);
+        }
+    }
 });
 
 /***/ }),
@@ -52225,8 +52293,8 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
-              value: _vm.value,
-              expression: "value"
+              value: _vm.nowy_rok,
+              expression: "nowy_rok"
             }
           ],
           attrs: { id: "rok", name: "rok" },
@@ -52240,7 +52308,7 @@ var render = function() {
                   var val = "_value" in o ? o._value : o.value
                   return val
                 })
-              _vm.value = $event.target.multiple
+              _vm.nowy_rok = $event.target.multiple
                 ? $$selectedVal
                 : $$selectedVal[0]
             }
@@ -52364,10 +52432,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: 'przekatna',
     data: function data() {
         return {
-            przekatna: this.value
+            nowa_przekatna: this.value
         };
     },
-    mounted: function mounted() {}
+
+    watch: {
+        nowa_przekatna: function nowa_przekatna(val) {
+            this.$emit('input', val);
+        }
+    }
 });
 
 /***/ }),
@@ -52383,8 +52456,24 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "col-9" }, [
       _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.nowa_przekatna,
+            expression: "nowa_przekatna"
+          }
+        ],
         attrs: { id: "przekatna", name: "przekatna", type: "text" },
-        domProps: { value: _vm.value }
+        domProps: { value: _vm.nowa_przekatna },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.nowa_przekatna = $event.target.value
+          }
+        }
       }),
       _c("br")
     ])
@@ -52575,15 +52664,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value'],
-    name: 'kolor',
     data: function data() {
         return {
-            kolor: ''
+            kolor: this.value
         };
-    } /*
-      mounted(){
-      },
-      */
+    },
+
+    watch: {
+        kolor: function kolor(val) {
+            this.$emit('input', val);
+        }
+    }
 });
 
 /***/ }),
@@ -52603,18 +52694,18 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.value,
-            expression: "value"
+            value: _vm.kolor,
+            expression: "kolor"
           }
         ],
         attrs: { id: "kolor", name: "kolor", type: "text" },
-        domProps: { value: _vm.value },
+        domProps: { value: _vm.kolor },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.value = $event.target.value
+            _vm.kolor = $event.target.value
           }
         }
       }),
@@ -52727,7 +52818,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52741,6 +52832,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52817,7 +52913,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
     beforeMount: function beforeMount() {
         this.loadPhone(this.$route.params.id);
-        console.log(this.$store);
     },
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['cena'], ['nazwa'], ['zdjecie'], ['kolor'], ['przekatna'], ['pamiec'], ['rok']), {
@@ -52827,14 +52922,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
         nazwa: {
             get: function get() {
-                console.log("czy ty wgl tutuaj wchodzisz?");
                 return this.$store.state.Iphone.nazwa;
             },
             set: function set(value) {
-                console.log("a tutaj?");
-                //console.log($e.target.value);
                 this.$store.commit('Iphone/updateNazwa', value);
-                console.log("czemu ty nie chcesz działać????? " + value);
             }
         },
 
@@ -52843,9 +52934,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.Iphone.cena;
             },
             set: function set(value) {
-                console.log("zmieniam cene");
                 this.$store.commit('Iphone/updateCena', value);
-                console.log("zmienilem cenę chyba");
             }
         },
         rok: {
@@ -52871,9 +52960,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.Iphone.kolor;
             },
             set: function set(value) {
-                console.log("współpracujemy?");
-                console.log(value);
-                console.log("no oczywiście, że nie, bo po co");
                 this.$store.commit('Iphone/updateKolor', value);
             }
         },
@@ -52882,8 +52968,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.Iphone.przekatna;
             },
             set: function set(value) {
-                console.log("przecież powinieneś działać");
-                console.log(value);
                 this.$store.commit('Iphone/updatePrzekatna', value);
             }
         },
@@ -52897,38 +52981,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         }
 
     }),
-    mounted: function mounted() {
-        var _this = this;
-
-        console.log(this.form.zdjecie);
-        axios.get('/kolekcja/kolekcjaapiEdit/' + this.getId).then(function (response) {
-            _this.form = response.data;
-        }).catch(function (error) {
-            console.log("error", error);
-            console.log(error.response);
-        });
-    },
-
-
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])('Iphone', ['loadPhone']), {
-        /*  changeRok(rok) {
-              this.form.rok = rok;
-          },
-          changeNazwa(nazwa) {
-              this.form.nazwa = nazwa;
-          },
-          changePamiec(pamiec) {
-              this.form.pamiec = pamiec;
-          },
-          changeCena(cena) {
-              this.form.cena = cena;
-          },
-          changeKolor(kolor) {
-              this.form.kolor = kolor;
-          },
-          changePrzekatna(przekatna) {
-              this.form.przekatna = przekatna;
-          },
+        /*
           changeFile(zdjecie) {
               let vn = this;
               let config = {
@@ -52968,13 +53022,13 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             vn.error_zdjecie = '';
             var rid = this.$route.params.id;
             var formData = new FormData();
-            formData.append('nazwa', this.form.nazwa);
-            formData.append('rok', JSON.stringify(this.form.rok));
-            formData.append('cena', this.form.cena);
-            formData.append('pamiec', this.form.pamiec);
-            formData.append('kolor', this.form.kolor);
-            formData.append('przekatna', JSON.stringify(this.form.przekatna));
-            formData.append('zdjecie', this.form.zdjecie);
+            formData.append('nazwa', this.nazwa);
+            formData.append('rok', this.rok);
+            formData.append('cena', this.cena);
+            formData.append('pamiec', this.pamiec);
+            formData.append('kolor', this.kolor);
+            formData.append('przekatna', this.przekatna);
+            formData.append('zdjecie', this.zdjecie);
             formData.append('_method', 'PATCH');
             axios.post('/kolekcja/' + rid, formData).then(function (response) {
                 if (response.data.success) {
@@ -53027,13 +53081,10 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "row justify-content-center " }, [
-            _vm.form.zdjecie
+            _vm.zdjecie
               ? _c("div", [
                   _c("img", {
-                    attrs: {
-                      src: "/storage/" + this.form.zdjecie,
-                      height: "200px"
-                    }
+                    attrs: { src: "/storage/" + this.zdjecie, height: "200px" }
                   })
                 ])
               : _vm._e()
@@ -53063,7 +53114,7 @@ var render = function() {
             expression: "rok"
           }
         }),
-        _vm._v(" "),
+        _vm._v("\n        " + _vm._s(_vm.rok) + "\n        "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_rok))
         ]),
@@ -53077,7 +53128,7 @@ var render = function() {
             expression: "cena"
           }
         }),
-        _vm._v(" "),
+        _vm._v("\n        " + _vm._s(_vm.cena) + "\n        "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_cena))
         ]),
@@ -53091,7 +53142,7 @@ var render = function() {
             expression: "pamiec"
           }
         }),
-        _vm._v(" "),
+        _vm._v("\n        " + _vm._s(_vm.pamiec) + "\n        "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_pamiec))
         ]),
@@ -53105,7 +53156,7 @@ var render = function() {
             expression: "kolor"
           }
         }),
-        _vm._v(" "),
+        _vm._v("\n        " + _vm._s(_vm.kolor) + "\n        "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_kolor))
         ]),
@@ -53119,7 +53170,7 @@ var render = function() {
             expression: "przekatna"
           }
         }),
-        _vm._v(" "),
+        _vm._v("\n        " + _vm._s(_vm.przekatna) + "\n        "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_przekatna))
         ]),

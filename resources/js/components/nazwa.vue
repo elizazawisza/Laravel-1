@@ -4,7 +4,7 @@
             <label for="nazwa">Nazwa</label>
         </div>
         <div class="col-9">
-            <select id="nazwa" name="nazwa"  :value="value">
+            <select id="nazwa" name="nazwa"  v-model="nowa_nazwa">
                 <option value="iPhone">iPhone</option>
                 <option value="iPhone3G">iPhone 3G</option>
                 <option value="iPhone3GS">iPhone 3GS</option>
@@ -36,19 +36,16 @@
     export default {
         props:['value'],
         name:'nazwa',
-        data: function(){
+        data(){
             return{
-                nazwa: this.$store.getters.getNazwa
+                nowa_nazwa: this.value
             };
-        }
-       /* beforeMount(e){
-                this.nazwa = e.target.value;
-        }, */
-       /* methods:{
-           set(e){
-                this.nazwa = e.target.value;
+        },
+        watch: {
+            nowa_nazwa(val) {
+                this.$emit('input', val);
             }
-        } */
+        }
 
     }
 </script>

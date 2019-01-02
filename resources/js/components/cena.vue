@@ -4,22 +4,24 @@
             <label for="cena">Cena</label>
         </div>
         <div class="col-9">
-            <input id="cena" name="cena" type="number" :value="value" ><br>
+            <input id="cena" name="cena" type="number" v-model="nowa_cena" ><br>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props:['value','change'],
+        props:['value'],
         name:'cena',
-        data: function(){
+        data(){
             return{
-                cena: this.$store.getters.getCena
+                nowa_cena: this.value
             };
         },
-        mounted(){
-        },
-
+        watch: {
+            nowa_cena(val) {
+                this.$emit('input', val);
+            }
+        }
     }
 </script>

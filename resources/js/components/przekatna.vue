@@ -4,7 +4,7 @@
             <label for="przekatna">Przekątna</label>
         </div>
         <div class="col-9">
-            <input id="przekatna" name="przekatna" type="text"  :value="value"><br>
+            <input id="przekatna" name="przekatna" type="text"  v-model="nowa_przekatna"><br>
         </div>
     </div>
 </template>
@@ -15,10 +15,13 @@
         name:'przekatna',
         data(){
             return{
-                przekatna:this.value
+                nowa_przekatna: this.value
             };
         },
-        mounted(){
-        },
+        watch: {
+            nowa_przekatna(val) {
+                this.$emit('input', val);
+            }
+        }
     }
 </script>

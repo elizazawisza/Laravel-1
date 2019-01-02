@@ -4,7 +4,7 @@
             <label for="rok">Rok</label>
         </div>
         <div class="col-9">
-            <select id="rok" name="rok" v-model="value">
+            <select id="rok" name="rok" v-model="nowy_rok">
                 <option value="2007">2007</option>
                 <option value="2008">2008</option>
                 <option value="2009">2009</option>
@@ -28,10 +28,13 @@
         name:'rok',
         data(){
             return{
-                rok: this.value
+                nowy_rok: this.value
             };
         },
-        mounted(){
-        },
+        watch: {
+            nowy_rok(val) {
+                this.$emit('input', val);
+            }
+        }
     }
 </script>
