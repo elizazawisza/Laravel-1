@@ -87,7 +87,6 @@
                     this.$store.commit('Iphone/updateNazwa', value)
                 }
             },
-
             cena: {
                 get(){
                     return this.$store.state.Iphone.cena
@@ -104,7 +103,6 @@
                     this.$store.commit('Iphone/updateRok', value)
                 }
             },
-
             pamiec: {
                 get(){
                     return this.$store.state.Iphone.pamiec
@@ -113,7 +111,6 @@
                     this.$store.commit('Iphone/updatePamiec',value)
                 }
             },
-
             kolor: {
                 get(){
                     return this.$store.state.Iphone.kolor

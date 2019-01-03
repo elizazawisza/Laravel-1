@@ -153,7 +153,6 @@ const moduleLista = {
                 .then(function (response){
                     commit('setForm', response.data)
                 })
-
         }
     },
     mutations:{
