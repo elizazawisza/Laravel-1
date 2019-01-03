@@ -4,7 +4,7 @@
             <label for="rok">Rok</label>
         </div>
         <div class="col-9">
-            <select id="rok"  v-model="rok">
+            <select id="rok" ref="rok" :value="value" @input="input">
                 <option value="2007">2007</option>
                 <option value="2008">2008</option>
                 <option value="2009">2009</option>
@@ -25,16 +25,11 @@
 <script>
     import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
-        computed:{
-            ...mapState('Iphone', ['rok']),
-            rok: {
-                get(){
-                    return this.$store.state.Iphone.rok
-                },
-                set(value){
-                    this.$store.commit('Iphone/updateRok', value)
-                }
-            },
+        props:['value'],
+        methods:{
+            input(){
+                this.$emit('input',this.$refs.rok.value);
+            }
         }
     }
 </script>

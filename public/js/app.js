@@ -51410,7 +51410,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -51454,6 +51454,9 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -51484,16 +51487,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: [],
     data: function data() {
         return {
-            nazwa: 'iPhone',
-            cena: '',
-            rok: '2007',
-            kolor: '',
-            przekatna: '',
-            pamiec: '4',
             error_przekatna: '',
             error_cena: '',
             error_kolor: '',
@@ -51503,26 +51501,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             csrf_token: $('meta[name="csrf-token"]').attr('content')
         };
     },
+    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['cena'], ['nazwa'], ['zdjecie'], ['kolor'], ['przekatna'], ['pamiec'], ['rok']), {
+        nazwa: {
+            get: function get() {
+                return 'iPhone';
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updateNazwa', value);
+            }
+        },
+        cena: {
+            get: function get() {
+                return this.$store.state.Iphone.cena;
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updateCena', value);
+            }
+        },
+        rok: {
+            get: function get() {
+                return '2007';
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updateRok', value);
+            }
+        },
+        pamiec: {
+            get: function get() {
+                return '4';
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updatePamiec', value);
+            }
+        },
+        kolor: {
+            get: function get() {
+                return this.$store.state.Iphone.kolor;
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updateKolor', value);
+            }
+        },
+        przekatna: {
+            get: function get() {
+                return this.$store.state.Iphone.przekatna;
+            },
+            set: function set(value) {
+                this.$store.commit('Iphone/updatePrzekatna', value);
+            }
+        }
+    }),
     methods: {
-        changeNazwa: function changeNazwa(nazwa) {
-            this.nazwa = nazwa;
-        },
-        changeRok: function changeRok(rok) {
-            this.rok = rok;
-        },
-        changePamiec: function changePamiec(pamiec) {
-            this.pamiec = pamiec;
-        },
-        changeCena: function changeCena(cena) {
-            this.cena = cena;
-        },
-        changeKolor: function changeKolor(kolor) {
-            this.kolor = kolor;
-        },
-        changePrzekatna: function changePrzekatna(przekatna) {
-            this.przekatna = przekatna;
-        },
-
         clickDodaj: function clickDodaj(e) {
             e.preventDefault();
             var vn = this;
@@ -51586,40 +51615,84 @@ var render = function() {
           domProps: { value: _vm.csrf_token }
         }),
         _vm._v(" "),
-        _c("nazwa", { attrs: { value: _vm.nazwa, change: _vm.changeNazwa } }),
+        _c("nazwa", {
+          model: {
+            value: _vm.nazwa,
+            callback: function($$v) {
+              _vm.nazwa = $$v
+            },
+            expression: "nazwa"
+          }
+        }),
         _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_nazwa))
         ]),
         _vm._v(" "),
-        _c("rok", { attrs: { value: _vm.rok, change: _vm.changeRok } }),
+        _c("rok", {
+          model: {
+            value: _vm.rok,
+            callback: function($$v) {
+              _vm.rok = $$v
+            },
+            expression: "rok"
+          }
+        }),
         _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_rok))
         ]),
         _vm._v(" "),
-        _c("cena", { attrs: { value: _vm.cena, change: _vm.changeCena } }),
+        _c("cena", {
+          model: {
+            value: _vm.cena,
+            callback: function($$v) {
+              _vm.cena = $$v
+            },
+            expression: "cena"
+          }
+        }),
         _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_cena))
         ]),
         _vm._v(" "),
         _c("pamiec", {
-          attrs: { value: _vm.pamiec, change: _vm.changePamiec }
+          model: {
+            value: _vm.pamiec,
+            callback: function($$v) {
+              _vm.pamiec = $$v
+            },
+            expression: "pamiec"
+          }
         }),
         _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_pamiec))
         ]),
         _vm._v(" "),
-        _c("kolor", { attrs: { value: _vm.kolor, change: _vm.changeKolor } }),
+        _c("kolor", {
+          model: {
+            value: _vm.kolor,
+            callback: function($$v) {
+              _vm.kolor = $$v
+            },
+            expression: "kolor"
+          }
+        }),
         _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_kolor))
         ]),
         _vm._v(" "),
         _c("przekatna", {
-          attrs: { value: _vm.przekatna, change: _vm.changePrzekatna }
+          model: {
+            value: _vm.przekatna,
+            callback: function($$v) {
+              _vm.przekatna = $$v
+            },
+            expression: "przekatna"
+          }
         }),
         _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
@@ -51710,8 +51783,6 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 //
 //
 //
@@ -51735,16 +51806,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['pamiec']), {
-        pamiec: {
-            get: function get() {
-                return this.$store.state.Iphone.pamiec;
-            },
-            set: function set(value) {
-                this.$store.commit('Iphone/updatePamiec', value);
-            }
+    props: ['value'],
+    methods: {
+        input: function input() {
+            this.$emit('input', this.$refs.pamiec.value);
         }
-    })
+    }
 });
 
 /***/ }),
@@ -51762,30 +51829,10 @@ var render = function() {
       _c(
         "select",
         {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.pamiec,
-              expression: "pamiec"
-            }
-          ],
+          ref: "pamiec",
           attrs: { id: "pamiec" },
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.pamiec = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            }
-          }
+          domProps: { value: _vm.value },
+          on: { input: _vm.input }
         },
         [
           _c("option", { attrs: { value: "4" } }, [_vm._v("4 GB")]),
@@ -51880,9 +51927,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 //
 //
 //
@@ -51894,19 +51938,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['cena']), {
-        cena: {
-            get: function get() {
-                return this.$store.state.Iphone.cena;
-            },
-            set: function set(value) {
-                this.$store.commit('Iphone/updateCena', value);
-            }
+    props: ['value'],
+    methods: {
+        input: function input() {
+            this.$emit('input', this.$refs.cena.value);
         }
-    })
+    }
 });
 
 /***/ }),
@@ -51922,24 +51961,10 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "col-9" }, [
       _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.cena,
-            expression: "cena"
-          }
-        ],
+        ref: "cena",
         attrs: { id: "cena", type: "number" },
-        domProps: { value: _vm.cena },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.cena = $event.target.value
-          }
-        }
+        domProps: { value: _vm.value },
+        on: { input: _vm.input }
       }),
       _c("br")
     ])
@@ -52017,9 +52042,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 //
 //
 //
@@ -52053,20 +52075,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['nazwa']), {
-        nazwa: {
-            get: function get() {
-                return this.$store.state.Iphone.nazwa;
-            },
-            set: function set(value) {
-                this.$store.commit('Iphone/updateNazwa', value);
-            }
+    props: ['value'],
+    methods: {
+        input: function input() {
+            this.$emit('input', this.$refs.nazwa.value);
         }
-    })
-
+    }
 });
 
 /***/ }),
@@ -52084,30 +52100,10 @@ var render = function() {
       _c(
         "select",
         {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.nazwa,
-              expression: "nazwa"
-            }
-          ],
+          ref: "nazwa",
           attrs: { id: "nazwa" },
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.nazwa = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            }
-          }
+          domProps: { value: _vm.value },
+          on: { input: _vm.input }
         },
         [
           _c("option", { attrs: { value: "iPhone" } }, [_vm._v("iPhone")]),
@@ -52235,8 +52231,6 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 //
 //
 //
@@ -52264,16 +52258,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['rok']), {
-        rok: {
-            get: function get() {
-                return this.$store.state.Iphone.rok;
-            },
-            set: function set(value) {
-                this.$store.commit('Iphone/updateRok', value);
-            }
+    props: ['value'],
+    methods: {
+        input: function input() {
+            this.$emit('input', this.$refs.rok.value);
         }
-    })
+    }
 });
 
 /***/ }),
@@ -52291,30 +52281,10 @@ var render = function() {
       _c(
         "select",
         {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.rok,
-              expression: "rok"
-            }
-          ],
+          ref: "rok",
           attrs: { id: "rok" },
-          on: {
-            change: function($event) {
-              var $$selectedVal = Array.prototype.filter
-                .call($event.target.options, function(o) {
-                  return o.selected
-                })
-                .map(function(o) {
-                  var val = "_value" in o ? o._value : o.value
-                  return val
-                })
-              _vm.rok = $event.target.multiple
-                ? $$selectedVal
-                : $$selectedVal[0]
-            }
-          }
+          domProps: { value: _vm.value },
+          on: { input: _vm.input }
         },
         [
           _c("option", { attrs: { value: "2007" } }, [_vm._v("2007")]),
@@ -52417,9 +52387,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 //
 //
 //
@@ -52431,19 +52398,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['przekatna']), {
-        przekatna: {
-            get: function get() {
-                return this.$store.state.Iphone.przekatna;
-            },
-            set: function set(value) {
-                this.$store.commit('Iphone/updatePrzekatna', value);
-            }
+    props: ['value'],
+    methods: {
+        input: function input() {
+            this.$emit('input', this.$refs.przekatna.value);
         }
-    })
+    }
 });
 
 /***/ }),
@@ -52459,24 +52421,10 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "col-9" }, [
       _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.przekatna,
-            expression: "przekatna"
-          }
-        ],
+        ref: "przekatna",
         attrs: { id: "przekatna", type: "text" },
-        domProps: { value: _vm.przekatna },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.przekatna = $event.target.value
-          }
-        }
+        domProps: { value: _vm.value },
+        on: { input: _vm.input }
       }),
       _c("br")
     ])
@@ -52654,8 +52602,6 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 //
 //
 //
@@ -52670,16 +52616,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Iphone', ['kolor']), {
-        kolor: {
-            get: function get() {
-                return this.$store.state.Iphone.kolor;
-            },
-            set: function set(value) {
-                this.$store.commit('Iphone/updateKolor', value);
-            }
+    props: ['value'],
+    methods: {
+        input: function input() {
+            this.$emit('input', this.$refs.kolor.value);
         }
-    })
+    }
 });
 
 /***/ }),
@@ -52695,24 +52637,10 @@ var render = function() {
     _vm._v(" "),
     _c("div", { staticClass: "col-9" }, [
       _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.kolor,
-            expression: "kolor"
-          }
-        ],
+        ref: "kolor",
         attrs: { id: "kolor", type: "text" },
-        domProps: { value: _vm.kolor },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
-            }
-            _vm.kolor = $event.target.value
-          }
-        }
+        domProps: { value: _vm.value },
+        on: { input: _vm.input }
       }),
       _c("br")
     ])

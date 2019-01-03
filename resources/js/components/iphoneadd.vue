@@ -2,22 +2,22 @@
     <div id="add">
         <form id="dodawanie" method="post" class="spis-form" :action="'iphoneadd'">
             <input type="hidden" name="_token" :value="csrf_token">
-            <nazwa :value="nazwa" :change="changeNazwa">
+            <nazwa v-model="nazwa" >
             </nazwa>
             <div class="alert-danger">{{error_nazwa}}</div>
-            <rok :value="rok" :change="changeRok">
+            <rok v-model="rok">
             </rok>
             <div class="alert-danger">{{error_rok}}</div>
-            <cena :value="cena" :change="changeCena">
+            <cena v-model="cena" >
             </cena>
             <div class="alert-danger">{{error_cena}}</div>
-            <pamiec :value="pamiec" :change="changePamiec">
+            <pamiec v-model="pamiec" >
             </pamiec>
             <div class="alert-danger">{{error_pamiec}}</div>
-            <kolor :value="kolor" :change="changeKolor">
+            <kolor v-model="kolor" >
             </kolor>
             <div class="alert-danger">{{error_kolor}}</div>
-            <przekatna :value="przekatna" :change="changePrzekatna">
+            <przekatna v-model="przekatna" >
             </przekatna>
             <div class="alert-danger">{{error_przekatna}}</div>
             <div id="button">
@@ -28,16 +28,11 @@
 </template>
 
 <script>
+    import { mapState, mapActions } from 'vuex'
     export default {
         props: [],
         data: function () {
             return {
-                nazwa: 'iPhone',
-                cena: '',
-                rok: '2007',
-                kolor: '',
-                przekatna: '',
-                pamiec: '4',
                 error_przekatna: '',
                 error_cena: '',
                 error_kolor: '',
@@ -47,25 +42,58 @@
                 csrf_token: $('meta[name="csrf-token"]').attr('content'),
             }
         },
+        computed:{
+            ...mapState('Iphone',['cena'], ['nazwa'], ['zdjecie'], ['kolor'], ['przekatna'], ['pamiec'], ['rok']),
+            nazwa: {
+                get(){
+                    return 'iPhone'
+                },
+                set(value){
+                    this.$store.commit('Iphone/updateNazwa', value)
+                }
+            },
+            cena: {
+                get(){
+                    return this.$store.state.Iphone.cena
+                },
+                set(value){
+                    this.$store.commit('Iphone/updateCena', value)
+                }
+            },
+            rok: {
+                get(){
+                    return '2007'
+                },
+                set(value){
+                    this.$store.commit('Iphone/updateRok', value)
+                }
+            },
+            pamiec: {
+                get(){
+                    return '4'
+                },
+                set(value){
+                    this.$store.commit('Iphone/updatePamiec',value)
+                }
+            },
+            kolor: {
+                get(){
+                    return this.$store.state.Iphone.kolor
+                },
+                set(value){
+                    this.$store.commit('Iphone/updateKolor', value)
+                }
+            },
+            przekatna: {
+                get(){
+                    return this.$store.state.Iphone.przekatna
+                },
+                set(value){
+                    this.$store.commit('Iphone/updatePrzekatna', value)
+                }
+            }
+        },
         methods:{
-            changeNazwa(nazwa){
-                this.nazwa=nazwa;
-            },
-            changeRok(rok){
-                this.rok=rok;
-            },
-            changePamiec(pamiec){
-                this.pamiec=pamiec;
-            },
-            changeCena(cena){
-                this.cena=cena;
-            },
-            changeKolor(kolor){
-                this.kolor=kolor;
-            },
-            changePrzekatna(przekatna){
-                this.przekatna=przekatna;
-            },
             clickDodaj:function(e){
                 e.preventDefault();
                 let vn = this;

@@ -4,7 +4,7 @@
             <label for="kolor">Kolor</label>
         </div>
         <div class="col-9">
-            <input id="kolor" type="text" v-model="kolor"><br>
+            <input id="kolor" type="text" ref="kolor" :value="value" @input="input"><br>
         </div>
     </div>
 </template>
@@ -12,16 +12,11 @@
 <script>
     import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
-        computed:{
-            ...mapState('Iphone', ['kolor']),
-            kolor: {
-                get(){
-                    return this.$store.state.Iphone.kolor
-                },
-                set(value){
-                    this.$store.commit('Iphone/updateKolor', value)
-                }
-            },
+        props:['value'],
+        methods:{
+            input(){
+                this.$emit('input',this.$refs.kolor.value);
+            }
         }
     }
 </script>

@@ -4,24 +4,18 @@
             <label for="przekatna">Przekątna</label>
         </div>
         <div class="col-9">
-            <input id="przekatna" type="text"  v-model="przekatna"><br>
+            <input id="przekatna" type="text"  ref="przekatna" :value="value" @input="input"><br>
         </div>
     </div>
 </template>
 
 <script>
-    import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
-        computed:{
-            ...mapState('Iphone', ['przekatna']),
-            przekatna: {
-                get(){
-                    return this.$store.state.Iphone.przekatna
-                },
-                set(value){
-                    this.$store.commit('Iphone/updatePrzekatna', value)
-                }
-            },
+        props:['value'],
+        methods:{
+            input(){
+                this.$emit('input',this.$refs.przekatna.value);
+            }
         }
     }
 </script>

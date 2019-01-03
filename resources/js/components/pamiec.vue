@@ -4,7 +4,7 @@
             <label for="pamiec">Pamięć</label>
         </div>
         <div class="col-9">
-            <select id="pamiec" v-model="pamiec">
+            <select id="pamiec" ref="pamiec" :value="value" @input="input">
                 <option value="4">4 GB</option>
                 <option value="8">8 GB</option>
                 <option value="16">16 GB</option>
@@ -21,16 +21,11 @@
 <script>
     import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
-        computed:{
-            ...mapState('Iphone', ['pamiec']),
-            pamiec: {
-                get(){
-                    return this.$store.state.Iphone.pamiec
-                },
-                set(value){
-                    this.$store.commit('Iphone/updatePamiec', value)
-                }
-            },
+        props:['value'],
+        methods:{
+            input(){
+                this.$emit('input',this.$refs.pamiec.value);
+            }
         }
     }
 </script>

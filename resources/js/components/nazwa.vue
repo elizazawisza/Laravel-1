@@ -4,7 +4,7 @@
             <label for="nazwa">Nazwa</label>
         </div>
         <div class="col-9">
-            <select id="nazwa" v-model="nazwa">
+            <select id="nazwa" ref="nazwa" :value="value" @input="input">
                 <option value="iPhone">iPhone</option>
                 <option value="iPhone3G">iPhone 3G</option>
                 <option value="iPhone3GS">iPhone 3GS</option>
@@ -32,19 +32,12 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
-        computed: {
-            ...mapState('Iphone', ['nazwa']),
-            nazwa: {
-                get(){
-                    return this.$store.state.Iphone.nazwa
-                },
-                set(value){
-                    this.$store.commit('Iphone/updateNazwa', value)
-                }
-            },
+        props:['value'],
+        methods:{
+            input(){
+                this.$emit('input',this.$refs.nazwa.value);
+            }
         }
-
     }
 </script>
