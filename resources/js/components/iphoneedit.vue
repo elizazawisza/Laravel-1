@@ -45,7 +45,7 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
+    import { mapState, mapActions } from 'vuex'
     export default {
         props: [],
         data: function () {
@@ -222,6 +222,3 @@
         }
     }
 </script>
-<style>
-
-</style>
