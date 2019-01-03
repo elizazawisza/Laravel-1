@@ -11,29 +11,23 @@
             </div>
             <nazwa v-model="nazwa" >
             </nazwa>
-            {{nazwa}}
             <div class="alert-danger">{{error_nazwa}}</div>
             <rok v-model="rok">
             </rok>
-            {{rok}}
             <div class="alert-danger">{{error_rok}}</div>
             <cena v-model="cena" >
             </cena>
-            {{cena}}
             <div class="alert-danger">{{error_cena}}</div>
             <pamiec v-model="pamiec" >
             </pamiec>
-            {{pamiec}}
             <div class="alert-danger">{{error_pamiec}}</div>
             <kolor v-model="kolor" >
             </kolor>
-            {{kolor}}
             <div class="alert-danger">{{error_kolor}}</div>
             <przekatna v-model="przekatna" >
             </przekatna>
-            {{przekatna}}
             <div class="alert-danger">{{error_przekatna}}</div>
-            <zdjecie v-model="zdjecie" >
+            <zdjecie :value="form.zdjecie" :change="changeFile">
             </zdjecie>
             <div v-if="percentCompleted>0 && percentCompleted<100" class="progress">
                 <div class="progress-bar" role="progressbar" v-bind:style="{'width': percentCompleted+'%'}" aria-valuemax='100'>
@@ -137,16 +131,13 @@
                 }
             },
             zdjecie: {
-                get(){
+                get() {
                     return this.$store.state.Iphone.zdjecie
                 },
                 set(value){
-                    console.log("Tutaj aktualizuje zdjęcie " + value)
                     this.$store.commit('Iphone/updateZdjecie', value)
-                    this.changeFile(value)
                 }
             }
-
         },
         methods: {
             ...mapActions('Iphone',['loadPhone']),
@@ -160,19 +151,19 @@
                 };
                 let formData = new FormData();
                 let rid = this.$route.params.id;
-                formData.append('nazwa', this.form.nazwa);
-                formData.append('rok', JSON.stringify(this.form.rok));
-                formData.append('cena', this.form.cena);
-                formData.append('pamiec', this.form.pamiec);
-                formData.append('kolor', this.form.kolor);
-                formData.append('przekatna', JSON.stringify(this.form.przekatna));
+                formData.append('nazwa', this.nazwa);
+                formData.append('rok', JSON.stringify(this.rok));
+                formData.append('cena', this.cena);
+                formData.append('pamiec', this.pamiec);
+                formData.append('kolor', this.kolor);
+                formData.append('przekatna', JSON.stringify(this.przekatna));
                 formData.append('zdjecie', zdjecie);
                 formData.append('_method', 'PATCH');
                 axios.post('/kolekcja/kolekcjaapiPhotoUpdate/'+rid, formData, config)
                     .then( response=> {
                         if(response.data){
                             window.alert("Zdjęcie zostało zaktualizowane");
-                            this.form.zdjecie = response.data;
+                            this.zdjecie = response.data;
                         }
                     })
                     .catch(function (error) {

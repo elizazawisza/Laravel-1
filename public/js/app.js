@@ -484,33 +484,6 @@ module.exports = function normalizeComponent (
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1452,6 +1425,33 @@ var index_esm = {
 
 
 /* harmony default export */ __webpack_exports__["a"] = (index_esm);
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
 
 
 /***/ }),
@@ -4407,7 +4407,7 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
 /* 8 */
@@ -26202,7 +26202,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(41).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(41).setImmediate))
 
 /***/ }),
 /* 16 */
@@ -26221,7 +26221,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(2);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -43568,7 +43568,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(20)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(20)(module)))
 
 /***/ }),
 /* 20 */
@@ -48504,7 +48504,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 42 */
@@ -48697,7 +48697,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(10)))
 
 /***/ }),
 /* 43 */
@@ -51709,7 +51709,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -51880,7 +51880,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -52017,7 +52017,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -52234,7 +52234,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -52417,7 +52417,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -52653,7 +52653,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -52823,7 +52823,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52834,15 +52834,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -52981,12 +52975,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.Iphone.zdjecie;
             },
             set: function set(value) {
-                console.log("Tutaj aktualizuje zdjęcie " + value);
                 this.$store.commit('Iphone/updateZdjecie', value);
-                this.changeFile(value);
             }
         }
-
     }),
     methods: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapActions */])('Iphone', ['loadPhone']), {
         changeFile: function changeFile(zdjecie) {
@@ -53000,18 +52991,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             };
             var formData = new FormData();
             var rid = this.$route.params.id;
-            formData.append('nazwa', this.form.nazwa);
-            formData.append('rok', JSON.stringify(this.form.rok));
-            formData.append('cena', this.form.cena);
-            formData.append('pamiec', this.form.pamiec);
-            formData.append('kolor', this.form.kolor);
-            formData.append('przekatna', JSON.stringify(this.form.przekatna));
+            formData.append('nazwa', this.nazwa);
+            formData.append('rok', JSON.stringify(this.rok));
+            formData.append('cena', this.cena);
+            formData.append('pamiec', this.pamiec);
+            formData.append('kolor', this.kolor);
+            formData.append('przekatna', JSON.stringify(this.przekatna));
             formData.append('zdjecie', zdjecie);
             formData.append('_method', 'PATCH');
             axios.post('/kolekcja/kolekcjaapiPhotoUpdate/' + rid, formData, config).then(function (response) {
                 if (response.data) {
                     window.alert("Zdjęcie zostało zaktualizowane");
-                    _this.form.zdjecie = response.data;
+                    _this.zdjecie = response.data;
                 }
             }).catch(function (error) {});
         },
@@ -53106,7 +53097,7 @@ var render = function() {
             expression: "nazwa"
           }
         }),
-        _vm._v("\n        " + _vm._s(_vm.nazwa) + "\n        "),
+        _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_nazwa))
         ]),
@@ -53120,7 +53111,7 @@ var render = function() {
             expression: "rok"
           }
         }),
-        _vm._v("\n        " + _vm._s(_vm.rok) + "\n        "),
+        _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_rok))
         ]),
@@ -53134,7 +53125,7 @@ var render = function() {
             expression: "cena"
           }
         }),
-        _vm._v("\n        " + _vm._s(_vm.cena) + "\n        "),
+        _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_cena))
         ]),
@@ -53148,7 +53139,7 @@ var render = function() {
             expression: "pamiec"
           }
         }),
-        _vm._v("\n        " + _vm._s(_vm.pamiec) + "\n        "),
+        _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_pamiec))
         ]),
@@ -53162,7 +53153,7 @@ var render = function() {
             expression: "kolor"
           }
         }),
-        _vm._v("\n        " + _vm._s(_vm.kolor) + "\n        "),
+        _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_kolor))
         ]),
@@ -53176,19 +53167,13 @@ var render = function() {
             expression: "przekatna"
           }
         }),
-        _vm._v("\n        " + _vm._s(_vm.przekatna) + "\n        "),
+        _vm._v(" "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_przekatna))
         ]),
         _vm._v(" "),
         _c("zdjecie", {
-          model: {
-            value: _vm.zdjecie,
-            callback: function($$v) {
-              _vm.zdjecie = $$v
-            },
-            expression: "zdjecie"
-          }
+          attrs: { value: _vm.form.zdjecie, change: _vm.changeFile }
         }),
         _vm._v(" "),
         _vm.percentCompleted > 0 && _vm.percentCompleted < 100
@@ -53570,7 +53555,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
 //
 //
 //
@@ -53583,23 +53567,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['value', 'change'],
+    name: 'zdjecie',
+    data: function data() {
+        return {
+            zdjecie: ''
+        };
+    },
+    mounted: function mounted() {},
 
-
-/* export default {
-     computed: {
-         ...mapState('Iphone', ['zdjecie']),
-         zdjecie: {
-             get() {
-                 return this.$store.state.Iphone.zdjecie
-             },
-             set(value) {
-                 console.log("Tutaj aktualizuje zdjęcie " + value)
-                 this.$store.commit('Iphone/updateZdjecie', value)
-                 this.changeFile(value)
-             }
-         }
-     }
- } */
+    methods: {
+        changeFile: function changeFile(e) {
+            this.change(e.target.files[0]);
+        }
+    }
+});
 
 /***/ }),
 /* 83 */
@@ -53615,7 +53598,8 @@ var render = function() {
     _c("div", { staticClass: "col-9" }, [
       _c("input", {
         attrs: { id: "zdjecie", type: "file", name: "zdjecie" },
-        domProps: { value: _vm.zdjecie }
+        domProps: { value: _vm.zdjecie },
+        on: { change: _vm.changeFile }
       })
     ])
   ])
@@ -53692,7 +53676,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
