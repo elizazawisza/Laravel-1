@@ -3,6 +3,7 @@
 <link rel='stylesheet' href="{{url('/css/app.css')}}"/>
 <link rel='stylesheet' href="{{url('style.css')}}"/>
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
     <meta charset="UTF-8"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Edytowanie</title>

@@ -1,12 +1,13 @@
 <template>
-    <div id="photo" class="row">
-        <div class="col">
-            <label for="zdjecie">Zdjęcie</label>
-        </div>
-        <div class="col-9">
+    <v-layout row>
+        <v-flex xs4>
+            <v-subheader>Zdjęcie</v-subheader>
+        </v-flex>
+        <v-flex xs8>
             <input id='zdjecie' type="file" name="zdjecie" :value='zdjecie' @change="changeFile">
-        </div>
-    </div>
+        </v-flex>
+
+    </v-layout>
 </template>
 
 <script>

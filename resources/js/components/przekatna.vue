@@ -1,12 +1,12 @@
 <template>
-    <div id="diagonal" class="row">
-        <div class="col-3">
-            <label for="przekatna">Przekątna</label>
-        </div>
-        <div class="col-9">
-            <input id="przekatna" type="text"  ref="przekatna" :value="value" @input="input"><br>
-        </div>
-    </div>
+    <v-layout row>
+        <v-flex xs4>
+            <v-subheader>Przekątna</v-subheader>
+        </v-flex>
+        <v-flex xs8>
+            <v-text-field id="przekatna" type="text"  ref="przekatna" :value="value" @input="input" solo></v-text-field>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>

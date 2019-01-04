@@ -1,31 +1,22 @@
 <template>
-    <div id="year" class="row">
-        <div class="col-3">
-            <label for="rok">Rok</label>
-        </div>
-        <div class="col-9">
-            <select id="rok" ref="rok" :value="value" @input="input">
-                <option value="2007">2007</option>
-                <option value="2008">2008</option>
-                <option value="2009">2009</option>
-                <option value="2010">2010</option>
-                <option value="2011">2011</option>
-                <option value="2012">2012</option>
-                <option value="2013">2013</option>
-                <option value="2014">2014</option>
-                <option value="2015">2015</option>
-                <option value="2016">2016</option>
-                <option value="2017">2017</option>
-                <option value="2018">2018</option>
-            </select>
-        </div>
-    </div>
+    <v-layout row>
+        <v-flex xs4>
+            <v-subheader>Rok</v-subheader>
+        </v-flex>
+        <v-flex xs8>
+            <v-select id="rok" :items="items" ref="rok" :value="value" @input="input" solo>
+            </v-select>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>
     import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
         props:['value'],
+        data: () => ({
+            items: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018' ],
+        }),
         methods:{
             input(){
                 this.$emit('input',this.$refs.rok.value);

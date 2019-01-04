@@ -116,6 +116,7 @@
                     return this.$store.state.Iphone.kolor
                 },
                 set(value){
+                    console.log(value);
                     this.$store.commit('Iphone/updateKolor', value)
                 }
             },

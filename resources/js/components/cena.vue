@@ -1,12 +1,12 @@
 <template>
-    <div id="price" class="row">
-        <div class="col-3">
-            <label for="cena">Cena</label>
-        </div>
-        <div class="col-9">
-            <input id="cena" type="number" ref="cena" :value="value" @input="input" ><br>
-        </div>
-    </div>
+    <v-layout row>
+        <v-flex xs4>
+            <v-subheader>Cena</v-subheader>
+        </v-flex>
+        <v-flex xs8>
+            <v-text-field id="cena" type="number" ref="cena" :value="value" @input="input" solo ></v-text-field>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>

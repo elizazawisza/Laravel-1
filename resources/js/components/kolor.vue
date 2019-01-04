@@ -1,16 +1,15 @@
 <template>
-    <div id="color" class="row">
-        <div class="col-3">
-            <label for="kolor">Kolor</label>
-        </div>
-        <div class="col-9">
-            <input id="kolor" type="text" ref="kolor" :value="value" @input="input"><br>
-        </div>
-    </div>
+    <v-layout row>
+        <v-flex xs4>
+            <v-subheader>Kolor</v-subheader>
+        </v-flex>
+        <v-flex xs8>
+            <v-text-field id="kolor" type="text" ref="kolor" :value="value" @input="input" solo></v-text-field>
+        </v-flex>
+    </v-layout>
 </template>
 
 <script>
-    import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
         props:['value'],
         methods:{
