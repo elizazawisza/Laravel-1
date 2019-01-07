@@ -86,7 +86,6 @@
                     return this.$store.state.Iphone.nazwa
                 },
                 set(value){
-                    console.log("Tutaj jestem" + value);
                     this.$store.commit('Iphone/updateNazwa', value)
                 }
             },
@@ -172,14 +171,6 @@
             clickZaktualizuj: function (e) {
                 e.preventDefault();
                 var vn = this;
-                console.log(this.nazwa);
-                console.log(this.cena);
-                console.log(this.rok);
-                console.log(this.pamiec);
-                console.log(this.przekatna);
-                console.log(this.kolor);
-                //console.log(this.nazwa);
-                //return true;
 
                 vn.error_przekatna = '';
                 vn.error_cena = '';

@@ -20,7 +20,6 @@
         }),
         methods:{
             input(){
-                console.log(this.$refs.pamiec.lazyValue)
                 this.$emit('input',this.$refs.pamiec.lazyValue);
             }
         }

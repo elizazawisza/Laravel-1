@@ -100,13 +100,6 @@
             clickDodaj:function(e){
                 e.preventDefault();
                 let vn = this;
-                console.log(this.nazwa);
-                console.log(this.cena);
-                console.log(this.rok);
-                console.log(this.pamiec);
-                console.log(this.przekatna);
-                console.log(this.kolor);
-                console.log(this.$store.state.Iphone.nazwa)
 
                 vn.error_przekatna = '';
                 vn.error_cena = '';
