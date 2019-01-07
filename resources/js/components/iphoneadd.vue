@@ -4,6 +4,7 @@
             <input type="hidden" name="_token" :value="csrf_token">
             <nazwa v-model="nazwa" >
             </nazwa>
+            {{nazwa}}
             <div class="alert-danger">{{error_nazwa}}</div>
             <rok v-model="rok">
             </rok>
@@ -49,7 +50,9 @@
                     return 'iPhone'
                 },
                 set(value){
+                    console.log(value)
                     this.$store.commit('Iphone/updateNazwa', value)
+                    console.log(this.$store.state.Iphone.nazwa)
                 }
             },
             cena: {
@@ -97,6 +100,14 @@
             clickDodaj:function(e){
                 e.preventDefault();
                 let vn = this;
+                console.log(this.nazwa);
+                console.log(this.cena);
+                console.log(this.rok);
+                console.log(this.pamiec);
+                console.log(this.przekatna);
+                console.log(this.kolor);
+                console.log(this.$store.state.Iphone.nazwa)
+
                 vn.error_przekatna = '';
                 vn.error_cena = '';
                 vn.error_kolor = '';
@@ -104,12 +115,12 @@
                 vn.error_pamiec = '';
                 vn.error_rok = '';
                 axios.post('/kolekcja', {
-                    nazwa: this.nazwa,
-                    rok: this.rok,
+                    nazwa: this.$store.state.Iphone.nazwa,
+                    rok: this.$store.state.Iphone.rok,
                     cena: this.cena,
                     kolor: this.kolor,
                     przekatna: this.przekatna,
-                    pamiec: this.pamiec,
+                    pamiec: this.$store.state.Iphone.pamiec,
                     action:'dodaj'
                 })
                     .then(function (response) {

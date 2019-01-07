@@ -75876,7 +75876,7 @@ if(false) {
 
 exports = module.exports = __webpack_require__(6)(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 
 
@@ -75951,6 +75951,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -75972,7 +75973,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return 'iPhone';
             },
             set: function set(value) {
+                console.log(value);
                 this.$store.commit('Iphone/updateNazwa', value);
+                console.log(this.$store.state.Iphone.nazwa);
             }
         },
         cena: {
@@ -76020,6 +76023,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         clickDodaj: function clickDodaj(e) {
             e.preventDefault();
             var vn = this;
+            console.log(this.nazwa);
+            console.log(this.cena);
+            console.log(this.rok);
+            console.log(this.pamiec);
+            console.log(this.przekatna);
+            console.log(this.kolor);
+            console.log(this.$store.state.Iphone.nazwa);
+
             vn.error_przekatna = '';
             vn.error_cena = '';
             vn.error_kolor = '';
@@ -76027,12 +76038,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             vn.error_pamiec = '';
             vn.error_rok = '';
             axios.post('/kolekcja', {
-                nazwa: this.nazwa,
-                rok: this.rok,
+                nazwa: this.$store.state.Iphone.nazwa,
+                rok: this.$store.state.Iphone.rok,
                 cena: this.cena,
                 kolor: this.kolor,
                 przekatna: this.przekatna,
-                pamiec: this.pamiec,
+                pamiec: this.$store.state.Iphone.pamiec,
                 action: 'dodaj'
             }).then(function (response) {
                 if (response.data.success) {
@@ -76089,7 +76100,7 @@ var render = function() {
             expression: "nazwa"
           }
         }),
-        _vm._v(" "),
+        _vm._v("\n        " + _vm._s(_vm.nazwa) + "\n        "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_nazwa))
         ]),
