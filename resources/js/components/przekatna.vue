@@ -14,7 +14,7 @@
         props:['value'],
         methods:{
             input(){
-                this.$emit('input',this.$refs.przekatna.value);
+                this.$emit('input',this.$refs.przekatna.$refs.input.value);
             }
         }
     }

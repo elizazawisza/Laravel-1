@@ -75993,7 +75993,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         pamiec: {
             get: function get() {
-                return '4';
+                return '4 GB';
             },
             set: function set(value) {
                 this.$store.commit('Iphone/updatePamiec', value);
@@ -76272,7 +76272,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         input: function input() {
-            this.$emit('input', this.$refs.pamiec.value);
+            console.log(this.$refs.pamiec.lazyValue);
+            this.$emit('input', this.$refs.pamiec.lazyValue);
         }
     }
 });
@@ -76396,7 +76397,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['value'],
     methods: {
         input: function input() {
-            this.$emit('input', this.$refs.cena.value);
+            this.$emit('input', this.$refs.cena.$refs.input.value);
         }
     }
 });
@@ -76521,7 +76522,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         input: function input() {
-            this.$emit('input', this.$refs.nazwa.value);
+            this.$emit('input', this.$refs.nazwa.lazyValue);
         }
     }
 });
@@ -76550,14 +76551,14 @@ var render = function() {
         { attrs: { xs8: "" } },
         [
           _c("v-select", {
-            attrs: { id: "nazwa", items: _vm.items, solo: "" },
-            model: {
-              value: _vm.nazwa,
-              callback: function($$v) {
-                _vm.nazwa = $$v
-              },
-              expression: "nazwa"
-            }
+            ref: "nazwa",
+            attrs: {
+              id: "nazwa",
+              items: _vm.items,
+              value: _vm.value,
+              solo: ""
+            },
+            on: { input: _vm.input }
           })
         ],
         1
@@ -76629,7 +76630,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 //
 //
 //
@@ -76642,7 +76642,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value'],
@@ -76653,7 +76652,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         input: function input() {
-            this.$emit('input', this.$refs.rok.value);
+            this.$emit('input', this.$refs.rok.lazyValue);
         }
     }
 });
@@ -76772,7 +76771,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['value'],
     methods: {
         input: function input() {
-            this.$emit('input', this.$refs.przekatna.value);
+            this.$emit('input', this.$refs.przekatna.$refs.input.value);
         }
     }
 });
@@ -76995,7 +76994,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     props: ['value'],
     methods: {
         input: function input() {
-            this.$emit('input', this.$refs.kolor.value);
+            this.$emit('input', this.$refs.kolor.$refs.input.value);
         }
     }
 });
@@ -77147,6 +77146,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -77188,6 +77189,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.Iphone.nazwa;
             },
             set: function set(value) {
+                console.log("Tutaj jestem" + value);
                 this.$store.commit('Iphone/updateNazwa', value);
             }
         },
@@ -77220,7 +77222,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.Iphone.kolor;
             },
             set: function set(value) {
-                console.log(value);
                 this.$store.commit('Iphone/updateKolor', value);
             }
         },
@@ -77272,6 +77273,15 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         clickZaktualizuj: function clickZaktualizuj(e) {
             e.preventDefault();
             var vn = this;
+            console.log(this.nazwa);
+            console.log(this.cena);
+            console.log(this.rok);
+            console.log(this.pamiec);
+            console.log(this.przekatna);
+            console.log(this.kolor);
+            //console.log(this.nazwa);
+            //return true;
+
             vn.error_przekatna = '';
             vn.error_cena = '';
             vn.error_kolor = '';
@@ -77359,7 +77369,7 @@ var render = function() {
             expression: "nazwa"
           }
         }),
-        _vm._v(" "),
+        _vm._v("\n        " + _vm._s(_vm.nazwa) + "\n        "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_nazwa))
         ]),
@@ -77373,7 +77383,7 @@ var render = function() {
             expression: "rok"
           }
         }),
-        _vm._v(" "),
+        _vm._v("\n        " + _vm._s(_vm.rok) + "\n        "),
         _c("div", { staticClass: "alert-danger" }, [
           _vm._v(_vm._s(_vm.error_rok))
         ]),

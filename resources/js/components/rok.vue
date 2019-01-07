@@ -11,7 +11,6 @@
 </template>
 
 <script>
-    import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
     export default {
         props:['value'],
         data: () => ({
@@ -19,7 +18,7 @@
         }),
         methods:{
             input(){
-                this.$emit('input',this.$refs.rok.value);
+                this.$emit('input',this.$refs.rok.lazyValue);
             }
         }
     }

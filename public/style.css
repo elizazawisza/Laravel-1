@@ -249,3 +249,7 @@ button#dodaj, button#zaktualizuj, button#powrot, button#dodawanie {
     display: inline-block;
     float: right;
 }
+.theme--light.application {
+    background: #cceeff;
+    color: rgba(0,0,0,.87);
+}

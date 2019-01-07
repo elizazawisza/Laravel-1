@@ -70,7 +70,7 @@
             },
             pamiec: {
                 get(){
-                    return '4'
+                    return '4 GB'
                 },
                 set(value){
                     this.$store.commit('Iphone/updatePamiec',value)

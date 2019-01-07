@@ -16,7 +16,7 @@ class CreateKolekcjaTable extends Migration
         Schema::create('kolekcja', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nazwa');
-            $table->integer('rok');
+            $table->string('rok');
             $table->decimal('cena',10,2);
             $table->string('pamiec');
             $table->string('kolor');

@@ -11,9 +11,11 @@
             </div>
             <nazwa v-model="nazwa" >
             </nazwa>
+            {{nazwa}}
             <div class="alert-danger">{{error_nazwa}}</div>
             <rok v-model="rok">
             </rok>
+            {{rok}}
             <div class="alert-danger">{{error_rok}}</div>
             <cena v-model="cena" >
             </cena>
@@ -84,6 +86,7 @@
                     return this.$store.state.Iphone.nazwa
                 },
                 set(value){
+                    console.log("Tutaj jestem" + value);
                     this.$store.commit('Iphone/updateNazwa', value)
                 }
             },
@@ -116,7 +119,6 @@
                     return this.$store.state.Iphone.kolor
                 },
                 set(value){
-                    console.log(value);
                     this.$store.commit('Iphone/updateKolor', value)
                 }
             },
@@ -170,6 +172,15 @@
             clickZaktualizuj: function (e) {
                 e.preventDefault();
                 var vn = this;
+                console.log(this.nazwa);
+                console.log(this.cena);
+                console.log(this.rok);
+                console.log(this.pamiec);
+                console.log(this.przekatna);
+                console.log(this.kolor);
+                //console.log(this.nazwa);
+                //return true;
+
                 vn.error_przekatna = '';
                 vn.error_cena = '';
                 vn.error_kolor = '';

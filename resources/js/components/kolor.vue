@@ -14,7 +14,7 @@
         props:['value'],
         methods:{
             input(){
-                this.$emit('input',this.$refs.kolor.value);
+                this.$emit('input',this.$refs.kolor.$refs.input.value);
             }
         }
     }
