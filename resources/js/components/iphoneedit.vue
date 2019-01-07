@@ -1,48 +1,82 @@
 <template>
     <div id="add">
-        <form id="edytowanie" method="post" class="spis-form" enctype="multipart/form-data">
-            <input type="hidden" name="_method" value="PATCH">
-            <div class="container">
-                <div class="row justify-content-center ">
-                    <div v-if=zdjecie>
-                        <img :src="`/storage/${this.zdjecie}`" height="200px"/>
+            <v-form>
+                <input type="hidden" name="_method" value="PATCH">
+                <div class="container">
+                    <div class="row justify-content-center ">
+                        <div v-if=zdjecie>
+                            <img :src="`/storage/${this.zdjecie}`" height="200px"/>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <nazwa v-model="nazwa" >
-            </nazwa>
-            {{nazwa}}
-            <div class="alert-danger">{{error_nazwa}}</div>
-            <rok v-model="rok">
-            </rok>
-            {{rok}}
-            <div class="alert-danger">{{error_rok}}</div>
-            <cena v-model="cena" >
-            </cena>
-            <div class="alert-danger">{{error_cena}}</div>
-            <pamiec v-model="pamiec" >
-            </pamiec>
-            <div class="alert-danger">{{error_pamiec}}</div>
-            <kolor v-model="kolor" >
-            </kolor>
-            <div class="alert-danger">{{error_kolor}}</div>
-            <przekatna v-model="przekatna" >
-            </przekatna>
-            <div class="alert-danger">{{error_przekatna}}</div>
-            <zdjecie :value="form.zdjecie" :change="changeFile">
-            </zdjecie>
-            <div v-if="percentCompleted>0 && percentCompleted<100" class="progress">
-                <div class="progress-bar" role="progressbar" v-bind:style="{'width': percentCompleted+'%'}" aria-valuemax='100'>
+                <v-layout row>
+                    <v-flex xs4>
+                        <v-subheader>Nazwa</v-subheader>
+                    </v-flex>
+                    <v-flex xs8>
+                        <v-select id="nazwa" :items="name_items" v-model="nazwa" solo></v-select>
+                    </v-flex>
+                </v-layout>
+                <div class="alert-danger">{{error_nazwa}}</div>
+                <v-layout row>
+                    <v-flex xs4>
+                        <v-subheader>Rok</v-subheader>
+                    </v-flex>
+                    <v-flex xs8>
+                        <v-select id="rok" :items="year_items" v-model="rok" solo></v-select>
+                    </v-flex>
+                </v-layout>
+                <div class="alert-danger">{{error_rok}}</div>
+                <v-layout row>
+                    <v-flex xs4>
+                        <v-subheader>Cena</v-subheader>
+                    </v-flex>
+                    <v-flex xs8>
+                        <v-text-field id="cena" type="number" v-model="cena" solo ></v-text-field>
+                    </v-flex>
+                </v-layout>
+                <div class="alert-danger">{{error_cena}}</div>
+                <v-layout row>
+                    <v-flex xs4>
+                        <v-subheader>Pamięć</v-subheader>
+                    </v-flex>
+                    <v-flex xs8>
+                        <v-select id="pamiec" :items="memory_items" v-model="pamiec" solo></v-select>
+                    </v-flex>
+                </v-layout>
+                <div class="alert-danger">{{error_pamiec}}</div>
+                <v-layout row>
+                    <v-flex xs4>
+                        <v-subheader>Kolor</v-subheader>
+                    </v-flex>
+                    <v-flex xs8>
+                        <v-text-field id="kolor" type="text" v-model="kolor" solo></v-text-field>
+                    </v-flex>
+                </v-layout>
+                <div class="alert-danger">{{error_kolor}}</div>
+                <v-layout row>
+                    <v-flex xs4>
+                        <v-subheader>Przekątna</v-subheader>
+                    </v-flex>
+                    <v-flex xs8>
+                        <v-text-field id="przekatna" type="text" v-model="przekatna" solo></v-text-field>
+                    </v-flex>
+                </v-layout>
+                <div class="alert-danger">{{error_przekatna}}</div>
+                <zdjecie :value="form.zdjecie" :change="changeFile">
+                </zdjecie>
+                <div v-if="percentCompleted>0 && percentCompleted<100" class="progress">
+                    <div class="progress-bar" role="progressbar" v-bind:style="{'width': percentCompleted+'%'}" aria-valuemax='100'>
+                    </div>
                 </div>
-            </div>
-            <span v-if="percentCompleted>0 && percentCompleted<100" class="napis">{{percentCompleted}}% </span>
-            <div class="alert-danger">{{error_zdjecie}}</div>
-            <div id="button">
-                <button id="zaktualizuj" type="submit" name="przycisk" value="zaktualizuj" @click="clickZaktualizuj">
-                    Zaktualizuj
-                </button>
-            </div>
-        </form>
+                <span v-if="percentCompleted>0 && percentCompleted<100" class="napis">{{percentCompleted}}% </span>
+                <div class="alert-danger">{{error_zdjecie}}</div>
+                <v-card-actions class="justify-center">
+                    <v-btn @click="clickZaktualizuj" color="#53A4E6" dark >
+                        Zaktualizuj
+                    </v-btn>
+                </v-card-actions>
+            </v-form>
     </div>
 </template>
 
@@ -71,6 +105,11 @@
                 error_zdjecie: '',
                 percentCompleted: '0',
                 max : 100,
+                year_items: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018' ],
+                memory_items: ['4 GB', '8 GB', '16 GB', '32 GB', '64 GB', '128 GB', '256 GB', '512 GB'],
+                name_items: ['iPhone', 'iPhone 3G', 'iPhone 3GS', 'iPhone 4', 'iPhone 5', 'iPhone 5C', 'iPhone 5S', 'iPhone 6',
+                    'iPhone 6+', 'iPhone 6S', 'iPhone 6S+', 'iPhone SE', 'iPhone 7', 'iPhone 7+', 'iPhone 8',
+                    'iPhone 8+', 'iPhone X', 'iPhone XS', 'iPhone XSMax', 'iPhone XR' ],
             }
         },
         beforeMount() {

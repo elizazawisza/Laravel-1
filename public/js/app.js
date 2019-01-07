@@ -75876,7 +75876,7 @@ if(false) {
 
 exports = module.exports = __webpack_require__(6)(false);
 // Module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 
 
@@ -76023,13 +76023,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         clickDodaj: function clickDodaj(e) {
             e.preventDefault();
             var vn = this;
-            console.log(this.nazwa);
-            console.log(this.cena);
-            console.log(this.rok);
-            console.log(this.pamiec);
-            console.log(this.przekatna);
-            console.log(this.kolor);
-            console.log(this.$store.state.Iphone.nazwa);
 
             vn.error_przekatna = '';
             vn.error_cena = '';
@@ -76258,7 +76251,6 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 //
 //
 //
@@ -76272,7 +76264,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['value'],
@@ -76283,7 +76274,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         input: function input() {
-            console.log(this.$refs.pamiec.lazyValue);
             this.$emit('input', this.$refs.pamiec.lazyValue);
         }
     }
@@ -77159,6 +77149,40 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -77183,7 +77207,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             error_rok: '',
             error_zdjecie: '',
             percentCompleted: '0',
-            max: 100
+            max: 100,
+            year_items: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018'],
+            memory_items: ['4 GB', '8 GB', '16 GB', '32 GB', '64 GB', '128 GB', '256 GB', '512 GB'],
+            name_items: ['iPhone', 'iPhone 3G', 'iPhone 3GS', 'iPhone 4', 'iPhone 5', 'iPhone 5C', 'iPhone 5S', 'iPhone 6', 'iPhone 6+', 'iPhone 6S', 'iPhone 6S+', 'iPhone SE', 'iPhone 7', 'iPhone 7+', 'iPhone 8', 'iPhone 8+', 'iPhone X', 'iPhone XS', 'iPhone XSMax', 'iPhone XR']
         };
     },
     beforeMount: function beforeMount() {
@@ -77200,7 +77227,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.Iphone.nazwa;
             },
             set: function set(value) {
-                console.log("Tutaj jestem" + value);
                 this.$store.commit('Iphone/updateNazwa', value);
             }
         },
@@ -77284,14 +77310,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         clickZaktualizuj: function clickZaktualizuj(e) {
             e.preventDefault();
             var vn = this;
-            console.log(this.nazwa);
-            console.log(this.cena);
-            console.log(this.rok);
-            console.log(this.pamiec);
-            console.log(this.przekatna);
-            console.log(this.kolor);
-            //console.log(this.nazwa);
-            //return true;
 
             vn.error_przekatna = '';
             vn.error_cena = '';
@@ -77343,161 +77361,293 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "add" } }, [
-    _c(
-      "form",
-      {
-        staticClass: "spis-form",
-        attrs: {
-          id: "edytowanie",
-          method: "post",
-          enctype: "multipart/form-data"
-        }
-      },
-      [
-        _c("input", {
-          attrs: { type: "hidden", name: "_method", value: "PATCH" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row justify-content-center " }, [
-            _vm.zdjecie
-              ? _c("div", [
-                  _c("img", {
-                    attrs: { src: "/storage/" + this.zdjecie, height: "200px" }
-                  })
-                ])
-              : _vm._e()
-          ])
-        ]),
-        _vm._v(" "),
-        _c("nazwa", {
-          model: {
-            value: _vm.nazwa,
-            callback: function($$v) {
-              _vm.nazwa = $$v
-            },
-            expression: "nazwa"
-          }
-        }),
-        _vm._v("\n        " + _vm._s(_vm.nazwa) + "\n        "),
-        _c("div", { staticClass: "alert-danger" }, [
-          _vm._v(_vm._s(_vm.error_nazwa))
-        ]),
-        _vm._v(" "),
-        _c("rok", {
-          model: {
-            value: _vm.rok,
-            callback: function($$v) {
-              _vm.rok = $$v
-            },
-            expression: "rok"
-          }
-        }),
-        _vm._v("\n        " + _vm._s(_vm.rok) + "\n        "),
-        _c("div", { staticClass: "alert-danger" }, [
-          _vm._v(_vm._s(_vm.error_rok))
-        ]),
-        _vm._v(" "),
-        _c("cena", {
-          model: {
-            value: _vm.cena,
-            callback: function($$v) {
-              _vm.cena = $$v
-            },
-            expression: "cena"
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "alert-danger" }, [
-          _vm._v(_vm._s(_vm.error_cena))
-        ]),
-        _vm._v(" "),
-        _c("pamiec", {
-          model: {
-            value: _vm.pamiec,
-            callback: function($$v) {
-              _vm.pamiec = $$v
-            },
-            expression: "pamiec"
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "alert-danger" }, [
-          _vm._v(_vm._s(_vm.error_pamiec))
-        ]),
-        _vm._v(" "),
-        _c("kolor", {
-          model: {
-            value: _vm.kolor,
-            callback: function($$v) {
-              _vm.kolor = $$v
-            },
-            expression: "kolor"
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "alert-danger" }, [
-          _vm._v(_vm._s(_vm.error_kolor))
-        ]),
-        _vm._v(" "),
-        _c("przekatna", {
-          model: {
-            value: _vm.przekatna,
-            callback: function($$v) {
-              _vm.przekatna = $$v
-            },
-            expression: "przekatna"
-          }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "alert-danger" }, [
-          _vm._v(_vm._s(_vm.error_przekatna))
-        ]),
-        _vm._v(" "),
-        _c("zdjecie", {
-          attrs: { value: _vm.form.zdjecie, change: _vm.changeFile }
-        }),
-        _vm._v(" "),
-        _vm.percentCompleted > 0 && _vm.percentCompleted < 100
-          ? _c("div", { staticClass: "progress" }, [
-              _c("div", {
-                staticClass: "progress-bar",
-                style: { width: _vm.percentCompleted + "%" },
-                attrs: { role: "progressbar", "aria-valuemax": "100" }
-              })
+  return _c(
+    "div",
+    { attrs: { id: "add" } },
+    [
+      _c(
+        "v-form",
+        [
+          _c("input", {
+            attrs: { type: "hidden", name: "_method", value: "PATCH" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "container" }, [
+            _c("div", { staticClass: "row justify-content-center " }, [
+              _vm.zdjecie
+                ? _c("div", [
+                    _c("img", {
+                      attrs: {
+                        src: "/storage/" + this.zdjecie,
+                        height: "200px"
+                      }
+                    })
+                  ])
+                : _vm._e()
             ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.percentCompleted > 0 && _vm.percentCompleted < 100
-          ? _c("span", { staticClass: "napis" }, [
-              _vm._v(_vm._s(_vm.percentCompleted) + "% ")
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _c("div", { staticClass: "alert-danger" }, [
-          _vm._v(_vm._s(_vm.error_zdjecie))
-        ]),
-        _vm._v(" "),
-        _c("div", { attrs: { id: "button" } }, [
+          ]),
+          _vm._v(" "),
           _c(
-            "button",
-            {
-              attrs: {
-                id: "zaktualizuj",
-                type: "submit",
-                name: "przycisk",
-                value: "zaktualizuj"
-              },
-              on: { click: _vm.clickZaktualizuj }
-            },
-            [_vm._v("\n                Zaktualizuj\n            ")]
+            "v-layout",
+            { attrs: { row: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs4: "" } },
+                [_c("v-subheader", [_vm._v("Nazwa")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs8: "" } },
+                [
+                  _c("v-select", {
+                    attrs: { id: "nazwa", items: _vm.name_items, solo: "" },
+                    model: {
+                      value: _vm.nazwa,
+                      callback: function($$v) {
+                        _vm.nazwa = $$v
+                      },
+                      expression: "nazwa"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "alert-danger" }, [
+            _vm._v(_vm._s(_vm.error_nazwa))
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { row: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs4: "" } },
+                [_c("v-subheader", [_vm._v("Rok")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs8: "" } },
+                [
+                  _c("v-select", {
+                    attrs: { id: "rok", items: _vm.year_items, solo: "" },
+                    model: {
+                      value: _vm.rok,
+                      callback: function($$v) {
+                        _vm.rok = $$v
+                      },
+                      expression: "rok"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "alert-danger" }, [
+            _vm._v(_vm._s(_vm.error_rok))
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { row: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs4: "" } },
+                [_c("v-subheader", [_vm._v("Cena")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs8: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: { id: "cena", type: "number", solo: "" },
+                    model: {
+                      value: _vm.cena,
+                      callback: function($$v) {
+                        _vm.cena = $$v
+                      },
+                      expression: "cena"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "alert-danger" }, [
+            _vm._v(_vm._s(_vm.error_cena))
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { row: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs4: "" } },
+                [_c("v-subheader", [_vm._v("Pamięć")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs8: "" } },
+                [
+                  _c("v-select", {
+                    attrs: { id: "pamiec", items: _vm.memory_items, solo: "" },
+                    model: {
+                      value: _vm.pamiec,
+                      callback: function($$v) {
+                        _vm.pamiec = $$v
+                      },
+                      expression: "pamiec"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "alert-danger" }, [
+            _vm._v(_vm._s(_vm.error_pamiec))
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { row: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs4: "" } },
+                [_c("v-subheader", [_vm._v("Kolor")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs8: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: { id: "kolor", type: "text", solo: "" },
+                    model: {
+                      value: _vm.kolor,
+                      callback: function($$v) {
+                        _vm.kolor = $$v
+                      },
+                      expression: "kolor"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "alert-danger" }, [
+            _vm._v(_vm._s(_vm.error_kolor))
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-layout",
+            { attrs: { row: "" } },
+            [
+              _c(
+                "v-flex",
+                { attrs: { xs4: "" } },
+                [_c("v-subheader", [_vm._v("Przekątna")])],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "v-flex",
+                { attrs: { xs8: "" } },
+                [
+                  _c("v-text-field", {
+                    attrs: { id: "przekatna", type: "text", solo: "" },
+                    model: {
+                      value: _vm.przekatna,
+                      callback: function($$v) {
+                        _vm.przekatna = $$v
+                      },
+                      expression: "przekatna"
+                    }
+                  })
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "alert-danger" }, [
+            _vm._v(_vm._s(_vm.error_przekatna))
+          ]),
+          _vm._v(" "),
+          _c("zdjecie", {
+            attrs: { value: _vm.form.zdjecie, change: _vm.changeFile }
+          }),
+          _vm._v(" "),
+          _vm.percentCompleted > 0 && _vm.percentCompleted < 100
+            ? _c("div", { staticClass: "progress" }, [
+                _c("div", {
+                  staticClass: "progress-bar",
+                  style: { width: _vm.percentCompleted + "%" },
+                  attrs: { role: "progressbar", "aria-valuemax": "100" }
+                })
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.percentCompleted > 0 && _vm.percentCompleted < 100
+            ? _c("span", { staticClass: "napis" }, [
+                _vm._v(_vm._s(_vm.percentCompleted) + "% ")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "alert-danger" }, [
+            _vm._v(_vm._s(_vm.error_zdjecie))
+          ]),
+          _vm._v(" "),
+          _c(
+            "v-card-actions",
+            { staticClass: "justify-center" },
+            [
+              _c(
+                "v-btn",
+                {
+                  attrs: { color: "#53A4E6", dark: "" },
+                  on: { click: _vm.clickZaktualizuj }
+                },
+                [_vm._v("\n                    Zaktualizuj\n                ")]
+              )
+            ],
+            1
           )
-        ])
-      ],
-      1
-    )
-  ])
+        ],
+        1
+      )
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -77909,6 +78059,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(92)
+}
 var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(88)
@@ -77917,7 +78071,7 @@ var __vue_template__ = __webpack_require__(89)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -77960,6 +78114,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(2);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -78088,179 +78250,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "index" } }, [
-    _c("div", { staticClass: "tabela" }, [
-      _vm.form[0]
-        ? _c(
-            "table",
-            [
-              _vm._m(0),
-              _vm._v(" "),
-              _vm._l(_vm.form, function(element, index) {
-                return _c("tr", [
-                  _c("td", [_vm._v(_vm._s(element.kolejka))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(element.nazwa))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(element.rok))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(element.cena))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(element.pamiec))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(element.kolor))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(element.przekatna))]),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "przycisk_podglad",
-                          attrs: {
-                            to: {
-                              name: "iphoneshow",
-                              params: { id: element.id }
-                            }
-                          }
-                        },
-                        [_c("button", [_vm._v("Podgląd")])]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "td",
-                    [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "przycisk_edytuj",
-                          attrs: {
-                            to: {
-                              name: "iphoneedit",
-                              params: { id: element.id }
-                            }
-                          }
-                        },
-                        [_c("button", [_vm._v("Edytuj")])]
-                      )
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button przycisk_usun",
-                        attrs: { type: "submit" },
-                        on: {
-                          click: function($event) {
-                            _vm.usuwanie(element.id)
-                          }
-                        }
-                      },
-                      [_vm._v("Usuń")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button gora",
-                        attrs: { type: "submit" },
-                        on: {
-                          click: function($event) {
-                            _vm.dogory(index)
-                          }
-                        }
-                      },
-                      [_vm._v("↑")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "button dol",
-                        attrs: { type: "submit" },
-                        on: {
-                          click: function($event) {
-                            _vm.wdol(index)
-                          }
-                        }
-                      },
-                      [_vm._v("↓")]
-                    )
-                  ])
-                ])
-              })
-            ],
-            2
-          )
-        : _c("table", [_c("th", [_vm._v("Brak rekordów")])])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "button" },
-      [
-        _c("router-link", { attrs: { to: { name: "iphoneadd" } } }, [
-          _c(
-            "button",
-            {
-              attrs: {
-                id: "dodawanie",
-                type: "submit",
-                name: "przycisk",
-                value: "dodawanie"
-              }
-            },
-            [_vm._v("Przejdź do strony dodawania")]
-          )
-        ])
-      ],
-      1
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", [_vm._v("Lp")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Nazwa")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Rok")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Cena")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Pamięć")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Kolor")]),
-      _vm._v(" "),
-      _c("th", [_vm._v("Przekątna")]),
-      _vm._v(" "),
-      _c("th"),
-      _c("th", [_vm._v("Opcje")]),
-      _c("th"),
-      _c("th", [_vm._v("Kolejność")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
+module.exports={render:function(){},staticRenderFns:[]}
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
@@ -78273,6 +78263,43 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 91 */,
+/* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(93);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(15)("5d825e4e", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-386d45d2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./iphoneindex.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-386d45d2\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./iphoneindex.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 93 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(6)(false);
+// Module
+exports.push([module.i, "\n.application--wrap{\n    min-height: 0 !important;\n}\n", ""]);
+
+
 
 /***/ })
 /******/ ]);

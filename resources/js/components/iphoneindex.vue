@@ -44,7 +44,15 @@
             <router-link :to="{name: 'iphoneadd'}"><button id="dodawanie" type="submit" name="przycisk" value="dodawanie">Przejdź do strony dodawania</button></router-link>
         </div>
     </div>
+    <v-data-table>
+
+    </v-data-table>
 </template>
+<style>
+    .application--wrap{
+        min-height: 0 !important;
+    }
+</style>
 
 <script>
     import { mapState, mapActions } from 'vuex'
