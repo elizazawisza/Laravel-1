@@ -1,35 +1,78 @@
 <template>
     <div id="add">
-        <form id="dodawanie" method="post" class="spis-form" :action="'iphoneadd'">
-            <input type="hidden" name="_token" :value="csrf_token">
-            <nazwa v-model="nazwa" >
-            </nazwa>
-            {{nazwa}}
+        <v-form>
+            <input type="hidden" name="_method">
+            <v-layout row>
+                <v-flex xs4>
+                    <v-subheader>Nazwa</v-subheader>
+                </v-flex>
+                <v-flex xs8>
+                    <v-select id="nazwa" :items="name_items" v-model="nazwa" solo></v-select>
+                </v-flex>
+            </v-layout>
             <div class="alert-danger">{{error_nazwa}}</div>
-            <rok v-model="rok">
-            </rok>
+            <v-layout row>
+                <v-flex xs4>
+                    <v-subheader>Rok</v-subheader>
+                </v-flex>
+                <v-flex xs8>
+                    <v-select id="rok" :items="year_items" v-model="rok" solo></v-select>
+                </v-flex>
+            </v-layout>
             <div class="alert-danger">{{error_rok}}</div>
-            <cena v-model="cena" >
-            </cena>
+            <v-layout row>
+                <v-flex xs4>
+                    <v-subheader>Cena</v-subheader>
+                </v-flex>
+                <v-flex xs8>
+                    <v-text-field id="cena" type="number" v-model="cena" solo ></v-text-field>
+                </v-flex>
+            </v-layout>
             <div class="alert-danger">{{error_cena}}</div>
-            <pamiec v-model="pamiec" >
-            </pamiec>
+            <v-layout row>
+                <v-flex xs4>
+                    <v-subheader>Pamięć</v-subheader>
+                </v-flex>
+                <v-flex xs8>
+                    <v-select id="pamiec" :items="memory_items" v-model="pamiec" solo></v-select>
+                </v-flex>
+            </v-layout>
             <div class="alert-danger">{{error_pamiec}}</div>
-            <kolor v-model="kolor" >
-            </kolor>
+            <v-layout row>
+                <v-flex xs4>
+                    <v-subheader>Kolor</v-subheader>
+                </v-flex>
+                <v-flex xs8>
+                    <v-text-field id="kolor" type="text" v-model="kolor" solo></v-text-field>
+                </v-flex>
+            </v-layout>
             <div class="alert-danger">{{error_kolor}}</div>
-            <przekatna v-model="przekatna" >
-            </przekatna>
+            <v-layout row>
+                <v-flex xs4>
+                    <v-subheader>Przekątna</v-subheader>
+                </v-flex>
+                <v-flex xs8>
+                    <v-text-field id="przekatna" type="text" v-model="przekatna" solo></v-text-field>
+                </v-flex>
+            </v-layout>
             <div class="alert-danger">{{error_przekatna}}</div>
-            <div id="button">
-                <button id="dodaj" type="submit" name="przycisk" value="dodaj" @click="clickDodaj">Dodaj</button>
-            </div>
-        </form>
+            <v-card-actions class="justify-center">
+                <v-btn @click="clickDodaj" color="#53A4E6" dark >
+                    Dodaj
+                </v-btn>
+            </v-card-actions>
+        </v-form>
     </div>
 </template>
+<style>
+    .application--wrap {
+        background-color: #cceeff;
+    }
+
+</style>
 
 <script>
-    import { mapState, mapActions } from 'vuex'
+    import { mapState } from 'vuex'
     export default {
         props: [],
         data: function () {
@@ -41,10 +84,15 @@
                 error_pamiec: '',
                 error_rok: '',
                 csrf_token: $('meta[name="csrf-token"]').attr('content'),
+                year_items: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018' ],
+                memory_items: ['4 GB', '8 GB', '16 GB', '32 GB', '64 GB', '128 GB', '256 GB', '512 GB'],
+                name_items: ['iPhone', 'iPhone 3G', 'iPhone 3GS', 'iPhone 4', 'iPhone 5', 'iPhone 5C', 'iPhone 5S', 'iPhone 6',
+                    'iPhone 6+', 'iPhone 6S', 'iPhone 6S+', 'iPhone SE', 'iPhone 7', 'iPhone 7+', 'iPhone 8',
+                    'iPhone 8+', 'iPhone X', 'iPhone XS', 'iPhone XSMax', 'iPhone XR' ],
             }
         },
         computed:{
-            ...mapState('Iphone',['cena'], ['nazwa'], ['zdjecie'], ['kolor'], ['przekatna'], ['pamiec'], ['rok']),
+            ...mapState('Iphone',['cena'], ['nazwa'], ['kolor'], ['przekatna'], ['pamiec'], ['rok']),
             nazwa: {
                 get(){
                     return 'iPhone'

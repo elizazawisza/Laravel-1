@@ -1,57 +1,56 @@
 <template>
     <div id="index">
-        <div class="tabela">
+            <v-data-table :headers="headers" :items="form" >
+                <template slot="items" slot-scope="props">
+                    <td>{{ props.item.kolejka }}</td>
+                    <td class="text-xs-right">{{ props.item.nazwa }}</td>
+                    <td class="text-xs-right">{{ props.item.rok }}</td>
+                    <td class="text-xs-right">{{ props.item.cena }}</td>
+                    <td class="text-xs-right">{{ props.item.pamiec }}</td>
+                    <td class="text-xs-right">{{ props.item.kolor }}</td>
+                    <td class="text-xs-right">{{ props.item.przekatna }}</td>
+                    <td class="text-xs-right">
+                        <router-link  v-bind:to="{name: 'iphoneshow', params:{id:props.item.id}}"><v-btn small color="success">Podgląd</v-btn></router-link>
+                        <router-link  v-bind:to="{name: 'iphoneedit', params:{id:props.item.id}}"><v-btn small color="info"> Edytuj </v-btn></router-link>
+                        <v-btn small color="error" @click="usuwanie(props.item.id)">  Usuń  </v-btn>
+                    </td>
+                    <td>
+                        <v-btn small @click="dogory(props.index)">↑</v-btn>
+                        <v-btn small @click="wdol(props.index)">↓</v-btn>
+                    </td>
 
-            <table v-if="form[0]">
-                <tr>
-                    <th>Lp</th>
-                    <th>Nazwa</th>
-                    <th>Rok</th>
-                    <th>Cena</th>
-                    <th>Pamięć</th>
-                    <th>Kolor</th>
-                    <th>Przekątna</th>
-                    <th></th><th>Opcje</th><th></th><th>Kolejność</th>
-                </tr>
-                <tr v-for="(element, index) in form ">
-                    <td>{{element.kolejka}}</td>
-                    <td>{{element.nazwa}}</td>
-                    <td>{{element.rok}}</td>
-                    <td>{{element.cena}}</td>
-                    <td>{{element.pamiec}}</td>
-                    <td>{{element.kolor}}</td>
-                    <td>{{element.przekatna}}</td>
-                    <td>
-                        <router-link class="przycisk_podglad" v-bind:to="{name: 'iphoneshow', params:{id:element.id}}"><button>Podgląd</button></router-link>
-                    </td>
-                    <td>
-                        <router-link class="przycisk_edytuj" v-bind:to="{name: 'iphoneedit', params:{id:element.id}}"><button>Edytuj</button></router-link>
-                    </td>
-                    <td>
-                        <button class="button przycisk_usun" type="submit" @click="usuwanie(element.id)">Usuń</button>
-                    </td>
-                    <td>
-                        <button class="button gora" type="submit" @click="dogory(index)">↑</button>
-                        <button class="button dol" type="submit" @click="wdol(index)">↓</button>
-                    </td>
-                </tr>
-            </table>
-            <table v-else>
-                <th>Brak rekordów</th>
-            </table>
-        </div>
-        <div class="button">
-            <router-link :to="{name: 'iphoneadd'}"><button id="dodawanie" type="submit" name="przycisk" value="dodawanie">Przejdź do strony dodawania</button></router-link>
+                </template>
+            </v-data-table>
+        <div class="text-xs-center">
+            <router-link :to="{name: 'iphoneadd'}"><v-btn color="#53A4E6" dark>Przejdź do strony dodawania</v-btn></router-link>
         </div>
     </div>
-    <v-data-table>
-
-    </v-data-table>
 </template>
 <style>
     .application--wrap{
         min-height: 0 !important;
+        background-color: #cceeff;
     }
+    a:-webkit-any-link{
+        text-decoration: none !important;
+    }
+    .theme--light.v-table thead th {
+        background-color: #0767B0;
+        color:white;
+    }
+    table.v-table thead th {
+        font-size: 15px;
+    }
+    table.v-table thead th {
+        font-weight: 500;
+        font-size: 12px;
+        width:10px !important;
+    }
+    .v-btn {
+        min-width:0px;
+    }
+
+
 </style>
 
 <script>
@@ -60,6 +59,18 @@
         props:[],
         data: function () {
             return {
+                headers: [
+                    { text: 'Lp', align: 'center', sortable: false, value: 'lp'},
+                    { text: 'Nazwa', align: 'center', sortable: false, value: 'name' },
+                    { text: 'Rok', align: 'center', sortable: false, value: 'year' },
+                    { text: 'Cena', align: 'center', sortable: false, value: 'price' },
+                    { text: 'Pamiec', align: 'center', sortable: false, value: 'memory' },
+                    { text: 'Kolor', align: 'center', sortable: false, value: 'color' },
+                    { text: 'Przekatna', align: 'center', sortable: false, value: 'diagonal' },
+                    { text: 'Akcje', align: 'center', sortable: false, value: 'actions' },
+                    { text: 'Kolejnosc', align: 'center', sortable: false, value: 'order' },
+                ],
+
             }
         },
         beforeMount(){
