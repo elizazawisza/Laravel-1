@@ -41,7 +41,7 @@
                         <v-subheader>Pamięć</v-subheader>
                     </v-flex>
                     <v-flex xs8>
-                        <v-select id="pamiec" :items="memory_items" v-model="pamiec" solo></v-select>
+                        <v-select id="pamiec" item-text="name" item-value="value" v-model="pamiec" v-bind:items="memory_items" solo></v-select>
                     </v-flex>
                 </v-layout>
                 <div class="alert-danger">{{error_pamiec}}</div>
@@ -106,7 +106,14 @@
                 percentCompleted: '0',
                 max : 100,
                 year_items: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018' ],
-                memory_items: ['4 GB', '8 GB', '16 GB', '32 GB', '64 GB', '128 GB', '256 GB', '512 GB'],
+                memory_items: [{"name":"4 GB","value":4},
+                    {"name":"8 GB","value":8},
+                    {"name":"16 GB","value":16},
+                    {"name":"32 GB","value":32},
+                    {"name":"64 GB","value":64},
+                    {"name":"128 GB","value":128},
+                    {"name":"256 GB","value":256},
+                    {"name":"512 GB","value":512}],
                 name_items: ['iPhone', 'iPhone 3G', 'iPhone 3GS', 'iPhone 4', 'iPhone 5', 'iPhone 5C', 'iPhone 5S', 'iPhone 6',
                     'iPhone 6+', 'iPhone 6S', 'iPhone 6S+', 'iPhone SE', 'iPhone 7', 'iPhone 7+', 'iPhone 8',
                     'iPhone 8+', 'iPhone X', 'iPhone XS', 'iPhone XSMax', 'iPhone XR' ],

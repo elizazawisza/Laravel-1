@@ -18,7 +18,7 @@ class CreateKolekcjaTable extends Migration
             $table->string('nazwa');
             $table->string('rok');
             $table->decimal('cena',10,2);
-            $table->string('pamiec');
+            $table->integer('pamiec');
             $table->string('kolor');
             $table->double('przekatna');
             $table->string('zdjecie');

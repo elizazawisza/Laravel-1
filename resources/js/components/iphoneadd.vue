@@ -34,7 +34,7 @@
                     <v-subheader>Pamięć</v-subheader>
                 </v-flex>
                 <v-flex xs8>
-                    <v-select id="pamiec" :items="memory_items" v-model="pamiec" solo></v-select>
+                    <v-select id="pamiec" item-text="name" item-value="value" v-model="pamiec" v-bind:items="memory_items" solo></v-select>
                 </v-flex>
             </v-layout>
             <div class="alert-danger">{{error_pamiec}}</div>
@@ -85,7 +85,17 @@
                 error_rok: '',
                 csrf_token: $('meta[name="csrf-token"]').attr('content'),
                 year_items: ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018' ],
-                memory_items: ['4 GB', '8 GB', '16 GB', '32 GB', '64 GB', '128 GB', '256 GB', '512 GB'],
+
+                memory_items: [{"name":"4 GB","value":4},
+                               {"name":"8 GB","value":8},
+                               {"name":"16 GB","value":16},
+                               {"name":"32 GB","value":32},
+                               {"name":"64 GB","value":64},
+                               {"name":"128 GB","value":128},
+                               {"name":"256 GB","value":256},
+                               {"name":"512 GB","value":512}],
+                                //pamiec:'',
+
                 name_items: ['iPhone', 'iPhone 3G', 'iPhone 3GS', 'iPhone 4', 'iPhone 5', 'iPhone 5C', 'iPhone 5S', 'iPhone 6',
                     'iPhone 6+', 'iPhone 6S', 'iPhone 6S+', 'iPhone SE', 'iPhone 7', 'iPhone 7+', 'iPhone 8',
                     'iPhone 8+', 'iPhone X', 'iPhone XS', 'iPhone XSMax', 'iPhone XR' ],
@@ -98,14 +108,12 @@
                     return 'iPhone'
                 },
                 set(value){
-                    console.log(value)
                     this.$store.commit('Iphone/updateNazwa', value)
-                    console.log(this.$store.state.Iphone.nazwa)
                 }
             },
             cena: {
                 get(){
-                    return this.$store.state.Iphone.cena
+                    //return this.$store.state.Iphone.cena
                 },
                 set(value){
                     this.$store.commit('Iphone/updateCena', value)
@@ -121,7 +129,7 @@
             },
             pamiec: {
                 get(){
-                    return '4 GB'
+                    return 4
                 },
                 set(value){
                     this.$store.commit('Iphone/updatePamiec',value)
@@ -129,7 +137,7 @@
             },
             kolor: {
                 get(){
-                    return this.$store.state.Iphone.kolor
+                    //return this.$store.state.Iphone.kolor
                 },
                 set(value){
                     this.$store.commit('Iphone/updateKolor', value)
@@ -137,7 +145,7 @@
             },
             przekatna: {
                 get(){
-                    return this.$store.state.Iphone.przekatna
+                    //return this.$store.state.Iphone.przekatna
                 },
                 set(value){
                     this.$store.commit('Iphone/updatePrzekatna', value)
@@ -149,6 +157,16 @@
                 e.preventDefault();
                 let vn = this;
 
+                if(vn.$store.state.Iphone.nazwa===""){
+                    vn.$store.state.Iphone.nazwa = 'iPhone'
+                }
+                if(vn.$store.state.Iphone.rok===""){
+                    vn.$store.state.Iphone.rok = 2007
+                }
+                if(vn.$store.state.Iphone.pamiec===""){
+                    vn.$store.state.Iphone.pamiec = 4
+                }
+
                 vn.error_przekatna = '';
                 vn.error_cena = '';
                 vn.error_kolor = '';
@@ -158,9 +176,9 @@
                 axios.post('/kolekcja', {
                     nazwa: this.$store.state.Iphone.nazwa,
                     rok: this.$store.state.Iphone.rok,
-                    cena: this.cena,
-                    kolor: this.kolor,
-                    przekatna: this.przekatna,
+                    cena: this.$store.state.Iphone.cena,
+                    kolor: this.$store.state.Iphone.kolor,
+                    przekatna: this.$store.state.Iphone.przekatna,
                     pamiec: this.$store.state.Iphone.pamiec,
                     action:'dodaj'
                 })
