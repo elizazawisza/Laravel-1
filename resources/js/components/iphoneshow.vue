@@ -21,11 +21,11 @@
             </tr>
             <tr>
                 <th>Cena</th>
-                <td>{{form.cena}}</td>
+                <td>{{form.cena_zl}}</td>
             </tr>
             <tr>
                 <th>Pamięć</th>
-                <td>{{form.pamiec}}</td>
+                <td>{{form.pamiec_gb}}</td>
             </tr>
             <tr>
                 <th>Kolor</th>
@@ -44,6 +44,11 @@
     </div>
 </div>
 </template>
+<style>
+    .application--wrap {
+        background-color: #cceeff;
+    }
+</style>
 <script>
     export default {
         data: function () {

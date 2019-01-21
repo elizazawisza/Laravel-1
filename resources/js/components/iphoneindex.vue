@@ -23,7 +23,7 @@
                     <td class="text-xs-left">
                         <router-link  v-bind:to="{name: 'iphoneshow', params:{id:props.item.id}}"><v-btn color="success">Podgląd</v-btn></router-link>
                         <router-link  v-bind:to="{name: 'iphoneedit', params:{id:props.item.id}}"><v-btn color="info">Edytuj</v-btn></router-link>
-                        <v-btn color="error" @click="usuwanie(props.item.id)">Usuń</v-btn>
+                        <v-btn color="error" @click="usuwanie(props.item.id, props.index)">Usuń</v-btn>
                     </td>
                     <td>
                         <v-btn small @click="dogory(props.index)">↑</v-btn>
@@ -103,9 +103,10 @@
 
         methods:{
             ...mapActions('Lista',['loadForm']),
-            usuwanie:function (form) {
+            usuwanie:function (form, index) {
                 var odp = confirm("Na pewno chcesz usunąć ten telefon z kolekcji?");
                 let vn = this;
+                //console.log(vn.form);
                 if(odp===true){
                     axios.post('kolekcja/'+ form ,{
                         _method : 'DELETE'
@@ -113,11 +114,12 @@
                         .then(function(response){
                             if (response.data.success) {}
                             window.alert("Telefon został usunięty");
-                            vn.$router.go();
+                            //vn.form.splice(form, 1);
+                            vn.form.splice(index, 1)
                         })
                         .catch(function (error) {
                             console.log("error",error);
-                            console.log(error.response.data);
+                          //  console.log(error.response.data);
                         });
                 }
                 else{
