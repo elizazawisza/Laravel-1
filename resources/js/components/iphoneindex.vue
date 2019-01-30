@@ -11,8 +11,9 @@
                         hide-details
                 ></v-text-field>
             </v-card-title>
-            <v-data-table :headers="headers" :items="form" :search="search" :rows-per-page-text="'Ilość na stronie'" >
+            <v-data-table :headers="headers" :items="form" :search="search" :rows-per-page-text="'Ilość na stronie'" :expand="expand" >
                 <template slot="items" slot-scope="props">
+                    <tr @click="props.expanded = !props.expanded">
                     <td>{{props.index+1}}</td>
                     <td>{{ props.item.nazwa }}</td>
                     <td class="text-xs-left">{{ props.item.rok }}</td>
@@ -29,6 +30,15 @@
                         <v-btn small @click="dogory(props.index)">↑</v-btn>
                         <v-btn small @click="wdol(props.index)">↓</v-btn>
                     </td>
+                    </tr>
+                </template>
+                <template slot="expand" slot-scope="props">
+                    <v-card flat>
+                        <v-card-text v-if="props.item.pracownik.length!==0">Pracownicy:</v-card-text>
+                        <v-card-text v-if="props.item.pracownik.length===0">Brak pracowników posiadających taki telefon</v-card-text>
+
+                        <v-card-text v-for="pracownik in props.item.pracownik" :key="props.item.pracownik.id"  > {{pracownik.imie}} {{pracownik.nazwisko}}</v-card-text>
+                    </v-card>
                 </template>
                 <template slot="pageText" slot-scope="props">
                     {{ props.pageStart }} - {{ props.pageStop }} z {{ props.itemsLength }}
@@ -63,6 +73,13 @@
         height:25px;
         font-size: 12px;
     }
+    .v-card__text {
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: 0px;
+        padding-top:6px ;
+        margin-left: 60px;
+    }
 
 
 
@@ -87,6 +104,7 @@
                     { text: 'Kolejność', align: 'center', sortable: false, value: 'order' },
                 ],
                 search: '',
+                expand: false,
                 //form: [],
             }
         },

@@ -7,12 +7,19 @@
 
 require('./bootstrap');
 
+
+
 window.Vue = require('vue');
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
+
+import {moduleIphone} from './modules/telefon.js'
+import {moduleLista} from './modules/listatelefony.js'
+import {modulePracownik} from './modules/pracownik.js'
+import {modulePracownicy} from './modules/pracownicy.js'
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
@@ -32,6 +39,10 @@ Vue.component('rok', require('./components/rok.vue'));
 Vue.component('przekatna', require('./components/przekatna.vue'));
 Vue.component('przycisk', require('./components/przycisk.vue'));
 Vue.component('kolor', require('./components/kolor.vue'));
+const EmplyeeAdd = Vue.component('employeeAdd', require('./components/employeeAdd.vue'));
+const EmployeeEdit = Vue.component('employeeEdit', require('./components/employeeEdit.vue'));
+const EmployeeIndex =Vue.component('employeeIndex', require('./components/employeeIndex.vue'));
+const EmployeeShow = Vue.component('employeeShow', require('./components/employeeShow.vue'));
 const IphoneEdit = Vue.component('iphoneedit', require('./components/iphoneedit.vue'));
 const IphoneShow = Vue.component('iphoneshow', require('./components/iphoneshow.vue'));
 Vue.component('zdjecie', require('./components/zdjecie.vue'));
@@ -57,7 +68,27 @@ const routes = [
         name: 'iphoneindex',
         path: '/kolekcja',
         component: IphoneList
-    }
+    },
+    {
+        name: 'employeeIndex',
+        path: '/pracownicy',
+        component: EmployeeIndex
+    },
+    {
+        name: 'employeeAdd',
+        path: '/pracownicy/create',
+        component: EmplyeeAdd
+    },
+    {
+        name: 'employeeEdit',
+        path: '/pracownicy/:id/edit',
+        component: EmployeeEdit
+    },
+    {
+        name: 'employeeShow',
+        path: '/pracownicy/:id',
+        component: EmployeeShow
+    },
 ];
 
 const router = new VueRouter({
@@ -65,114 +96,13 @@ const router = new VueRouter({
     routes,
 });
 
-const moduleIphone = {
-    namespaced: true,
-    state: {
-        nazwa: '',
-        cena: '',
-        rok: '',
-        kolor: '',
-        zdjecie: '',
-        przekatna: '',
-        pamiec: ''
-
-    },
-    actions:{
-        loadPhone({commit},id){
-            axios.get('/kolekcja/kolekcjaapiEdit/'+id)
-                .then(function (response){
-                    commit('updateCena', response.data.cena);
-                    commit('updateNazwa', response.data.nazwa);
-                    commit('updateRok', response.data.rok);
-                    commit('updateKolor', response.data.kolor);
-                    commit('updateZdjecie', response.data.zdjecie);
-                    commit('updatePrzekatna', response.data.przekatna);
-                    commit('updatePamiec', response.data.pamiec);
-                })
-                .catch(function (error) {
-                    console.log("error", error);
-                    console.log(error.response);
-                })
-        }
-    },
-    mutations: {
-        updateNazwa(state, nazwa){
-            state.nazwa = nazwa;
-        },
-        updateCena(state, cena){
-            state.cena = cena
-        },
-        updateRok(state,rok){
-            state.rok = rok
-        },
-        updateKolor(state, kolor){
-            state.kolor = kolor
-        },
-        updateZdjecie(state, zdjecie){
-            state.zdjecie = zdjecie
-        },
-        updatePrzekatna(state, przekatna){
-            state.przekatna = przekatna
-        },
-        updatePamiec(state, pamiec){
-            state.pamiec = pamiec
-        }
-    },
-    getters:{
-        getNazwa(state){
-            return state.form.nazwa;
-        },
-        getCena(state){
-            return state.form.cena;
-        },
-        getRok(state){
-            return state.form.rok;
-        },
-        getPamiec(state){
-            return state.form.pamiec;
-        },
-        getPrzekatna(state){
-            return state.form.przekatna;
-        },
-        getKolor(state){
-            return state.form.kolor;
-        },
-        getZdjecie(state){
-            return state.form.zdjecie;
-        }
-    }
-};
-
-
-const moduleLista = {
-    namespaced: true,
-    state: {
-        form:[]
-    },
-    actions:{
-        loadForm ({ commit }) {
-            axios.get('kolekcjaapiIndex')
-                .then(function (response){
-                    commit('setForm', response.data)
-                })
-        }
-    },
-    mutations:{
-        setForm(state, form){
-            state.form = form;
-        }
-    },
-    getters: {
-        getForm(state){
-            return state.form;
-        }
-    }
-};
 
 const store = new Vuex.Store({
     modules: {
         Iphone: moduleIphone,
-        Lista: moduleLista
+        Lista: moduleLista,
+        Pracownik: modulePracownik,
+        Pracownicy: modulePracownicy
     }
 });
 

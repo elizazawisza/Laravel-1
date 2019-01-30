@@ -13,10 +13,15 @@ class Kolekcja extends Model
     public function getPamiecGbAttribute(){
         return $this->pamiec.' GB';
     }
+
     public function getCenaZlAttribute(){
 
         return number_format($this->cena,2,","," ").' zł';
     }
 
+    public function pracownik()
+    {
+        return $this->hasMany('App\Pracownik', 'telefon_id');
+    }
 
 }

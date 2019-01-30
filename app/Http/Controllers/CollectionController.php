@@ -16,14 +16,15 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        //$kolekcja = Kolekcja::orderBy('kolejka','asc')->get();
+         //dd(Kolekcja::with('pracownik')->get()->all());
+        $kolekcja = Kolekcja::with('pracownik')->orderBy('kolejka','asc')->get()->all();
         return view('index2');
 
     }
 
     public function apiIndex()
     {
-        $kolekcja = Kolekcja::orderBy('kolejka','asc')->get();
+        $kolekcja = Kolekcja::with('pracownik')->orderBy('kolejka','asc')->get()->all();
         return response()->json($kolekcja);
     }
 
@@ -41,7 +42,7 @@ class CollectionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -103,7 +104,6 @@ class CollectionController extends Controller
     {
         return view('index2');
         $kolekcja = Kolekcja::find($id);
-        //dd(response()->json($kolekcja));
         return response()->json($kolekcja);
     }
 

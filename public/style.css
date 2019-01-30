@@ -192,7 +192,7 @@ button#dodaj, button#zaktualizuj, button#powrot, button#dodawanie {
     border-collapse: collapse;
     width: 100%;
     align-self: center;
-    margin-top: 10px;
+    margin-top: 70px;
 }
 .tabela_podglad tr{
     border: 1px solid #012745;
@@ -231,6 +231,7 @@ button#dodaj, button#zaktualizuj, button#powrot, button#dodawanie {
     text-align: right;
     background-color: #ffe6ec;
     margin-left: 60px;
+
 }
 .progress{
     width: 100%;
@@ -252,4 +253,8 @@ button#dodaj, button#zaktualizuj, button#powrot, button#dodawanie {
 .theme--light.application {
     background: #cceeff;
     color: rgba(0,0,0,.87);
+}
+.application--wrap{
+    min-height: 0 !important;
+    background-color: #cceeff;
 }
