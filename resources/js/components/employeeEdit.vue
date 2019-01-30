@@ -43,7 +43,7 @@
                     <v-subheader>Telefon</v-subheader>
                 </v-flex>
                 <v-flex xs8>
-                    <v-text-field id="telefon" type="text" v-model="telefon" solo></v-text-field>
+                    <v-select id="telefon"  item-text="name" item-value="value"  v-bind:items="telefon_items"  v-model="telefon" solo></v-select>
                 </v-flex>
             </v-layout>
             <div class="alert-danger">{{error_telefon}}</div>
@@ -67,10 +67,18 @@
                 error_numer: '',
                 error_telefon: '',
                 csrf_token: $('meta[name="csrf-token"]').attr('content'),
+                telefon_items:[],
             }
         },
         beforeMount() {
-            this.loadEmployee(this.$route.params.id)
+            let vn = this;
+            axios.get('http://kolekcja.local/kolekcjaapiIndex')
+                .then(function (response){
+                    for(var i=0; i<response.data.length; i++) {
+                        vn.telefon_items.push({ "name":response.data[i].nazwa, "value": response.data[i].id});
+                    }
+                }),
+                this.loadEmployee(this.$route.params.id)
         },
         computed:{
             ...mapState('Pracownik', ['imie', 'nazwisko', 'email', 'numer']),
@@ -104,7 +112,6 @@
                 },
                 set(value){
                     this.$store.commit('Pracownik/updateNumer',value)
-                    console.log(value.length);
                 }
             },
             telefon: {
@@ -114,7 +121,7 @@
                 set(value){
                     this.$store.commit('Pracownik/updateTelefon',value)
                 }
-            }
+            },
         },
         methods:{
             ...mapActions('Pracownik',['loadEmployee']),

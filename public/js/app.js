@@ -77994,11 +77994,17 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             error_email: '',
             error_numer: '',
             error_telefon: '',
-            csrf_token: $('meta[name="csrf-token"]').attr('content')
+            csrf_token: $('meta[name="csrf-token"]').attr('content'),
+            telefon_items: []
         };
     },
     beforeMount: function beforeMount() {
-        this.loadEmployee(this.$route.params.id);
+        var vn = this;
+        axios.get('http://kolekcja.local/kolekcjaapiIndex').then(function (response) {
+            for (var i = 0; i < response.data.length; i++) {
+                vn.telefon_items.push({ "name": response.data[i].nazwa, "value": response.data[i].id });
+            }
+        }), this.loadEmployee(this.$route.params.id);
     },
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["c" /* mapState */])('Pracownik', ['imie', 'nazwisko', 'email', 'numer']), {
@@ -78032,7 +78038,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             },
             set: function set(value) {
                 this.$store.commit('Pracownik/updateNumer', value);
-                console.log(value.length);
             }
         },
         telefon: {
@@ -78266,8 +78271,14 @@ var render = function() {
                 "v-flex",
                 { attrs: { xs8: "" } },
                 [
-                  _c("v-text-field", {
-                    attrs: { id: "telefon", type: "text", solo: "" },
+                  _c("v-select", {
+                    attrs: {
+                      id: "telefon",
+                      "item-text": "name",
+                      "item-value": "value",
+                      items: _vm.telefon_items,
+                      solo: ""
+                    },
                     model: {
                       value: _vm.telefon,
                       callback: function($$v) {
