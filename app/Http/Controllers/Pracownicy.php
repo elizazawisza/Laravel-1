@@ -15,13 +15,15 @@ class Pracownicy extends Controller
      */
     public function index()
     {
-       // dd(Pracownik::with('kolekcja')->get()->all());
+        //dd(Pracownik::with('kolekcja')->get()->all());
         $pracownik = Pracownik::with('kolekcja')->get()->all();
         return view('indexPracownicy');
     }
     public function apiIndex()
     {
         $pracownicy = Pracownik::with('kolekcja')->get()->all();
+        //$pracownicy = Pracownik::all();
+        //dd(Pracownik::with('kolekcja')->get()->all());
         return response()->json($pracownicy);
     }
 
@@ -79,13 +81,14 @@ class Pracownicy extends Controller
     public function edit($id)
     {
         return view('indexPracownicy');
-        $pracownik = Pracownik::find($id);
-        return response()->json($pracownik);
+        //$pracownik = Pracownik::find($id);
+
+        //return response()->json($pracownik);
     }
 
     public function ApiEdit($id)
     {
-        $pracownik = Pracownik::find($id);
+        $pracownik = Pracownik::with('kolekcja')->find($id);
         return response()->json($pracownik);
     }
 
@@ -103,8 +106,10 @@ class Pracownicy extends Controller
         $pracownik->nazwisko=$request->get('nazwisko');
         $pracownik->email=$request->get('email');
         $pracownik->numer_telefonu=$request->get('numer_telefonu');
-        $pracownik->telefon_id=$request->get('telefon_id');
         $pracownik->save();
+        $telefon_id = explode(',',$request->get('telefon_id'));
+        //print_r($telefon_id);
+        $pracownik->kolekcja()->sync($telefon_id);
         return response()->json(['success'=>true]);
     }
 

@@ -19,9 +19,6 @@ class CreatePracownicyTable extends Migration
             $table->string('nazwisko');
             $table->string("numer_telefonu");
             $table->string('email');
-            $table->integer('telefon_id')->unsigned()->nullable();
-            $table->foreign('telefon_id')->references('id')->on('kolekcja')
-                ->onDelete('cascade');
             $table->timestamps();
         });
     }

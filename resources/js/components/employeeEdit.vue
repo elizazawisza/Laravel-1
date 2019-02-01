@@ -43,7 +43,7 @@
                     <v-subheader>Telefon</v-subheader>
                 </v-flex>
                 <v-flex xs8>
-                    <v-select id="telefon"  item-text="name" item-value="value"  v-bind:items="telefon_items"  v-model="telefon" solo></v-select>
+                    <v-select id="telefon"  item-text="name" item-value="value"  v-bind:items="telefon_items"  v-model="telefon" multiple solo></v-select>
                 </v-flex>
             </v-layout>
             <div class="alert-danger">{{error_telefon}}</div>
@@ -68,6 +68,7 @@
                 error_telefon: '',
                 csrf_token: $('meta[name="csrf-token"]').attr('content'),
                 telefon_items:[],
+                tmp:[]
             }
         },
         beforeMount() {
@@ -119,7 +120,7 @@
                     return this.$store.state.Pracownik.telefon_id
                 },
                 set(value){
-                    this.$store.commit('Pracownik/updateTelefon',value)
+                    this.$store.commit('Pracownik/updateTelefon2',value)
                 }
             },
         },
@@ -133,7 +134,6 @@
                 vn.error_email = '';
                 vn.error_numer = '';
                 vn.error_telefon = '';
-
 
                 let rid = this.$route.params.id;
                 let formData = new FormData();
@@ -157,10 +157,8 @@
                         vn.$router.replace('/pracownicy');
                     })
                     .catch(function (error) {
-                        console.log(error.response.data.message);
-                        if(error.response.data.message.startsWith('SQLSTATE')){
-                            vn.error_telefon = "Nie ma takiego rekordu w bazie";
-                        }
+                        console.log("Błąd")
+                        console.log(error.response.data);
                         if(error.response.data.errors.imie){
                             vn.error_imie = error.response.data.errors.imie[0];
                         }

@@ -75857,11 +75857,12 @@ var modulePracownik = {
             var commit = _ref.commit;
 
             axios.get('/pracownicy/pracownicyApiEdit/' + id).then(function (response) {
+                console.log(response.data);
                 commit('updateImie', response.data.imie);
                 commit('updateNazwisko', response.data.nazwisko);
                 commit('updateEmail', response.data.email);
                 commit('updateNumer', response.data.numer_telefonu);
-                commit('updateTelefon', response.data.telefon_id);
+                commit('updateTelefon1', response.data.kolekcja);
             }).catch(function (error) {
                 console.log("error", error);
                 console.log(error.response);
@@ -75881,8 +75882,17 @@ var modulePracownik = {
         updateNumer: function updateNumer(state, numer_telefonu) {
             state.numer_telefonu = numer_telefonu;
         },
-        updateTelefon: function updateTelefon(state, telefon_id) {
-            state.telefon_id = telefon_id;
+        updateTelefon1: function updateTelefon1(state, telefon_id) {
+            console.log("Tutaj");
+            console.log(telefon_id.length);
+            var tmp = [];
+            for (var i = 0; i < telefon_id.length; i++) {
+                tmp.push(telefon_id[i].id);
+            }
+            state.telefon_id = tmp;
+        },
+        updateTelefon2: function updateTelefon2(state, telefon_id) {
+            state.telefon_id.push(telefon_id);
         }
     },
     getters: {
@@ -77995,7 +78005,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             error_numer: '',
             error_telefon: '',
             csrf_token: $('meta[name="csrf-token"]').attr('content'),
-            telefon_items: []
+            telefon_items: [],
+            tmp: []
         };
     },
     beforeMount: function beforeMount() {
@@ -78045,7 +78056,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return this.$store.state.Pracownik.telefon_id;
             },
             set: function set(value) {
-                this.$store.commit('Pracownik/updateTelefon', value);
+                this.$store.commit('Pracownik/updateTelefon2', value);
             }
         }
     }),
@@ -78078,10 +78089,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 console.log("Jestem tutaj"), window.alert("Pracownik został zaktualizowany");
                 vn.$router.replace('/pracownicy');
             }).catch(function (error) {
-                console.log(error.response.data.message);
-                if (error.response.data.message.startsWith('SQLSTATE')) {
-                    vn.error_telefon = "Nie ma takiego rekordu w bazie";
-                }
+                console.log("Błąd");
+                console.log(error.response.data);
                 if (error.response.data.errors.imie) {
                     vn.error_imie = error.response.data.errors.imie[0];
                 }
@@ -78277,6 +78286,7 @@ var render = function() {
                       "item-text": "name",
                       "item-value": "value",
                       items: _vm.telefon_items,
+                      multiple: "",
                       solo: ""
                     },
                     model: {
@@ -78413,7 +78423,7 @@ if(false) {
 
 exports = module.exports = __webpack_require__(2)(false);
 // Module
-exports.push([module.i, "\n.application--wrap{\n    min-height: 0 !important;\n    background-color: #cceeff;\n}\na:-webkit-any-link{\n    text-decoration: none !important;\n}\n.theme--light.v-table thead th {\n    background-color: #0767B0;\n    color:white;\n}\ntable.v-table thead th {\n    font-weight: 500;\n    font-size: 15px;\n}\n.v-btn--small {\n    min-width:0;\n}\n.v-btn{\n    height:25px;\n    font-size: 12px;\n}\n.v-card__text {\n    margin-left: 40px;\n}\n", ""]);
+exports.push([module.i, "\n.application--wrap{\n    min-height: 0 !important;\n    background-color: #cceeff;\n}\na:-webkit-any-link{\n    text-decoration: none !important;\n}\n.theme--light.v-table thead th {\n    background-color: #0767B0;\n    color:white;\n}\ntable.v-table thead th {\n    font-weight: 500;\n    font-size: 15px;\n}\n.v-btn--small {\n    min-width:0;\n}\n.v-btn{\n    height:25px;\n    font-size: 12px;\n}\n.v-card__text {\n    margin-left: 40px;\n}\np {\n    margin-bottom: 0px;\n}\n", ""]);
 
 
 
@@ -78426,6 +78436,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(4);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+//
+//
+//
 //
 //
 //
@@ -78624,15 +78637,16 @@ var render = function() {
                           _vm._v(_vm._s(props.item.numer_telefonu))
                         ]),
                         _vm._v(" "),
-                        _c("td", { staticClass: "text-xs-left" }, [
-                          _vm._v(
-                            _vm._s(
-                              props.item.kolekcja
-                                ? props.item.kolekcja.nazwa
-                                : "brak"
-                            )
-                          )
-                        ]),
+                        _c(
+                          "td",
+                          { staticClass: "text-xs-left" },
+                          _vm._l(props.item.kolekcja, function(telefon) {
+                            return _c("p", { key: props.item.kolekcja.id }, [
+                              _vm._v(_vm._s(telefon.nazwa))
+                            ])
+                          }),
+                          0
+                        ),
                         _vm._v(" "),
                         _c(
                           "td",
@@ -78702,32 +78716,31 @@ var render = function() {
                       "v-card",
                       { attrs: { flat: "" } },
                       [
-                        props.item.telefon_id !== null
-                          ? _c("v-card-text", [
-                              _vm._v(
-                                "Nazwa: " + _vm._s(props.item.kolekcja.nazwa)
-                              ),
-                              _c("br"),
-                              _vm._v(
-                                " Rok: " + _vm._s(props.item.kolekcja.rok) + " "
-                              ),
-                              _c("br"),
-                              _vm._v(
-                                "Pamięć: " +
-                                  _vm._s(props.item.kolekcja.pamiec_gb)
-                              ),
-                              _c("br"),
-                              _vm._v(
-                                " Kolor: " + _vm._s(props.item.kolekcja.kolor)
+                        _vm._l(props.item.kolekcja, function(telefon) {
+                          return props.item.telefon_id !== null
+                            ? _c(
+                                "v-card-text",
+                                { key: props.item.kolekcja.id },
+                                [
+                                  _vm._v("Nazwa: " + _vm._s(telefon.nazwa)),
+                                  _c("br"),
+                                  _vm._v(" Rok: " + _vm._s(telefon.rok) + " "),
+                                  _c("br"),
+                                  _vm._v(
+                                    "Pamięć: " + _vm._s(telefon.pamiec_gb)
+                                  ),
+                                  _c("br"),
+                                  _vm._v(" Kolor: " + _vm._s(telefon.kolor))
+                                ]
                               )
-                            ])
-                          : _vm._e(),
+                            : _vm._e()
+                        }),
                         _vm._v(" "),
                         props.item.telefon_id === null
                           ? _c("v-card-text", [_vm._v("Brak informacji")])
                           : _vm._e()
                       ],
-                      1
+                      2
                     )
                   ]
                 }

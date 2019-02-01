@@ -11,11 +11,12 @@ export const modulePracownik = {
         loadEmployee({commit},id){
             axios.get('/pracownicy/pracownicyApiEdit/'+id)
                 .then(function (response){
+                    console.log(response.data)
                     commit('updateImie', response.data.imie);
                     commit('updateNazwisko', response.data.nazwisko);
                     commit('updateEmail', response.data.email);
                     commit('updateNumer', response.data.numer_telefonu);
-                    commit('updateTelefon', response.data.telefon_id);
+                    commit('updateTelefon1', response.data.kolekcja);
                 })
                 .catch(function (error) {
                     console.log("error", error);
@@ -36,8 +37,17 @@ export const modulePracownik = {
         updateNumer(state, numer_telefonu){
             state.numer_telefonu = numer_telefonu
         },
-        updateTelefon(state, telefon_id){
-            state.telefon_id = telefon_id
+        updateTelefon1(state, telefon_id){
+            console.log("Tutaj")
+            console.log(telefon_id.length)
+            var tmp=[];
+            for(var i=0; i<telefon_id.length; i++){
+                tmp.push(telefon_id[i].id);
+            }
+            state.telefon_id = tmp
+        },
+        updateTelefon2(state, telefon_id){
+            state.telefon_id.push(telefon_id);
         }
     },
     getters:{

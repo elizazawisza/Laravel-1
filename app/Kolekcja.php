@@ -21,7 +21,7 @@ class Kolekcja extends Model
 
     public function pracownik()
     {
-        return $this->hasMany('App\Pracownik', 'telefon_id');
+        return $this->belongsToMany('App\Pracownik');
     }
 
 }

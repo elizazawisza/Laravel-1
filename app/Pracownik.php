@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Pracownik extends Model
 {
     protected $table = 'pracownicy';
-    protected $fillable = ['imie', 'nazwisko', 'email', 'numer_telefonu', 'telefon_id'];
+    protected $fillable = ['imie', 'nazwisko', 'email', 'numer_telefonu'];
 
     public function kolekcja(){
-        return $this->belongsTo('App\Kolekcja', 'telefon_id','id');
+        return $this->belongsToMany('App\Kolekcja');
     }
 }

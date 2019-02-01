@@ -19,7 +19,7 @@
                     <td class="text-xs-left">{{ props.item.nazwisko }}</td>
                     <td class="text-xs-left">{{ props.item.email }}</td>
                     <td class="text-xs-left">{{ props.item.numer_telefonu }}</td>
-                    <td class="text-xs-left">{{ props.item.kolekcja ? props.item.kolekcja.nazwa : 'brak' }}</td>
+                    <td class="text-xs-left"> <p v-for="telefon in props.item.kolekcja" :key="props.item.kolekcja.id">{{ telefon.nazwa }}</p></td>
                     <td class="text-xs-left">
                         <router-link  v-bind:to="{name: 'employeeShow', params:{id:props.item.id}}"><v-btn color="success">Podgląd</v-btn></router-link>
                         <router-link  v-bind:to="{name: 'employeeEdit', params:{id:props.item.id}}"><v-btn color="info">Edytuj</v-btn></router-link>
@@ -29,7 +29,7 @@
                 </template>
                 <template slot="expand" slot-scope="props">
                     <v-card flat>
-                        <v-card-text v-if="props.item.telefon_id!==null">Nazwa: {{props.item.kolekcja.nazwa}}<br> Rok: {{props.item.kolekcja.rok}} <br>Pamięć: {{props.item.kolekcja.pamiec_gb}}<br> Kolor: {{props.item.kolekcja.kolor}}</v-card-text>
+                        <v-card-text v-if="props.item.telefon_id!==null" v-for="telefon in props.item.kolekcja" :key="props.item.kolekcja.id" >Nazwa: {{telefon.nazwa}}<br> Rok: {{telefon.rok}} <br>Pamięć: {{telefon.pamiec_gb}}<br> Kolor: {{telefon.kolor}}</v-card-text>
                         <v-card-text v-if="props.item.telefon_id===null">Brak informacji</v-card-text>
                     </v-card>
                 </template>
@@ -68,6 +68,9 @@
     }
     .v-card__text {
         margin-left: 40px;
+    }
+    p {
+        margin-bottom: 0px;
     }
 </style>
 
